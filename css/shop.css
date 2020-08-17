@@ -1,0 +1,100 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.bg {
+    width: 100%;
+    background-image: url("../images/bgGrey.png");
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+
+.shopCart {
+    float: right;
+    padding: 5px;
+    border: 1px solid black;
+    border-top: none;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    margin-right: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 2rem !important;
+    padding-top: 10px !important;
+}
+
+.navbar {
+    padding: .5rem 1rem .5rem .25rem;
+}
+
+.nav-link.active {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 75%;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.table a {
+    padding: 0px;
+    text-decoration: none;
+}
+
+.table i {
+    display: inline;
+    margin-right: 5px;
+}
+
+.add,
+.minus {
+    cursor: pointer; 
+}
+
+.add:hover, 
+.minus:hover {
+    opacity: 0.8;
+}
+
+.badge {
+    padding: .4em .4em;
+}
+
+.fa-2x {
+	font-size: 1rem;
+}
+
+/* RWD */
+
+@media screen and (min-width: 601px) {
+    h1 {
+        font-size: 3rem !important;
+    }
+
+    .fa-2x {
+        font-size: 1.25rem;
+    }    
+}
+
+@media screen and (min-width: 769px) {
+    body {
+        font-size: 1rem;
+    }
+
+    .fa-2x {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+
+}

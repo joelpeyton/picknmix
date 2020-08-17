@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="Joel Peyton">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="fontawesome/css/all.css">
+
+        <!-- Google Fonts-->
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap" rel="stylesheet">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/shop.css">
+        
+        <!-- Fav icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        
+        <link rel="manifest" href="site.webmanifest">
+
+        <title>Pick and mix records</title>
+    </head>
+    <body class="bg">
+        
+        <!-- Nav bar -->
+        <div class="container" style="background-color: white;">
+            <div>
+                <div class="shopCart"><i class="fas fa-shopping-cart"></i>&nbsp;Cart (&nbsp;<span id="cartBadge">0</span>&nbsp;)</div>
+                <div class="shopCart">Total £<span class="total">0.00</span></div>
+            </div>
+            <h1 style="clear: both;">PICK 'N' MIX RECORDS</h1>
+            <hr style="background-color: black;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent" style="margin:24px 0;">
+                <!--<a class="navbar-brand" href="javascript:void(0)">Pix 'n' mix records</a>-->
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navb">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="javascript:void(0)" id="db9">50's & 60's</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" id="db10">70's onwards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" id="db11">12" Singles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" id="db12">LP's</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" id="db13">Collectable</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" id="db14">Accessories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)" id="cart">Cart</a>
+                        </li>
+                    </ul>
+
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
+                    </form>
+                </div>
+            </nav>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="7" id="categoryTitle">50's & 60's</th>
+                            </tr>
+                            <tr>
+                                <th>Artist</th>
+                                <th>Title</th>
+                                <th>Picture Sleeve</th>
+                                <th>Large Hole</th>
+                                <th>Condition</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="records">
+                            <!-- display records here-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    <!-- Bootstrap JavaScript -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    
+    <script src="js/shop.js" type="module"></script>
+    
+    </body>
+</html>
