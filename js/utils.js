@@ -34,25 +34,19 @@ function createRecordRow(record) {
     price.innerHTML = record["Price"];
     row.appendChild(price);
 
-    //let add = document.createElement("i");
-    //add.className = "add fas fa-plus-square text-success fa-2x";
-    //add.setAttribute("id", "a" + record["id"]);
-    //add.setAttribute("title", "Add to cart");
+    let actionBtn = document.createElement("button");
+    actionBtn.className = "actionBtn btn btn-outline-success";
+    actionBtn.setAttribute("id", record["id"]);
+    actionBtn.innerText = "Add to cart";
 
-    //let minus = document.createElement("i");
-    //minus.className = "minus fas fa-minus-square text-danger fa-2x";
-    //minus.setAttribute("id", "m" + record["id"]);
-    //minus.setAttribute("title", "Remove from cart");
-    //minus.style.display = "none";
-
+    /// ALTERNATIVE BUTTON ///
+    /*
     let actionBtn = document.createElement("i");
     actionBtn.className = "actionBtn fas fa-plus-square text-success fa-2x";
     actionBtn.setAttribute("id", record["id"]);
-    actionBtn.setAttribute("title", "Add to cart");
-    
+    */
+
     let cart  = document.createElement("td");
-    //cart.appendChild(add);
-    //cart.appendChild(minus);
     cart.appendChild(actionBtn);
     row.appendChild(cart);
 
@@ -74,6 +68,7 @@ function displayRecords(records, category) {
             createRecordRow(records[index]);
         }
     }
+    
 }
 
 function selectActive(id, text) {
@@ -86,7 +81,18 @@ function selectActive(id, text) {
 
 function toggleActionBtn() {
     let btn = document.getElementById(event.target.id);
-    if (btn.classList.contains("text-success")) {
+    if (btn.classList.contains("btn-outline-success")) {
+        btn.classList.remove("btn-outline-success");
+        btn.classList.add("btn-outline-danger");
+        btn.innerText = "Remove";
+    } else {
+        btn.classList.add("btn-outline-success");
+        btn.classList.remove("btn-outline-danger");
+        btn.innerText = "Add to cart";
+    }
+
+    /// ALTERNATIVE BUTTON ///
+    /*if (btn.classList.contains("text-success")) {
         btn.classList.remove("text-success");
         btn.classList.add("text-danger");
     } else {
@@ -100,7 +106,7 @@ function toggleActionBtn() {
     } else {
         btn.classList.add("fa-plus-square");
         btn.classList.remove("fa-minus-square");
-    }
+    }*/
 }
 
 function updateSessionCart() {
@@ -148,15 +154,22 @@ function actionBtns() {
 
 function updateActionBtns() {
     let cart = sessionStorage.cart.split(",");
-    cart.forEach(id => {
-        let btn = document.getElementById(id);
-        if (btn) {
-            btn.classList.remove("text-success");
-            btn.classList.add("text-danger");
-            btn.classList.remove("fa-plus-square");
-            btn.classList.add("fa-minus-square");
-        }
-    });
+
+    if (cart[0] !== "") {
+        cart.forEach(id => {
+            let btn = document.getElementById(id);
+            btn.classList.remove("btn-outline-success");
+            btn.classList.add("btn-outline-danger");
+            btn.innerText = "Remove";
+            /*
+            if (btn) {
+                btn.classList.remove("text-success");
+                btn.classList.add("text-danger");
+                btn.classList.remove("fa-plus-square");
+                btn.classList.add("fa-minus-square");
+            }*/
+        });
+    }
 }
 
 function updatePage(records, id) {
@@ -226,4 +239,4 @@ function getCookie(cname) {
     return "";
 }
 
-export { getCookie, updatePage };
+export { getCookie, updatePage, removeRecords, selectActive, updateSessionCart, updateCartBadge };

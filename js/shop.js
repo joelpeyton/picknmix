@@ -1,4 +1,5 @@
 import { getCookie, updatePage } from "./utils.js";
+import { updateCart } from "./cart.js";
 
 $(document).ready(function() {
     $.ajax({
@@ -14,13 +15,14 @@ $(document).ready(function() {
 
         $("#menuLinks").click(function(event) {
             if (event.target.id === "cart") {
-                $.ajax({
-                    type: "GET",
-                    url: "php/getCart.php"
-                })
-                .done(function(cart) {
-                    alert("Product ids = " + cart);
+                let cart = sessionStorage.cart.split(",");
+                let cartRecords = []; 
+                records.forEach(record => {
+                    if (cart.includes(record["id"])) {
+                        cartRecords.push(record);
+                    }
                 });
+                updateCart(cartRecords);
             }
 
             else {

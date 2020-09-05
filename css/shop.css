@@ -55,11 +55,13 @@ h1 {
     margin-right: 5px;
 }
 
-.actionBtn {
+.actionBtn,
+.removeBtn {
     cursor: pointer; 
 }
 
-.actionBtn:hover {
+.actionBtn:hover,
+.removeBtn:hover {
     opacity: 0.8;
 }
 
