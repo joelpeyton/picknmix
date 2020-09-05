@@ -12,34 +12,21 @@ $(document).ready(function(event) {
             updatePage(records, menuId);
         }
 
-        $("#db9").click(function() {
-            updatePage(records, "db9");
-        });
-        $("#db10").click(function() {
-            updatePage(records, "db10");
-        });
-        $("#db11").click(function() {
-            updatePage(records, "db11");
-        });
-        $("#db12").click(function() {
-            updatePage(records, "db12");
-        });
-        $("#db13").click(function() {
-            updatePage(records, "db13");
-        });
-        $("#db14").click(function() {
-            updatePage(records, "db14");
-        });
+        $("#menuLinks").click(function(event) {
+            if (event.target.id === "cart") {
+                $.ajax({
+                    type: "GET",
+                    url: "php/getCart.php"
+                })
+                .done(function(cart) {
+                    alert("Product ids = " + cart);
+                });
+            }
 
-        $("#cart").click(function() {
-            $.ajax({
-                type: "GET",
-                url: "php/getCart.php"
-            })
-            .done(function(cart) {
-                alert("Product ids = " + cart);
-            });
-        });
+            else {
+                updatePage(records, event.target.id);
+            }
+        })
     })
     .fail(function() {
         alert("Error: Unable to return database");
