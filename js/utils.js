@@ -34,20 +34,26 @@ function createRecordRow(record) {
     price.innerHTML = record["Price"];
     row.appendChild(price);
 
-    let add = document.createElement("i");
-    add.className = "add fas fa-plus-square text-success fa-2x";
-    add.setAttribute("id", "a" + record["id"]);
-    add.setAttribute("title", "Add to cart");
+    //let add = document.createElement("i");
+    //add.className = "add fas fa-plus-square text-success fa-2x";
+    //add.setAttribute("id", "a" + record["id"]);
+    //add.setAttribute("title", "Add to cart");
 
-    let minus = document.createElement("i");
-    minus.className = "minus fas fa-minus-square text-danger fa-2x";
-    minus.setAttribute("id", "m" + record["id"]);
-    minus.setAttribute("title", "Remove from cart");
-    minus.style.display = "none";
+    //let minus = document.createElement("i");
+    //minus.className = "minus fas fa-minus-square text-danger fa-2x";
+    //minus.setAttribute("id", "m" + record["id"]);
+    //minus.setAttribute("title", "Remove from cart");
+    //minus.style.display = "none";
+
+    let actionBtn = document.createElement("i");
+    actionBtn.className = "actionBtn fas fa-plus-square text-success fa-2x";
+    actionBtn.setAttribute("id", record["id"]);
+    actionBtn.setAttribute("title", "Add to cart");
     
     let cart  = document.createElement("td");
-    cart.appendChild(add);
-    cart.appendChild(minus);
+    //cart.appendChild(add);
+    //cart.appendChild(minus);
+    cart.appendChild(actionBtn);
     row.appendChild(cart);
 
     table.appendChild(row);
@@ -70,97 +76,86 @@ function displayRecords(records, category) {
     }
 }
 
-function selectActive(id) {
+function selectActive(id, text) {
     let current = document.querySelector(".nav-link.active");
     current.className = "nav-link";
     let active = document.querySelector(id);
     active.className = "nav-link active";
+    document.querySelector("#categoryTitle").innerHTML = text;
 }
 
-function updateCartBadge(num) {
-    document.getElementById("cartBadge").innerHTML = num;
+function toggleActionBtn() {
+    let btn = document.getElementById(event.target.id);
+    if (btn.classList.contains("text-success")) {
+        btn.classList.remove("text-success");
+        btn.classList.add("text-danger");
+    } else {
+        btn.classList.add("text-success");
+        btn.classList.remove("text-danger");
+    }
+
+    if (btn.classList.contains("fa-plus-square")) {
+        btn.classList.remove("fa-plus-square");
+        btn.classList.add("fa-minus-square");
+    } else {
+        btn.classList.add("fa-plus-square");
+        btn.classList.remove("fa-minus-square");
+    }
+}
+
+function updateSessionCart() {
+    let id = event.target.id;
+    let cart = sessionStorage.cart;
+    if (cart) {
+        cart = cart.split(",");
+
+        let index = cart.indexOf(id);
+        if (index === -1) {
+            cart.push(id);
+        }
+
+        else {
+            cart.splice(index, 1);
+        }
+
+        sessionStorage.cart = cart;
+    }
+
+    else {
+        sessionStorage.setItem("cart", id);
+    }
+}
+
+function updateCartBadge() {
+    let cartBadge = document.getElementById("cartBadge");
+    let cart = sessionStorage.cart.split(",");
+    if (cart[0] === "") {
+        cartBadge.innerText = "0";
+    }
+
+    else {
+        cartBadge.innerText = cart.length;   
+    }
 } 
 
-function toggleActionBtn(id) {
-    let btn = document.getElementById(id);
-    btn.style.display = "none";
-
-    let num = parseInt(document.getElementById("cartBadge").innerHTML);
-
-    if (id.startsWith("a")) {
-        id = id.replace("a", "m");
-        num++;
-    } else {
-        id = id.replace("m", "a");
-        num--;
-    }
-    btn = document.getElementById(id);
-    btn.style.display = "inline";   
-    
-    updateCartBadge(num);
-}
-
 function actionBtns() {
-    $(".add").click(function(event) {
-        $.ajax({
-            type: "GET",
-            url: "php/addToCart.php?id=" + event.target.id
-        })
-        .done(function() {
-         toggleActionBtn(event.target.id);
-        });
-    });
-
-    $(".minus").click(function(event) {
-        $.ajax({
-            type: "GET",
-            url: "php/removeFromCart.php?id=" + event.target.id
-        })
-        .done(function() {
-         toggleActionBtn(event.target.id);
-        });
+    $(".actionBtn").click(function() {
+        toggleActionBtn();
+        updateSessionCart();
+        updateCartBadge();
     });
 }
 
-function updateActionBtns(cart) {
-    let collection = document.getElementsByClassName("add");
-    let ids = [];
-    for (let i = 0; i < collection.length; i++) {
-        ids.push(collection[i].getAttribute("id"));
-    }
-
-    if (cart.length > 0) {
-        for (let id of cart) {
-            id = "a" + id;
-            if (ids.includes(id)) {
-            toggleActionBtn(id);
-            }   
+function updateActionBtns() {
+    let cart = sessionStorage.cart.split(",");
+    cart.forEach(id => {
+        let btn = document.getElementById(id);
+        if (btn) {
+            btn.classList.remove("text-success");
+            btn.classList.add("text-danger");
+            btn.classList.remove("fa-plus-square");
+            btn.classList.add("fa-minus-square");
         }
-    }
-}
-
-function updateTotal(records, cart) {
-    let total = 0;
-    if (cart.length > 0) {
-        for (let index in records) {
-            if (cart.includes(records[index]["id"])) {
-                total+= parseFloat(records[index]["Price"]);
-            }
-        }
-    }
-    document.querySelector(".total").innerHTML = total;
-}
-
-function updateCartInfo(records) {
-    $.ajax({
-        type: "GET",
-        url: "php/getCart.php"
-    })
-    .done(function(cart) {
-        cart = JSON.parse(cart);
-        updateActionBtns(cart);
-        updateCartBadge(cart.length);
-        updateTotal(records, cart);
     });
 }
 
@@ -209,10 +204,10 @@ function updatePage(records, id) {
     }
 
     displayRecords(records, category);
-    selectActive(id);
-    document.querySelector("#categoryTitle").innerHTML = text;
+    selectActive(id, text);
     actionBtns();
-    updateCartInfo(records);
+    updateActionBtns();
+    updateCartBadge();
 }
 
 function getCookie(cname) {
@@ -232,42 +227,3 @@ function getCookie(cname) {
 }
 
 export { getCookie, updatePage };
-
-
-/*
-function toggleInfo(id) {
-    let row = document.getElementById(id);
-    
-    if (row.style.display === "contents") {
-        row.style.display = "none";
-    } else {
-        row.style.display = "contents";
-    }
-} 
-
-function removeAllInfos() {
-    let info = document.querySelectorAll(".info");
-    for (let i = 0; i < info.length; i++) {
-        info[i].remove();
-    }
-}
-
-function createInfoRow(record) {
-    let table = document.querySelector("#records");
-    let row = document.createElement("tr");
-    row.className = "info";
-    row.setAttribute("id", record["id"]);
-    row.style.display = "none";
-
-    let data = document.createElement("td");
-    data.setAttribute("colspan", "3");
-    data.innerHTML = "Vinyl Condition: " + record["Vinyl_Grade"] + "<br>";
-    data.innerHTML+= "Sleeve Condition: " + record["Sleeve_Grade"] + "<br>";
-    data.innerHTML+= "Price: £" + record["Price"] + "<br>";
-    data.innerHTML+= "NM: Normal; G: Good; VG: Very Good";
-    row.appendChild(data);
-
-    table.appendChild(row);
-}
-
-*/

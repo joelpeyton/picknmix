@@ -1,6 +1,6 @@
 import { getCookie, updatePage } from "./utils.js";
 
-$(document).ready(function(event) {
+$(document).ready(function() {
     $.ajax({
         type: "GET",
         url: "php/getDatabase.php"
@@ -26,7 +26,7 @@ $(document).ready(function(event) {
             else {
                 updatePage(records, event.target.id);
             }
-        })
+        });
     })
     .fail(function() {
         alert("Error: Unable to return database");
