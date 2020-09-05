@@ -17,18 +17,21 @@ function createRecordRow(record) {
     tick.className = "fas fa-check";
 
     let pictureSleeve = document.createElement("td");
+    pictureSleeve.className = "removeMobile";
     if (record["Picture_Sleeve"] == "Y") {
         pictureSleeve.appendChild(tick);
     } 
     row.appendChild(pictureSleeve);
 
     let largeHole = document.createElement("td");
+    largeHole.className = "removeMobile";
     if (record["Large_Centre"] == "Y") {
         largeHole.appendChild(tick);
     }
     row.appendChild(largeHole);
 
     let condition = document.createElement("td");
+    condition.className = "removeMobile";
     condition.innerHTML = record["Vinyl_Grade"];
     row.appendChild(condition);
 
@@ -46,6 +49,21 @@ function createRecordRow(record) {
     row.appendChild(cart);
 
     table.appendChild(row);
+
+    let infoRow = document.createElement("tr");
+    infoRow.className = "info";
+    let info = document.createElement("td");
+    info.setAttribute("colspan", "4");
+    info.style.borderTop = "none";
+    info.innerHTML = "<strong>Condition: </strong>" + record["Vinyl_Grade"] + "<br>";
+    if (record["Picture_Sleeve"] == "Y") {
+        info.innerHTML += "<strong>Picture Sleeve: &check;</strong>" + "<br>";
+    } 
+    if (record["Large_Centre"] == "Y") {
+        info.innerHTML += "<strong>Large Hole: &check;</strong>";
+    }
+    infoRow.appendChild(info);
+    table.appendChild(infoRow);
 }
 
 function createTotalRow() {
@@ -57,12 +75,15 @@ function createTotalRow() {
     row.appendChild(artist);
 
     let title = document.createElement("td");
+    title.className = "removeMobile";
     row.appendChild(title);
 
     let pictureSleeve = document.createElement("td"); 
+    pictureSleeve.className = "removeMobile";
     row.appendChild(pictureSleeve);
 
     let largeHole = document.createElement("td");
+    largeHole.className = "removeMobile";
     row.appendChild(largeHole);
 
     let condition = document.createElement("td");

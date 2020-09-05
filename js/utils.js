@@ -15,18 +15,21 @@ function createRecordRow(record) {
     tick.className = "fas fa-check";
 
     let pictureSleeve = document.createElement("td");
+    pictureSleeve.className = "removeMobile";
     if (record["Picture_Sleeve"] == "Y") {
         pictureSleeve.appendChild(tick);
     } 
     row.appendChild(pictureSleeve);
 
     let largeHole = document.createElement("td");
+    largeHole.className = "removeMobile";
     if (record["Large_Centre"] == "Y") {
         largeHole.appendChild(tick);
     }
     row.appendChild(largeHole);
 
     let condition = document.createElement("td");
+    condition.className = "removeMobile";
     condition.innerHTML = record["Vinyl_Grade"];
     row.appendChild(condition);
 
@@ -37,7 +40,7 @@ function createRecordRow(record) {
     let actionBtn = document.createElement("button");
     actionBtn.className = "actionBtn btn btn-outline-success";
     actionBtn.setAttribute("id", record["id"]);
-    actionBtn.innerText = "Add to cart";
+    actionBtn.innerText = "Add";
 
     /// ALTERNATIVE BUTTON ///
     /*
@@ -51,12 +54,32 @@ function createRecordRow(record) {
     row.appendChild(cart);
 
     table.appendChild(row);
+
+    let infoRow = document.createElement("tr");
+    infoRow.className = "info";
+    let info = document.createElement("td");
+    info.setAttribute("colspan", "4");
+    info.style.borderTop = "none";
+    info.innerHTML = "<strong>Condition: </strong>" + record["Vinyl_Grade"] + "<br>";
+    if (record["Picture_Sleeve"] == "Y") {
+        info.innerHTML += "<strong>Picture Sleeve: &check;</strong>" + "<br>";
+    } 
+    if (record["Large_Centre"] == "Y") {
+        info.innerHTML += "<strong>Large Hole: &check;</strong>";
+    }
+    infoRow.appendChild(info);
+    table.appendChild(infoRow);
 }
 
 function removeRecords() {
     let record = document.querySelectorAll(".record");
     for (let i = 0; i < record.length; i++) {
         record[i].remove();
+    }
+
+    let info = document.querySelectorAll(".info");
+    for (let i = 0; i < info.length; i++) {
+        info[i].remove();
     }
 }
 
@@ -88,7 +111,7 @@ function toggleActionBtn() {
     } else {
         btn.classList.add("btn-outline-success");
         btn.classList.remove("btn-outline-danger");
-        btn.innerText = "Add to cart";
+        btn.innerText = "Add";
     }
 
     /// ALTERNATIVE BUTTON ///
@@ -134,7 +157,7 @@ function updateSessionCart() {
 
 function updateCartBadge() {
     let cartBadge = document.getElementById("cartBadge");
-    let cart = sessionStorage.cart.split(",");
+    let cart = sessionStorage.cart ? sessionStorage.cart.split(",") : [];
     if (cart[0] === "") {
         cartBadge.innerText = "0";
     }
@@ -153,14 +176,16 @@ function actionBtns() {
 }
 
 function updateActionBtns() {
-    let cart = sessionStorage.cart.split(",");
+    let cart = sessionStorage.cart ? sessionStorage.cart.split(",") : [];
 
     if (cart[0] !== "") {
         cart.forEach(id => {
             let btn = document.getElementById(id);
-            btn.classList.remove("btn-outline-success");
-            btn.classList.add("btn-outline-danger");
-            btn.innerText = "Remove";
+            if (btn) {
+                btn.classList.remove("btn-outline-success");
+                btn.classList.add("btn-outline-danger");
+                btn.innerText = "Remove";
+            }
             /*
             if (btn) {
                 btn.classList.remove("text-success");

@@ -15,7 +15,7 @@ $(document).ready(function() {
 
         $("#menuLinks").click(function(event) {
             if (event.target.id === "cart") {
-                let cart = sessionStorage.cart.split(",");
+                let cart = sessionStorage.cart ? sessionStorage.cart.split(",") : [];
                 let cartRecords = []; 
                 records.forEach(record => {
                     if (cart.includes(record["id"])) {
