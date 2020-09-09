@@ -30,6 +30,8 @@ $(document).ready(function() {
                 updatePage(records, event.target.id);
                 document.getElementById("checkout").style.display = "none";
             }
+
+            document.getElementById("search").value = "";
         });
     })
     .fail(function() {

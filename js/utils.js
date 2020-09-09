@@ -97,9 +97,16 @@ function displayRecords(records, category) {
 
 function selectActive(id, text) {
     let current = document.querySelector(".nav-link.active");
-    current.className = "nav-link";
-    let active = document.querySelector(id);
-    active.className = "nav-link active";
+
+    if (current) {
+        current.className = "nav-link";
+    }
+ 
+    if (text !== "Search") {
+        let active = document.querySelector(id);
+        active.className = "nav-link active";
+    }
+
     document.querySelector("#categoryTitle").innerHTML = text;
 }
 
@@ -217,7 +224,7 @@ function updatePage(records, id) {
             category = "Accessories";
             id = "#db14";
             text = "Accessories";
-            break;
+            break;            
     }
 
     displayRecords(records, category);
@@ -227,4 +234,4 @@ function updatePage(records, id) {
     updateCartBadge();
 }
 
-export { updatePage, createRecordRow, removeRecords, selectActive, updateSessionCart, updateCartBadge };
+export { updatePage, createRecordRow, removeRecords, selectActive, actionBtns, updateActionBtns, updateSessionCart, updateCartBadge };

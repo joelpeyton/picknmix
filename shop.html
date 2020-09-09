@@ -73,12 +73,27 @@
                         </li>
                     </ul>
 
-                    <form id="searchForm" class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                        <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
-                    </form>
+                    <!-- Search -->
+                    <div class="form-inline">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Search by &nbsp;<span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu" id="searchBy">
+                                    <button id="searchByArtist" class="dropdown-item">Artist</button>
+                                    <button id="searchByTitle" class="dropdown-item">Title</button>
+                                    <button id="searchByLabel" class="dropdown-item">Label</button>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="search" placeholder="Artist">
+                        </div>
+                    </div>
+
                 </div>
             </nav>
+
+            
 
             <!-- Records and Cart-->
             <div class="row">
@@ -120,7 +135,8 @@
                                 <td class="removeMobile"></td>
                                 <td class="removeMobile"></td>
                                 <td class="removeMobile"></td>
-                                <td colspan="3"><div id="paypal-button-container"></div></td>
+                                <td></td>
+                                <td colspan="2"><div id="paypal-button-container"></div></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -135,6 +151,7 @@
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     
     <script src="js/shop.js" type="module"></script>
+    <script src="js/search.js" type="module"></script>
 
     <script src="https://www.paypal.com/sdk/js?client-id=Ac811W6pLuye-D16yHXSVxFeCT6nOW3Q9ls4ei6AnVm4BLCDiQQ4runX_iMyc8c60lLvYacmaSumv32V&currency=GBP" data-sdk-integration-source="button-factory"></script>
     <script>
