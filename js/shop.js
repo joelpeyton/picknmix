@@ -22,11 +22,13 @@ $(document).ready(function() {
                         cartRecords.push(record);
                     }
                 });
+                
                 updateCart(cartRecords);
             }
 
             else {
                 updatePage(records, event.target.id);
+                document.getElementById("checkout").style.display = "none";
             }
         });
     })

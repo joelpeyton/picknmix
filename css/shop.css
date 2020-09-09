@@ -77,7 +77,8 @@ h1 {
 	font-size: 1rem;
 }
 
-.removeMobile {
+.removeMobile,
+#checkout {
     display: none;
 }  
 

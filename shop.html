@@ -64,10 +64,10 @@
                             <a class="nav-link" href="javascript:void(0)" id="db12">LP's</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" id="db13">Collectable</a>
+                            <a class="nav-link disabled" href="javascript:void(0)" id="db13">Collectable</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" id="db14">Accessories</a>
+                            <a class="nav-link disabled" href="javascript:void(0)" id="db14">Accessories</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" id="cart">Cart</a>
@@ -104,6 +104,25 @@
                         <tbody id="records">
                             <!-- display records here-->
                         </tbody>
+
+                        <!-- Checkout -->
+                        <tfoot id="checkout">
+                            <tr>
+                                <td></td>
+                                <td class="removeMobile"></td>
+                                <td class="removeMobile"></td>
+                                <td class="removeMobile"></td>
+                                <td><strong>Total<span style="float: right;">£</span></strong></td>
+                                <td colspan="2" id="total"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="removeMobile"></td>
+                                <td class="removeMobile"></td>
+                                <td class="removeMobile"></td>
+                                <td colspan="3"><div id="paypal-button-container"></div></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -116,6 +135,43 @@
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     
     <script src="js/shop.js" type="module"></script>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=Ac811W6pLuye-D16yHXSVxFeCT6nOW3Q9ls4ei6AnVm4BLCDiQQ4runX_iMyc8c60lLvYacmaSumv32V&currency=GBP" data-sdk-integration-source="button-factory"></script>
+    <script>
+        paypal.Buttons({
+                style: {
+                shape: 'rect',
+                color: 'blue',
+                layout: 'horizontal',
+                label: 'paypal',
+            },
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [
+                        {                
+                            soft_descriptor: "Pick and Mix Records",
+                            amount: {
+                                currency_code: "GBP",
+                                value: sessionStorage.total,
+                                breakdown: {
+                                    item_total: {
+                                        currency_code: "GBP",
+                                        value: sessionStorage.total
+                                    }
+                                }
+                            },
+                            items: JSON.parse(sessionStorage.items)
+                        }
+                    ]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
     
     </body>
 </html>

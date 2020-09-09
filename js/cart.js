@@ -87,21 +87,29 @@ function createTotalRow() {
     row.appendChild(largeHole);
 
     let condition = document.createElement("td");
-    condition.innerText = "Total: £";
+    condition.innerHTML = "<strong>Total: £</strong>";
     row.appendChild(condition);
 
     let total = document.createElement("td");
     total.setAttribute("id", "total");
     row.appendChild(total);
 
-    let checkout = document.createElement("button");
-    checkout.className = "btn btn-primary";
-    checkout.innerText = "Checkout";
+    //let checkout = document.createElement("button");
+    //checkout.className = "btn btn-primary";
+    //checkout.id = "checkout";
+    //checkout.setAttribute("data-toggle", "modal");
+    //checkout.setAttribute("data-target", "#checkoutModal");
+    //checkout.innerText = "Checkout";
     
-    let cart = document.createElement("td");
-    cart.appendChild(checkout);
-    row.appendChild(cart);
+    //let cart = document.createElement("td");
+    //cart.appendChild(checkout);
+    //row.appendChild(cart);
 
+    let paypal = document.createElement("td");
+    let div = document.createElement("div");
+    div.id = "paypal-button-container";
+    paypal.appendChild(div);
+    row.appendChild(paypal);
     table.appendChild(row);
 }
 
@@ -110,7 +118,8 @@ function updateTotal(records) {
     for (let index in records) {
         total += parseFloat(records[index]["Price"]);
     }
-    document.getElementById("total").innerText = total;
+
+    document.getElementById("total").innerHTML = `<strong>${total.toFixed(2)}</strong>`;
 }
 
 function removeRecordFromCart() {
@@ -124,15 +133,38 @@ function removeRecordFromCart() {
 function updateCart(records) {
     selectActive("#cart", "Cart");
     removeRecords();
+
+    let items = [];
  
     for (let index in records) {
-        createRecordRow(records[index]);
+        let record = records[index];
+        createRecordRow(record);
+        let item = {
+            name: `${record.Artist}`,
+            description: `${record.Title}`,
+            sku: `${record.Product_id}`,
+            unit_amount: {
+                currency_code: "GBP",
+                value: `${record.Price}`
+            },
+            quantity: "1"
+        }
+        
+        items.push(item);
     }
 
-    createTotalRow();
+    sessionStorage.setItem("items", JSON.stringify(items));
+    //createTotalRow();
+    document.getElementById("checkout").style.display = "table-footer-group";
     updateTotal(records);
+    checkout();
 
-    removeRecordFromCart();
+    removeRecordFromCart();     
 }
 
-export { updateCart };
+function checkout() {
+    let total = document.getElementById("total").innerText;
+    sessionStorage.setItem("total", total);
+}
+
+export { updateCart, checkout };
