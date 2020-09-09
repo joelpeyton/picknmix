@@ -36,7 +36,6 @@
             <!--  Cart display -->
             <div>
                 <div class="shopCart"><i class="fas fa-shopping-cart"></i>&nbsp;Cart (&nbsp;<span id="cartBadge">0</span>&nbsp;)</div>
-                <!--<div class="shopCart">Total £<span id="total">0.00</span></div>-->
             </div>
 
             <!-- Title -->
@@ -87,7 +86,7 @@
                     <!-- Records -->
                     <table id="recordsTable" class="table">
                         <thead>
-                            <tr>
+                            <tr class="bg-secondary text-white">
                                 <th colspan="7" id="categoryTitle">50's & 60's</th>
                             </tr>
                             <tr>
@@ -96,7 +95,7 @@
                                 <th class="removeMobile">Picture Sleeve</th>
                                 <th class="removeMobile">Large Hole</th>
                                 <th class="removeMobile">Condition</th>
-                                <th>Price</th>
+                                <th>Price<strong>&nbsp;(£)</strong></th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -112,8 +111,9 @@
                                 <td class="removeMobile"></td>
                                 <td class="removeMobile"></td>
                                 <td class="removeMobile"></td>
-                                <td><strong>Total<span style="float: right;">£</span></strong></td>
-                                <td colspan="2" id="total"></td>
+                                <td><strong>Total</strong></td>
+                                <td><span id="total"></span></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td></td>
