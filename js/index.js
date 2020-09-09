@@ -1,10 +1,6 @@
 $(document).ready(function() {
-    $.ajax({
-        type: "GET",
-        url: "php/start.php"
-    });
-
     $("a").click(function(event) {
+        sessionStorage.setItem("initialCategory", event.target.id);
         document.cookie = "menuId=" + event.target.id + ";";
     });
 });

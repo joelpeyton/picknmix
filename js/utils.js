@@ -1,4 +1,4 @@
-function createRecordRow(record) {
+function createRecordRow(record, isCart) {
     let table = document.querySelector("#records");
     let row = document.createElement("tr");
     row.className = "record";
@@ -38,17 +38,18 @@ function createRecordRow(record) {
     row.appendChild(price);
 
     let actionBtn = document.createElement("button");
-    actionBtn.className = "actionBtn btn btn-outline-success";
     actionBtn.setAttribute("id", record["id"]);
-    actionBtn.innerText = "Add";
 
-    /// ALTERNATIVE BUTTON ///
-    /*
-    let actionBtn = document.createElement("i");
-    actionBtn.className = "actionBtn fas fa-plus-square text-success fa-2x";
-    actionBtn.setAttribute("id", record["id"]);
-    */
-
+    if (isCart) {
+        actionBtn.className = "removeBtn btn btn-outline-danger";
+        actionBtn.innerHTML = "Remove";
+    } 
+    
+    else {
+        actionBtn.className = "actionBtn btn btn-outline-success";
+        actionBtn.innerText = "Add";
+    }
+    
     let cart  = document.createElement("td");
     cart.appendChild(actionBtn);
     row.appendChild(cart);
@@ -88,7 +89,7 @@ function displayRecords(records, category) {
   
     for (let index in records) {
         if (records[index]["Category"] == category) {
-            createRecordRow(records[index]);
+            createRecordRow(records[index], false);
         }
     }
     
@@ -108,28 +109,13 @@ function toggleActionBtn() {
         btn.classList.remove("btn-outline-success");
         btn.classList.add("btn-outline-danger");
         btn.innerText = "Remove";
-    } else {
+    } 
+    
+    else {
         btn.classList.add("btn-outline-success");
         btn.classList.remove("btn-outline-danger");
         btn.innerText = "Add";
     }
-
-    /// ALTERNATIVE BUTTON ///
-    /*if (btn.classList.contains("text-success")) {
-        btn.classList.remove("text-success");
-        btn.classList.add("text-danger");
-    } else {
-        btn.classList.add("text-success");
-        btn.classList.remove("text-danger");
-    }
-
-    if (btn.classList.contains("fa-plus-square")) {
-        btn.classList.remove("fa-plus-square");
-        btn.classList.add("fa-minus-square");
-    } else {
-        btn.classList.add("fa-plus-square");
-        btn.classList.remove("fa-minus-square");
-    }*/
 }
 
 function updateSessionCart() {
@@ -186,13 +172,6 @@ function updateActionBtns() {
                 btn.classList.add("btn-outline-danger");
                 btn.innerText = "Remove";
             }
-            /*
-            if (btn) {
-                btn.classList.remove("text-success");
-                btn.classList.add("text-danger");
-                btn.classList.remove("fa-plus-square");
-                btn.classList.add("fa-minus-square");
-            }*/
         });
     }
 }
@@ -248,20 +227,4 @@ function updatePage(records, id) {
     updateCartBadge();
 }
 
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-export { getCookie, updatePage, removeRecords, selectActive, updateSessionCart, updateCartBadge };
+export { updatePage, createRecordRow, removeRecords, selectActive, updateSessionCart, updateCartBadge };

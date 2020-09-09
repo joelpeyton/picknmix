@@ -1,4 +1,4 @@
-import { getCookie, updatePage } from "./utils.js";
+import { updatePage } from "./utils.js";
 import { updateCart } from "./cart.js";
 
 $(document).ready(function() {
@@ -7,10 +7,10 @@ $(document).ready(function() {
         url: "php/getDatabase.php"
     })
     .done(function(records) {
-        let menuId = getCookie("menuId");
+        let initialCategory = sessionStorage.initialCategory;
 
-        if (menuId) {
-            updatePage(records, menuId);
+        if (initialCategory) {
+            updatePage(records, initialCategory);
         }
 
         $("#menuLinks").click(function(event) {
