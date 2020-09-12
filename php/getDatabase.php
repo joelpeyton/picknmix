@@ -6,8 +6,9 @@
     $db = $database->getConnection();
 
     $record = new Record($db);
+    $table = htmlspecialchars(strip_tags($_GET["table"]));
 
-    $stmt = $record->read();
+    $stmt = $record->read($table);
 
     $return = array();
 

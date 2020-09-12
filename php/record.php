@@ -1,8 +1,7 @@
 <?php
 class Record {
     private $con;
-    private $tableName = "Records";
-
+    
     public $productId;
     public $artist;
     public $title;
@@ -14,8 +13,9 @@ class Record {
         $this->con = $db;
     }
 
-    function read() {
-        $query = "SELECT * FROM " . $this->tableName . " ORDER BY Artist";
+    function read($tableName) {
+        $query = "SELECT * FROM " . $tableName . " ORDER BY artist";
+        //$query = "SELECT * FROM " . $tableName . " WHERE id = " . $id;
 
         $stmt = $this->con->prepare($query);
         $stmt->execute();

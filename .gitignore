@@ -2,3 +2,5 @@ bootstrap/
 favicon/
 fontawesome/
 php/database.php
+inventories/
+tables.md

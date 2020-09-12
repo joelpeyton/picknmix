@@ -19,6 +19,7 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/shop.css">
+        <link rel="stylesheet" href="css/loader.css">
         
         <!-- Fav icons -->
         <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -30,7 +31,10 @@
         <title>Pick and mix records</title>
     </head>
     <body class="bg">
-        
+        <!-- Loader -->
+        <div class="loader">
+            <span id="loader"><i class="fas fa-compact-disc"></i></span>
+        </div>
         
         <div class="container" style="background-color: white;">
             <!--  Cart display -->
@@ -50,23 +54,29 @@
 
                 <div class="collapse navbar-collapse" id="navb">
                     <ul class="navbar-nav mr-auto" id="menuLinks">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="javascript:void(0)" id="db9">50's & 60's</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="fixed" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pick n Mix: Fixed price record listings</a>
+                            <div class="dropdown-menu" aria-labelledby="fixed">
+                                <a class="dropdown-item" href="#" id="f1">50s & 60s singles (All £1.99)</a>
+                                <a class="dropdown-item" href="#" id="f2">70s 80s & 90s singles (All £1.99)</a>
+                                <a class="dropdown-item" href="#" id="f3">60s – 90s Bargain singles (All 99p)</a>
+                                <a class="dropdown-item" href="#" id="f4">12” singles (All £2.49)</a>
+                                <a class="dropdown-item" href="#" id="f5">LPs (£4.99)</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle disabled" href="#" id="individual" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Individually priced & collectable records</a>
+                            <div class="dropdown-menu" aria-labelledby="individual">
+                                <a class="dropdown-item" href="#" id="i1">7” singles</a>
+                                <a class="dropdown-item" href="#" id="i2">12” singles</a>
+                                <a class="dropdown-item" href="#" id="i3">LPs & CDs</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" id="db10">70's onwards</a>
+                            <a class="nav-link disabled" href="javascript:void(0)" id="accessories">Accessories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" id="db11">12" Singles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" id="db12">LP's</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="javascript:void(0)" id="db13">Collectable</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="javascript:void(0)" id="db14">Accessories</a>
+                            <a class="nav-link disabled" href="javascript:void(0)" id="gifts">Gifts & cool vinyl related stuff!</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" id="cart">Cart</a>
@@ -107,8 +117,8 @@
                             <tr>
                                 <th>Artist</th>
                                 <th>Title</th>
-                                <th class="removeMobile">Picture Sleeve</th>
-                                <th class="removeMobile">Large Hole</th>
+                                <!--<th class="removeMobile">Picture Sleeve</th>
+                                <th class="removeMobile">Large Hole</th>-->
                                 <th class="removeMobile">Condition</th>
                                 <th>Price<strong>&nbsp;(£)</strong></th>
                                 <th>Action</th>

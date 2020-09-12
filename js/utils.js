@@ -4,41 +4,42 @@ function createRecordRow(record, isCart) {
     row.className = "record";
 
     let artist = document.createElement("td");
-    artist.innerHTML = record["Artist"];
+    artist.innerHTML = record["artist"];
     row.appendChild(artist);
 
     let title = document.createElement("td");
-    title.innerHTML = record["Title"];
+    title.innerHTML = record["title"];
     row.appendChild(title);
 
-    let tick = document.createElement("i");
-    tick.className = "fas fa-check";
+    //let tick = document.createElement("i");
+    //tick.className = "fas fa-check";
 
-    let pictureSleeve = document.createElement("td");
-    pictureSleeve.className = "removeMobile";
-    if (record["Picture_Sleeve"] == "Y") {
-        pictureSleeve.appendChild(tick);
-    } 
-    row.appendChild(pictureSleeve);
+    //let pictureSleeve = document.createElement("td");
+    //pictureSleeve.className = "removeMobile";
+    //if (record["Picture_Sleeve"] == "Y") {
+    //    pictureSleeve.appendChild(tick);
+    //} 
+    //row.appendChild(pictureSleeve);
 
-    let largeHole = document.createElement("td");
-    largeHole.className = "removeMobile";
-    if (record["Large_Centre"] == "Y") {
-        largeHole.appendChild(tick);
-    }
-    row.appendChild(largeHole);
+    //let largeHole = document.createElement("td");
+    //largeHole.className = "removeMobile";
+    //if (record["Large_Centre"] == "Y") {
+    //    largeHole.appendChild(tick);
+    //}
+    //row.appendChild(largeHole);
 
     let condition = document.createElement("td");
     condition.className = "removeMobile";
-    condition.innerHTML = record["Vinyl_Grade"];
+    condition.innerHTML = record["vinylCondition"];
     row.appendChild(condition);
 
     let price = document.createElement("td");
-    price.innerHTML = record["Price"];
+    price.innerHTML = record["price"];
     row.appendChild(price);
 
     let actionBtn = document.createElement("button");
     actionBtn.setAttribute("id", record["id"]);
+    actionBtn.setAttribute("category", record["category"]);
 
     if (isCart) {
         actionBtn.className = "removeBtn btn btn-outline-danger";
@@ -56,7 +57,7 @@ function createRecordRow(record, isCart) {
 
     table.appendChild(row);
 
-    let infoRow = document.createElement("tr");
+    /*let infoRow = document.createElement("tr");
     infoRow.className = "info";
     let info = document.createElement("td");
     info.setAttribute("colspan", "4");
@@ -69,7 +70,7 @@ function createRecordRow(record, isCart) {
         info.innerHTML += "<strong>Large Hole: &check;</strong>";
     }
     infoRow.appendChild(info);
-    table.appendChild(infoRow);
+    table.appendChild(infoRow);*/
 }
 
 function removeRecords() {
@@ -84,13 +85,11 @@ function removeRecords() {
     }
 }
 
-function displayRecords(records, category) {
+function displayRecords(records) {
     removeRecords();
   
     for (let index in records) {
-        if (records[index]["Category"] == category) {
-            createRecordRow(records[index], false);
-        }
+        createRecordRow(records[index], false);
     }
     
 }
@@ -183,55 +182,81 @@ function updateActionBtns() {
     }
 }
 
-function updatePage(records, id) {
-    let category, text;
-    switch (id) {
-        default:
-        case "db1":
-        case "db2":
-        case "db8":
-        case "db9":
-            category = "7a";
-            id = "#db9";
-            text = "50's & 60's";
-            break;
-        case "db3":
-        case "db10":
-            category = "7b";
-            id = "#db10";
-            text = "70's onwards";
-            break;
-        case "db4":
-        case "db11":
-            category = "12";
-            id = "#db11";
-            text = "12\" Singles";
-            break;
-        case "db5":
-        case "db12":
-            category = "LP";
-            id = "#db12";
-            text = "LP's";
-            break;
-        case "db6":
-        case "db13":
-            category = "Collectable";
-            id = "#db13";
-            text = "Collectable";
-            break;            
-        case "db7":
-        case "db14":
-            category = "Accessories";
-            id = "#db14";
-            text = "Accessories";
-            break;            
+function removeCheckoutBtn() {
+    let checkout = document.getElementById("checkout");
+    if (checkout.style.display !== "none") {
+        checkout.style.display = "none";
     }
-
-    displayRecords(records, category);
-    selectActive(id, text);
-    actionBtns();
-    updateActionBtns();
-    updateCartBadge();
 }
 
-export { updatePage, createRecordRow, removeRecords, selectActive, actionBtns, updateActionBtns, updateSessionCart, updateCartBadge };
+function getRecords(table) {
+    let loader = document.querySelector(".loader");
+    loader.style.display = "block"; // remove loader
+
+    $.ajax({
+        type: "GET",
+        url: "php/getDatabase.php?table=" + table
+    })
+    .done(function(records) {
+        removeCheckoutBtn();
+        updateCartBadge();
+        //selectActive(id, text);
+        updateCategoryTitle(table);
+        displayRecords(records);
+        //updateActionBtns();
+        actionBtns();
+        //console.log(records);
+        loader.style.display = "none";
+    })
+    .fail(function(err) {
+        console.log(err);
+        alert("Error: Unable to return database");
+    });    
+}
+
+function updateCategoryTitle(table) {
+    let text;
+    switch (table) {
+        case "f1":
+            text = "50s & 60s singles (All £1.99)";
+            break;
+        case "f2":
+            text = "70s 80s & 90s singles (All £1.99)";
+            break;
+        case "f3":
+            text = "60s – 90s Bargain singles (All 99p)";
+            break;
+        case "f4":
+            text = "12” singles (All £2.49)";
+            break;
+        case "f5":
+            text = "LPs (£4.99)";
+            break;
+        case "i1":
+            text = "7” singles";
+            break;
+        case "i2":
+            text = "12” singles";
+            break;
+        case "i3":
+            text = "LPs & CDs";
+            break;            
+        case "accessories":
+            text = "Accessories";
+            break;   
+        case "gifts":;
+            text = "Gifts";
+            break;          
+    }
+
+    document.querySelector("#categoryTitle").innerHTML = text;
+
+    //displayRecords(records, category);
+    //
+    //actionBtns();
+    //updateActionBtns();
+    //updateCartBadge();
+    //removeCheckoutBtn();
+}
+
+export { getRecords, createRecordRow, removeRecords, selectActive, actionBtns, updateActionBtns, updateSessionCart, updateCartBadge };
