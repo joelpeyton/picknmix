@@ -1,4 +1,4 @@
-import { createRecordRow, removeRecords, selectActive, actionBtns, updateActionBtns, updateCartBadge } from "./utils.js";
+import { removeRecords, actionBtns, updateActionBtns, updateCartBadge } from "./utils.js";
  
 $("#searchBy").click(function(event) {
     let search = document.getElementById("search");

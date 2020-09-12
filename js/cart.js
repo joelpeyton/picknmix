@@ -1,4 +1,4 @@
-import { createRecordRow, removeRecords, selectActive, updateCartBadge, updateSessionCart } from "./utils.js";
+import { removeRecords, updateCartBadge, updateSessionCart } from "./utils.js";
 
 function removeRecordFromCart() {
     $(".removeBtn").click(function() {

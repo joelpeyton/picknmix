@@ -1,4 +1,4 @@
-function createRecordRow(record, isCart) {
+function createFixedRecordRow(record) {
     let table = document.querySelector("#records");
     let row = document.createElement("tr");
     row.className = "record";
@@ -40,8 +40,9 @@ function createRecordRow(record, isCart) {
     let actionBtn = document.createElement("button");
     actionBtn.setAttribute("id", record["id"]);
     actionBtn.setAttribute("category", record["category"]);
-
-    if (isCart) {
+    actionBtn.className = "actionBtn btn btn-outline-success";
+    actionBtn.innerText = "Add";
+    /*if (isCart) {
         actionBtn.className = "removeBtn btn btn-outline-danger";
         actionBtn.innerHTML = "Remove";
     } 
@@ -49,11 +50,11 @@ function createRecordRow(record, isCart) {
     else {
         actionBtn.className = "actionBtn btn btn-outline-success";
         actionBtn.innerText = "Add";
-    }
+    }*/
     
-    let cart  = document.createElement("td");
-    cart.appendChild(actionBtn);
-    row.appendChild(cart);
+    let action = document.createElement("td");
+    action.appendChild(actionBtn);
+    row.appendChild(action);
 
     table.appendChild(row);
 
@@ -89,24 +90,9 @@ function displayRecords(records) {
     removeRecords();
   
     for (let index in records) {
-        createRecordRow(records[index], false);
+        createFixedRecordRow(records[index]);
     }
     
-}
-
-function selectActive(id, text) {
-    let current = document.querySelector(".nav-link.active");
-
-    if (current) {
-        current.className = "nav-link";
-    }
- 
-    if (text !== "Search") {
-        let active = document.querySelector(id);
-        active.className = "nav-link active";
-    }
-
-    document.querySelector("#categoryTitle").innerHTML = text;
 }
 
 function toggleActionBtn() {
@@ -126,7 +112,8 @@ function toggleActionBtn() {
 
 function updateSessionCart() {
     let id = event.target.id;
-    let cart = sessionStorage.cart;
+    let category = event.target.getAttribute("category");
+    let cart = sessionStorage[category];
     if (cart) {
         cart = cart.split(",");
 
@@ -139,24 +126,32 @@ function updateSessionCart() {
             cart.splice(index, 1);
         }
 
-        sessionStorage.cart = cart;
+        sessionStorage[category] = cart;
     }
 
     else {
-        sessionStorage.setItem("cart", id);
+        sessionStorage.setItem(category, id);
     }
 }
 
 function updateCartBadge() {
     let cartBadge = document.getElementById("cartBadge");
-    let cart = sessionStorage.cart ? sessionStorage.cart.split(",") : [];
-    if (cart[0] === "") {
-        cartBadge.innerText = "0";
-    }
 
-    else {
-        cartBadge.innerText = cart.length;   
-    }
+    let categories = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3"];
+    let length = 0;
+    categories.forEach(category => {
+        let cart = sessionStorage[category] ? sessionStorage[category].split(",") : [];
+        
+        if (cart[0] === "") {
+            // do nothing
+        }
+    
+        else {
+            length += cart.length;
+        }
+    });
+
+    cartBadge.innerText = length;   
 } 
 
 function actionBtns() {
@@ -167,8 +162,8 @@ function actionBtns() {
     });
 }
 
-function updateActionBtns() {
-    let cart = sessionStorage.cart ? sessionStorage.cart.split(",") : [];
+function updateActionBtns(category) {
+    let cart = sessionStorage[category] ? sessionStorage[category].split(",") : [];
 
     if (cart[0] !== "") {
         cart.forEach(id => {
@@ -191,7 +186,7 @@ function removeCheckoutBtn() {
 
 function getRecords(table) {
     let loader = document.querySelector(".loader");
-    loader.style.display = "block"; // remove loader
+    loader.style.display = "block"; // add loader
 
     $.ajax({
         type: "GET",
@@ -200,12 +195,11 @@ function getRecords(table) {
     .done(function(records) {
         removeCheckoutBtn();
         updateCartBadge();
-        //selectActive(id, text);
         updateCategoryTitle(table);
         displayRecords(records);
-        //updateActionBtns();
+        updateActionBtns(table);
         actionBtns();
-        //console.log(records);
+        removeCheckoutBtn();
         loader.style.display = "none";
     })
     .fail(function(err) {
@@ -250,13 +244,6 @@ function updateCategoryTitle(table) {
     }
 
     document.querySelector("#categoryTitle").innerHTML = text;
-
-    //displayRecords(records, category);
-    //
-    //actionBtns();
-    //updateActionBtns();
-    //updateCartBadge();
-    //removeCheckoutBtn();
 }
 
-export { getRecords, createRecordRow, removeRecords, selectActive, actionBtns, updateActionBtns, updateSessionCart, updateCartBadge };
+export { getRecords, createFixedRecordRow, removeRecords, actionBtns, updateActionBtns, updateSessionCart, updateCartBadge };
