@@ -1,77 +1,58 @@
-function createFixedRecordRow(record) {
+function createRecordRow(record, tableName) {
     let table = document.querySelector("#records");
-    let row = document.createElement("tr");
-    row.className = "record";
+    let rowA = document.createElement("tr");
+    rowA.className = "record";
 
     let artist = document.createElement("td");
     artist.innerHTML = record["artist"];
-    row.appendChild(artist);
+    rowA.appendChild(artist);
 
     let title = document.createElement("td");
     title.innerHTML = record["title"];
-    row.appendChild(title);
-
-    //let tick = document.createElement("i");
-    //tick.className = "fas fa-check";
-
-    //let pictureSleeve = document.createElement("td");
-    //pictureSleeve.className = "removeMobile";
-    //if (record["Picture_Sleeve"] == "Y") {
-    //    pictureSleeve.appendChild(tick);
-    //} 
-    //row.appendChild(pictureSleeve);
-
-    //let largeHole = document.createElement("td");
-    //largeHole.className = "removeMobile";
-    //if (record["Large_Centre"] == "Y") {
-    //    largeHole.appendChild(tick);
-    //}
-    //row.appendChild(largeHole);
+    rowA.appendChild(title);
 
     let condition = document.createElement("td");
-    condition.className = "removeMobile";
     condition.innerHTML = record["vinylCondition"];
-    row.appendChild(condition);
+    rowA.appendChild(condition);
 
     let price = document.createElement("td");
     price.innerHTML = record["price"];
-    row.appendChild(price);
+    rowA.appendChild(price);
 
     let actionBtn = document.createElement("button");
     actionBtn.setAttribute("id", record["id"]);
     actionBtn.setAttribute("category", record["category"]);
     actionBtn.className = "actionBtn btn btn-outline-success";
     actionBtn.innerText = "Add";
-    /*if (isCart) {
-        actionBtn.className = "removeBtn btn btn-outline-danger";
-        actionBtn.innerHTML = "Remove";
-    } 
-    
-    else {
-        actionBtn.className = "actionBtn btn btn-outline-success";
-        actionBtn.innerText = "Add";
-    }*/
     
     let action = document.createElement("td");
     action.appendChild(actionBtn);
-    row.appendChild(action);
+    rowA.appendChild(action);
 
-    table.appendChild(row);
+    table.appendChild(rowA);
 
-    /*let infoRow = document.createElement("tr");
-    infoRow.className = "info";
-    let info = document.createElement("td");
-    info.setAttribute("colspan", "4");
-    info.style.borderTop = "none";
-    info.innerHTML = "<strong>Condition: </strong>" + record["Vinyl_Grade"] + "<br>";
-    if (record["Picture_Sleeve"] == "Y") {
-        info.innerHTML += "<strong>Picture Sleeve: &check;</strong>" + "<br>";
-    } 
-    if (record["Large_Centre"] == "Y") {
-        info.innerHTML += "<strong>Large Hole: &check;</strong>";
+    if (tableName.startsWith("i")) {
+        let rowB = document.createElement("tr");
+        rowB.className = "info";
+        
+        let info = document.createElement("td");
+        info.setAttribute("colspan", "2");
+        info.style.borderTop = "none";
+
+        let infoArr = ["label", "catalogueNumber", "format", "sleeveCondition", "info", "comments"];
+
+        infoArr.forEach(field => {
+            let descriptor = field;
+            if (descriptor === "catalogueNumber") descriptor = "cat. No";
+            if (descriptor === "sleeveCondition") descriptor = "sleeve";
+
+            descriptor = descriptor.charAt(0).toUpperCase() + descriptor.slice(1);
+            info.innerHTML += `<strong>${descriptor}: </strong>  ${record[field]}<br>`;
+        });
+        
+        rowB.appendChild(info);
+        table.appendChild(rowB);
     }
-    infoRow.appendChild(info);
-    table.appendChild(infoRow);*/
 }
 
 function removeRecords() {
@@ -86,11 +67,11 @@ function removeRecords() {
     }
 }
 
-function displayRecords(records) {
+function displayRecords(records, table) {
     removeRecords();
   
     for (let index in records) {
-        createFixedRecordRow(records[index]);
+        createRecordRow(records[index], table);
     }
     
 }
@@ -196,7 +177,7 @@ function getRecords(table) {
         removeCheckoutBtn();
         updateCartBadge();
         updateCategoryTitle(table);
-        displayRecords(records);
+        displayRecords(records, table);
         updateActionBtns(table);
         actionBtns();
         removeCheckoutBtn();

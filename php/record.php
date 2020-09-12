@@ -15,7 +15,6 @@ class Record {
 
     function read($tableName) {
         $query = "SELECT * FROM " . $tableName . " ORDER BY artist";
-        //$query = "SELECT * FROM " . $tableName . " WHERE id = " . $id;
 
         $stmt = $this->con->prepare($query);
         $stmt->execute();

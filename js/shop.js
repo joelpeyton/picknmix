@@ -11,7 +11,7 @@ $(document).ready(function() {
     }
 
     $("#menuLinks").click(function(event) {
-        if (event.target.id === "fixed") {
+        if (event.target.id === "fixed" || event.target.id === "individual") {
             // do nothing
         } 
 
@@ -29,7 +29,6 @@ $(document).ready(function() {
 
         else {
             getRecords(event.target.id);
-            //document.getElementById("checkout").style.display = "none";
         }
 
         document.getElementById("search").value = "";

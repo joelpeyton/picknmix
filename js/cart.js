@@ -1,5 +1,15 @@
 import { removeRecords, updateCartBadge, updateSessionCart } from "./utils.js";
 
+ /*if (isCart) {
+        actionBtn.className = "removeBtn btn btn-outline-danger";
+        actionBtn.innerHTML = "Remove";
+    } 
+    
+    else {
+        actionBtn.className = "actionBtn btn btn-outline-success";
+        actionBtn.innerText = "Add";
+    }*/
+
 function removeRecordFromCart() {
     $(".removeBtn").click(function() {
         updateSessionCart();
