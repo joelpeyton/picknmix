@@ -16,15 +16,8 @@ $(document).ready(function() {
         } 
 
         else if (event.target.id === "cart") {
-            let cart = sessionStorage.cart ? sessionStorage.cart.split(",") : [];
-            let cartRecords = []; 
-            records.forEach(record => {
-                if (cart.includes(record["id"])) {
-                    cartRecords.push(record);
-                }
-            });
+
             
-            updateCart(cartRecords);
         }
 
         else {

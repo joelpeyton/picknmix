@@ -47,7 +47,7 @@
             <hr style="background-color: black;">
 
             <!-- Nav bar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent" style="margin:24px 0;">
+            <nav class="navbar navbar-expand-md navbar-light bg-transparent" style="margin:24px 0;">
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -55,7 +55,7 @@
                 <div class="collapse navbar-collapse" id="navb">
                     <ul class="navbar-nav mr-auto" id="menuLinks">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="fixed" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pick n Mix: Fixed price record listings</a>
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="fixed" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fixed price</a>
                             <div class="dropdown-menu" aria-labelledby="fixed">
                                 <a class="dropdown-item" href="#" id="f1">50s & 60s singles (All £1.99)</a>
                                 <a class="dropdown-item" href="#" id="f2">70s 80s & 90s singles (All £1.99)</a>
@@ -65,7 +65,7 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="individual" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Individually priced & collectable records</a>
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="individual" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Individually priced</a>
                             <div class="dropdown-menu" aria-labelledby="individual">
                                 <a class="dropdown-item" href="#" id="i1">7” singles</a>
                                 <a class="dropdown-item" href="#" id="i2">12” singles</a>
@@ -76,7 +76,7 @@
                             <a class="nav-link disabled" href="javascript:void(0)" id="accessories">Accessories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="javascript:void(0)" id="gifts">Gifts & cool vinyl related stuff!</a>
+                            <a class="nav-link disabled" href="javascript:void(0)" id="gifts">Gifts</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" id="cart">Cart</a>
@@ -109,17 +109,15 @@
             <div class="row">
                 <div class="col-sm-12">
                     <!-- Records -->
-                    <table id="recordsTable" class="table">
+                    <table id="recordsTable" class="table table-striped">
                         <thead>
                             <tr class="bg-secondary text-white">
-                                <th colspan="7" id="categoryTitle">50's & 60's</th>
+                                <th colspan="7"><span id="categoryTitle"></span><span id="quantity" style="float: right;"></span></th>
                             </tr>
                             <tr>
                                 <th>Artist</th>
                                 <th>Title</th>
-                                <!--<th class="removeMobile">Picture Sleeve</th>
-                                <th class="removeMobile">Large Hole</th>-->
-                                <th class="removeMobile">Condition</th>
+                                <th>Condition</th>
                                 <th>Price<strong>&nbsp;(£)</strong></th>
                                 <th>Action</th>
                             </tr>
@@ -128,23 +126,21 @@
                         <tbody id="records">
                             <!-- display records here-->
                         </tbody>
-
+                            <tr>
+                                <td colspan="5" style="text-align: center"><a href="javascript:void(0)" id="more">Load more</a></td>
+                            </tr>
                         <!-- Checkout -->
                         <tfoot id="checkout">
                             <tr>
                                 <td></td>
-                                <td class="removeMobile"></td>
-                                <td class="removeMobile"></td>
-                                <td class="removeMobile"></td>
+                                <td></td>
                                 <td><strong>Total</strong></td>
                                 <td><span id="total"></span></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td class="removeMobile"></td>
-                                <td class="removeMobile"></td>
-                                <td class="removeMobile"></td>
+                                <td></td>
                                 <td></td>
                                 <td colspan="2"><div id="paypal-button-container"></div></td>
                             </tr>

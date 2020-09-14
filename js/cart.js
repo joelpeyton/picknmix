@@ -33,7 +33,6 @@ function updateTotal(records) {
 }
 
 function updateCart(records) {
-    selectActive("#cart", "Cart");
     removeRecords();
 
     let items = [];

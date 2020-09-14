@@ -33,12 +33,12 @@ function createRecordRow(record, tableName) {
 
     if (tableName.startsWith("i")) {
         let rowB = document.createElement("tr");
-        rowB.className = "info";
-        
+        rowB.className = "info"; 
+        rowB.style.borderTop = "none";
+   
         let info = document.createElement("td");
         info.setAttribute("colspan", "2");
-        info.style.borderTop = "none";
-
+       
         let infoArr = ["label", "catalogueNumber", "format", "sleeveCondition", "info", "comments"];
 
         infoArr.forEach(field => {
@@ -53,6 +53,8 @@ function createRecordRow(record, tableName) {
         rowB.appendChild(info);
         table.appendChild(rowB);
     }
+
+    
 }
 
 function removeRecords() {
@@ -67,13 +69,30 @@ function removeRecords() {
     }
 }
 
-function displayRecords(records, table) {
-    removeRecords();
-  
-    for (let index in records) {
-        createRecordRow(records[index], table);
+function displayRecords(records, table, start) {
+    let more = document.querySelector("#more");
+
+    const LIMIT = 100;
+    let end = start + LIMIT;
+    for (let i = start; i < end; i++) {
+        if (i < records.length) {
+            createRecordRow(records[i], table);
+        }
+        
+        else {
+            more.style.display = "none";
+            break;
+        }
     }
-    
+    updateActionBtns(table);
+    actionBtns();
+
+    more.onclick = function() {
+        displayRecords(records, table, end);
+    }
+
+    let loader = document.querySelector(".loader");
+    loader.style.display = "none"; // remove loader
 }
 
 function toggleActionBtn() {
@@ -174,14 +193,13 @@ function getRecords(table) {
         url: "php/getDatabase.php?table=" + table
     })
     .done(function(records) {
+        removeRecords();
         removeCheckoutBtn();
         updateCartBadge();
         updateCategoryTitle(table);
-        displayRecords(records, table);
-        updateActionBtns(table);
-        actionBtns();
-        removeCheckoutBtn();
-        loader.style.display = "none";
+        displayRecords(records, table, 0);
+        
+        document.querySelector("#quantity").innerText = `${records.length} records found`;
     })
     .fail(function(err) {
         console.log(err);
@@ -227,4 +245,4 @@ function updateCategoryTitle(table) {
     document.querySelector("#categoryTitle").innerHTML = text;
 }
 
-export { getRecords, createFixedRecordRow, removeRecords, actionBtns, updateActionBtns, updateSessionCart, updateCartBadge };
+export { getRecords, createRecordRow, removeRecords, actionBtns, updateActionBtns, updateSessionCart, updateCartBadge };
