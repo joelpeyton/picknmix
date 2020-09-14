@@ -44,7 +44,7 @@ class Record {
     }
 
     function getCart($tableName, $id) {
-        $query = "SELECT * FROM " . $tableName . " WHERE id = " . $id;
+        $query = "SELECT * FROM " . $tableName . " WHERE id = " .$id;
 
         $stmt = $this->con->prepare($query);
         $stmt->execute();
@@ -61,9 +61,9 @@ class Record {
         return $stmt;
     }
 
-    function search($field, $term) {
+    function search($tableName, $field, $term) {
         $term = strtolower($term);
-        $query = "SELECT * FROM " . $this->tableName . " WHERE LOWER(" . $field . ") LIKE '%" . $term . "%' ORDER BY Artist"; 
+        $query = "SELECT * FROM " . $tableName . " WHERE LOWER(" . $field . ") LIKE '%" . $term . "%' ORDER BY Artist"; 
         
         $stmt = $this->con->prepare($query);
         $stmt->execute();

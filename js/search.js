@@ -1,15 +1,36 @@
-import { removeRecords, actionBtns, updateActionBtns, updateCartBadge } from "./utils.js";
+import { removeRecords, updateCartBadge, removeCheckoutBtn, displayRecords, updateCategoryTitle } from "./utils.js";
  
+$("#searchByJukebox").click(function() {
+    let loader = document.querySelector(".loader");
+    loader.style.display = "block"; // add loader
+    
+    $.ajax({
+        type: "GET",
+        url: "php/searchDatabase.php?field=Title&term=jb" 
+    })
+    .done(function(records) {
+        updateSearch(records);
+        loader.style.display = "none";
+    })
+    .fail(function() {
+        alert("Error: Unable to return database");
+    });    
+});
+
 $("#searchBy").click(function(event) {
     let search = document.getElementById("search");
     let placeholder = event.target.id.slice(8);
     search.value = "";
-    search.setAttribute("placeholder", placeholder)
+    search.setAttribute("placeholder", placeholder);
+    placeholder === "Jukebox" ? search.disabled = true : search.disabled = false;
 });
 
 $("#search").on("input", function() {
     let searchTerm = document.getElementById("search");
     let searchBy = searchTerm.getAttribute("placeholder");
+
+    let loader = document.querySelector(".loader");
+    loader.style.display = "block"; // add loader
     
     $.ajax({
         type: "GET",
@@ -17,6 +38,7 @@ $("#search").on("input", function() {
     })
     .done(function(records) {
         updateSearch(records);
+        loader.style.display = "none";
     })
     .fail(function() {
         alert("Error: Unable to return database");
@@ -24,16 +46,11 @@ $("#search").on("input", function() {
 });
 
 function updateSearch(records) {
-    selectActive("#search", "Search");
     removeRecords();
-
-    for (let index in records) {
-        let record = records[index];
-        createRecordRow(record, false);
-    }
-
-    document.getElementById("checkout").style.display = "none"; 
-    actionBtns();
-    updateActionBtns();
+    removeCheckoutBtn();
     updateCartBadge();
+    updateCategoryTitle("Search");
+    displayRecords(records, 0);
+    
+    document.querySelector("#quantity").innerText = `${records.length} records found`;
 }

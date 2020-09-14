@@ -1,4 +1,4 @@
-function createRecordRow(record, tableName, isCart) {
+function createRecordRow(record, isCart) {
     let table = document.querySelector("#records");
     let rowA = document.createElement("tr");
     rowA.className = "record";
@@ -20,7 +20,7 @@ function createRecordRow(record, tableName, isCart) {
     rowA.appendChild(price);
 
     let actionBtn = document.createElement("button");
-    actionBtn.setAttribute("id", record["id"]);
+    actionBtn.setAttribute("id", record["category"] + record["id"]);
     actionBtn.setAttribute("category", record["category"]);
 
     if (isCart) {
@@ -39,7 +39,7 @@ function createRecordRow(record, tableName, isCart) {
 
     table.appendChild(rowA);
 
-    if (tableName.startsWith("i")) {
+    if (record["category"].startsWith("i")) {
         let rowB = document.createElement("tr");
         rowB.className = "info"; 
         rowB.style.borderTop = "none";
@@ -75,7 +75,7 @@ function removeRecords() {
     }
 }
 
-function displayRecords(records, table, start) {
+function displayRecords(records, start) {
     let more = document.querySelector("#more");
     more.style.display = "block";
 
@@ -83,7 +83,7 @@ function displayRecords(records, table, start) {
     let end = start + LIMIT;
     for (let i = start; i < end; i++) {
         if (i < records.length) {
-            createRecordRow(records[i], table);
+            createRecordRow(records[i], false);
         }
         
         else {
@@ -91,11 +91,11 @@ function displayRecords(records, table, start) {
             break;
         }
     }
-    updateActionBtns(table);
+    updateActionBtns(records);
     actionBtns();
 
     more.onclick = function() {
-        displayRecords(records, table, end);
+        displayRecords(records, end);
     }
 
     let loader = document.querySelector(".loader");
@@ -118,7 +118,7 @@ function toggleActionBtn() {
 }
 
 function updateSessionCart() {
-    let id = event.target.id;
+    let id = event.target.id.slice(2);
     let category = event.target.getAttribute("category");
     let cart = sessionStorage[category];
     if (cart) {
@@ -169,18 +169,20 @@ function actionBtns() {
     });
 }
 
-function updateActionBtns(category) {
-    let cart = sessionStorage[category] ? sessionStorage[category].split(",") : [];
-
-    if (cart[0] !== "") {
-        cart.forEach(id => {
+function updateActionBtns(records) {
+    for (let index in records) {
+        let record = records[index];
+        let category = record["category"]; 
+        let cart = sessionStorage[category] ? sessionStorage[category].split(",") : [];
+        if (cart.includes(record["id"])) {
+            let id = record["category"] + record["id"];
             let btn = document.getElementById(id);
             if (btn) {
                 btn.classList.remove("btn-outline-success");
                 btn.classList.add("btn-outline-danger");
                 btn.innerText = "Remove";
             }
-        });
+        }
     }
 }
 
@@ -204,7 +206,7 @@ function getRecords(table) {
         removeCheckoutBtn();
         updateCartBadge();
         updateCategoryTitle(table);
-        displayRecords(records, table, 0);
+        displayRecords(records, 0);
         
         document.querySelector("#quantity").innerText = `${records.length} records found`;
     })
@@ -244,12 +246,15 @@ function updateCategoryTitle(table) {
         case "accessories":
             text = "Accessories";
             break;   
-        case "gifts":;
+        case "gifts":
             text = "Gifts";
-            break;          
+            break;     
+        default:
+            text = "Search";
+
     }
 
-    document.querySelector("#categoryTitle").innerHTML = text;
+    document.querySelector("#categoryTitle").innerText = text;
 }
 
-export { getRecords, createRecordRow, removeRecords, actionBtns, updateActionBtns, updateSessionCart, updateCartBadge };
+export { getRecords, displayRecords, createRecordRow, removeRecords, actionBtns, updateActionBtns, updateSessionCart, updateCartBadge, removeCheckoutBtn, updateCategoryTitle };

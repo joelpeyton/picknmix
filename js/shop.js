@@ -10,6 +10,8 @@ $(document).ready(function() {
         getRecords(initialCategory);
     }
 
+    let searchBar = document.getElementById("searchDiv");
+
     $("#menuLinks").click(function(event) {
         if (event.target.id === "fixed" || event.target.id === "individual") {
             // do nothing
@@ -17,14 +19,15 @@ $(document).ready(function() {
 
         else if (event.target.id === "cart") {
             getCart();
+            searchBar.style.visibility = "hidden";
         }
 
         else {
             getRecords(event.target.id);
+            searchBar.style.visibility = "visible";
         }
 
         document.getElementById("search").value = "";
 
     });
 });
-
