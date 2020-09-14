@@ -1,4 +1,4 @@
-function createRecordRow(record, tableName) {
+function createRecordRow(record, tableName, isCart) {
     let table = document.querySelector("#records");
     let rowA = document.createElement("tr");
     rowA.className = "record";
@@ -22,8 +22,16 @@ function createRecordRow(record, tableName) {
     let actionBtn = document.createElement("button");
     actionBtn.setAttribute("id", record["id"]);
     actionBtn.setAttribute("category", record["category"]);
-    actionBtn.className = "actionBtn btn btn-outline-success";
-    actionBtn.innerText = "Add";
+
+    if (isCart) {
+        actionBtn.className = "removeBtn btn btn-outline-danger";
+        actionBtn.innerHTML = "Remove";
+    } 
+    
+    else {
+        actionBtn.className = "actionBtn btn btn-outline-success";
+        actionBtn.innerText = "Add";
+    }
     
     let action = document.createElement("td");
     action.appendChild(actionBtn);
@@ -53,8 +61,6 @@ function createRecordRow(record, tableName) {
         rowB.appendChild(info);
         table.appendChild(rowB);
     }
-
-    
 }
 
 function removeRecords() {
@@ -71,6 +77,7 @@ function removeRecords() {
 
 function displayRecords(records, table, start) {
     let more = document.querySelector("#more");
+    more.style.display = "block";
 
     const LIMIT = 100;
     let end = start + LIMIT;
@@ -190,7 +197,7 @@ function getRecords(table) {
 
     $.ajax({
         type: "GET",
-        url: "php/getDatabase.php?table=" + table
+        url: "php/getTable.php?table=" + table
     })
     .done(function(records) {
         removeRecords();

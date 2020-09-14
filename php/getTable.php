@@ -6,17 +6,11 @@
     $db = $database->getConnection();
 
     $record = new Record($db);
+    $table = htmlspecialchars(strip_tags($_GET["table"]));
 
-    $stmt = $record->readFixed();
+    $stmt = $record->read($table);
 
     $return = array();
-
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-        array_push($return, $row);
-    };
-
-    $stmt = $record->readIndivid();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
