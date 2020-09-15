@@ -3,7 +3,6 @@ import { getCart } from "./cart.js";
 
 $(document).ready(function() {
     toggleLoader("hide");
-
     landingPage();
 
     $("#menuLinks").click(function(event) {
@@ -27,5 +26,10 @@ $(document).ready(function() {
     $("#cartTop").click(function() {
         getCart();
         toggleSearchBar("hide");
+    });
+
+    $("#backToTop").click(function() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
     });
 });

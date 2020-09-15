@@ -80,8 +80,8 @@ function removeRecords() {
 }
 
 function displayRecords(records, start) {
-    
-    toggleLoadMoreBtn("show");
+    toggleMoreBtn("show");
+    toggleFinalRow("show");
 
     const LIMIT = 100;
     let end = start + LIMIT;
@@ -91,7 +91,7 @@ function displayRecords(records, start) {
         }
         
         else {
-            toggleLoadMoreBtn("hide");
+            toggleMoreBtn("hide");
             break;
         }
     }
@@ -276,9 +276,14 @@ function clearSearchInput() {
     document.getElementById("search").value = "";
 }
 
-function toggleLoadMoreBtn(toggle) {
-    let loadMore = document.querySelector("#loadMore");
-    loadMore.style.display = toggle == "hide" ? "none" : "table-row";
+function toggleFinalRow(toggle) {
+    let row = document.querySelector("#finalRow");
+    row.style.display = toggle == "hide" ? "none" : "table-row";
+}
+
+function toggleMoreBtn(toggle) {
+    let btn = document.querySelector("#more");
+    btn.style.display = toggle == "hide" ? "none" : "inline-block";
 }
 
 function updateQuantity(length) {
@@ -288,7 +293,7 @@ function updateQuantity(length) {
 
 export {
     updateQuantity,
-    toggleLoadMoreBtn,
+    toggleFinalRow,
     clearSearchInput,
     landingPage, 
     toggleSearchBar, 

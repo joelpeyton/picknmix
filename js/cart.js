@@ -1,4 +1,4 @@
-import { removeRecords, createRecordRow, updateCartBadge, updateSessionCart, toggleLoader, toggleLoadMoreBtn } from "./utils.js";
+import { removeRecords, createRecordRow, updateCartBadge, updateSessionCart, toggleLoader, toggleFinalRow } from "./utils.js";
 
 function getCart() {
     toggleLoader("show");
@@ -49,7 +49,7 @@ function updateTotal(records) {
 }
 
 function updateCart(records) {
-    toggleLoadMoreBtn("hide");
+    toggleFinalRow("hide");
     removeRecords();
 
     let items = [];
