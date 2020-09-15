@@ -39,13 +39,13 @@ function createRecordRow(record, isCart) {
 
     table.appendChild(rowA);
 
-    if (record["category"].startsWith("i")) {
+    if (record["category"].startsWith("i") || record["category"] === "gifts") {
         let rowB = document.createElement("tr");
         rowB.className = "info"; 
         rowB.style.borderTop = "none";
    
         let info = document.createElement("td");
-        info.setAttribute("colspan", "2");
+        info.setAttribute("colspan", "4");
        
         let infoArr = ["label", "catalogueNumber", "format", "sleeveCondition", "info", "comments"];
 
@@ -59,6 +59,10 @@ function createRecordRow(record, isCart) {
         });
         
         rowB.appendChild(info);
+
+        let padding = document.createElement("td");
+        rowB.appendChild(padding);
+        
         table.appendChild(rowB);
     }
 }
@@ -76,8 +80,8 @@ function removeRecords() {
 }
 
 function displayRecords(records, start) {
-    let more = document.querySelector("#more");
-    more.style.display = "block";
+    
+    toggleLoadMoreBtn("show");
 
     const LIMIT = 100;
     let end = start + LIMIT;
@@ -87,19 +91,19 @@ function displayRecords(records, start) {
         }
         
         else {
-            more.style.display = "none";
+            toggleLoadMoreBtn("hide");
             break;
         }
     }
     updateActionBtns(records);
     actionBtns();
-
+    
+    let more = document.querySelector("#more");
     more.onclick = function() {
         displayRecords(records, end);
     }
 
-    let loader = document.querySelector(".loader");
-    loader.style.display = "none"; // remove loader
+    toggleLoader("hide");
 }
 
 function toggleActionBtn() {
@@ -188,14 +192,11 @@ function updateActionBtns(records) {
 
 function removeCheckoutBtn() {
     let checkout = document.getElementById("checkout");
-    if (checkout.style.display !== "none") {
-        checkout.style.display = "none";
-    }
+    if (checkout.style.display !== "none") checkout.style.display = "none";
 }
 
 function getRecords(table) {
-    let loader = document.querySelector(".loader");
-    loader.style.display = "block"; // add loader
+    toggleLoader("show");
 
     $.ajax({
         type: "GET",
@@ -207,8 +208,7 @@ function getRecords(table) {
         updateCartBadge();
         updateCategoryTitle(table);
         displayRecords(records, 0);
-        
-        document.querySelector("#quantity").innerText = `${records.length} records found`;
+        updateQuantity(records.length)
     })
     .fail(function(err) {
         console.log(err);
@@ -235,10 +235,10 @@ function updateCategoryTitle(table) {
             text = "LPs (£4.99)";
             break;
         case "i1":
-            text = "7” singles";
+            text = "7\" singles";
             break;
         case "i2":
-            text = "12” singles";
+            text = "12\" singles";
             break;
         case "i3":
             text = "LPs & CDs";
@@ -250,11 +250,57 @@ function updateCategoryTitle(table) {
             text = "Gifts";
             break;     
         default:
-            text = "Search";
-
+            let searchTerm = document.getElementById("search").getAttribute("placeholder");
+            text = `Search by ${searchTerm}`;
     }
 
     document.querySelector("#categoryTitle").innerText = text;
 }
 
-export { getRecords, displayRecords, createRecordRow, removeRecords, actionBtns, updateActionBtns, updateSessionCart, updateCartBadge, removeCheckoutBtn, updateCategoryTitle };
+function toggleLoader(toggle) {
+    let loader = document.querySelector(".loader");  
+    loader.style.display = toggle == "hide" ? "none" : "block";
+}
+
+function toggleSearchBar(toggle) {
+    let searchBar = document.getElementById("searchDiv");
+    searchBar.style.visibility = toggle == "hide" ? "hidden" : "visible";
+}
+
+function landingPage() {
+    let initialCategory = sessionStorage.initialCategory;
+    initialCategory ? getRecords(initialCategory) : getRecords("f1");
+}
+
+function clearSearchInput() {
+    document.getElementById("search").value = "";
+}
+
+function toggleLoadMoreBtn(toggle) {
+    let loadMore = document.querySelector("#loadMore");
+    loadMore.style.display = toggle == "hide" ? "none" : "table-row";
+}
+
+function updateQuantity(length) {
+    let quantity = document.querySelector("#quantity");
+    quantity.innerText = length == "1" ? `${length} record found` : `${length} records found`;
+}
+
+export {
+    updateQuantity,
+    toggleLoadMoreBtn,
+    clearSearchInput,
+    landingPage, 
+    toggleSearchBar, 
+    toggleLoader, 
+    getRecords, 
+    displayRecords, 
+    createRecordRow, 
+    removeRecords, 
+    actionBtns, 
+    updateActionBtns, 
+    updateSessionCart, 
+    updateCartBadge, 
+    removeCheckoutBtn, 
+    updateCategoryTitle 
+};

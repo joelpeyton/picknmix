@@ -4,6 +4,14 @@ body, html {
     font-size: 8px;
 }
 
+.container {
+    background-color: white;
+}
+
+#quantity {
+    float: right;
+}
+
 .btn {
     font-size: 8px;
 }
@@ -19,10 +27,8 @@ body, html {
 .shopCart {
     float: right;
     padding: 5px;
-    border: 1px solid black;
-    border-top: none;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     margin-right: 10px;
 }
 
@@ -31,6 +37,11 @@ h1 {
     font-family: 'Playfair Display SC', serif;
     font-size: 2rem !important;
     padding-top: 10px !important;
+    clear: both;
+}
+
+hr {
+    background-color: black;
 }
 
 .navbar {
@@ -78,18 +89,16 @@ h1 {
     padding: .4em .4em;
 }
 
-.removeMobile,
 #checkout,
-#more {
+#loadMore {
     display: none;
 }  
 
 /* RWD */
 
 @media screen and (min-width: 601px) {
+   
     body, html, .btn {
-        height: 100%;
-        margin: 0;
         font-size: 0.9rem;
     }
 
@@ -97,28 +106,13 @@ h1 {
         font-size: 3rem !important;
     }
 
-    .fa-2x {
-        font-size: 1.25rem;
-    }    
-
-    .removeMobile {
-        display: table-cell;
-    }  
 }
 
 @media screen and (min-width: 769px) {
 
     body, html, .btn {
-        height: 100%;
-        margin: 0;
         font-size: 1rem;
     }
 
-    .fa-2x {
-        font-size: 1.5rem;
-    }
 }
 
-@media screen and (min-width: 1025px) {
-
-}

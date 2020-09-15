@@ -36,15 +36,15 @@
             <span id="loader"><i class="fas fa-compact-disc"></i></span>
         </div>
         
-        <div class="container" style="background-color: white;">
+        <div class="container">
             <!--  Cart display -->
             <div>
-                <div class="shopCart"><i class="fas fa-shopping-cart"></i>&nbsp;Cart (&nbsp;<span id="cartBadge">0</span>&nbsp;)</div>
+                <div id="cartTop" class="shopCart btn btn-danger"><i class="fas fa-shopping-cart"></i>&nbsp;Cart (&nbsp;<span id="cartBadge">0</span>&nbsp;)</div>
             </div>
 
             <!-- Title -->
-            <h1 style="clear: both;">PICK 'N' MIX RECORDS</h1>
-            <hr style="background-color: black;">
+            <h1>PICK 'N' MIX RECORDS</h1>
+            <hr>
 
             <!-- Nav bar -->
             <nav class="navbar navbar-expand-md navbar-light bg-transparent" style="margin:24px 0;">
@@ -76,7 +76,7 @@
                             <a class="nav-link disabled" href="javascript:void(0)" id="accessories">Accessories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="javascript:void(0)" id="gifts">Gifts</a>
+                            <a class="nav-link" href="javascript:void(0)" id="gifts">Gifts</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" id="cart">Cart</a>
@@ -100,7 +100,6 @@
                             <input type="text" class="form-control" id="search" placeholder="Artist">
                         </div>
                     </div>
-
                 </div>
             </nav>
 
@@ -113,7 +112,7 @@
                     <table id="recordsTable" class="table table-striped">
                         <thead>
                             <tr class="bg-secondary text-white">
-                                <th colspan="7"><span id="categoryTitle"></span><span id="quantity" style="float: right;"></span></th>
+                                <th colspan="7"><span id="categoryTitle"></span><span id="quantity"></span></th>
                             </tr>
                             <tr>
                                 <th>Artist</th>
@@ -127,9 +126,14 @@
                         <tbody id="records">
                             <!-- display records here-->
                         </tbody>
-                            <tr>
+
+                        <!-- Load more -->
+                        <tbody>
+                            <tr id="loadMore">
                                 <td colspan="5" style="text-align: center"><a href="javascript:void(0)" id="more">Load more</a></td>
                             </tr>
+                        </tbody>
+            
                         <!-- Checkout -->
                         <tfoot id="checkout">
                             <tr>
@@ -137,14 +141,7 @@
                                 <td></td>
                                 <td><strong>Total</strong></td>
                                 <td><span id="total"></span></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td colspan="1"><div id="paypal-button-container"></div></td>
+                                <td><div id="paypal-button-container"></div></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -168,7 +165,7 @@
                 shape: 'rect',
                 color: 'blue',
                 layout: 'horizontal',
-                label: 'paypal',
+                label: 'pay',
             },
             createOrder: function(data, actions) {
                 return actions.order.create({

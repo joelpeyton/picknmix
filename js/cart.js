@@ -1,8 +1,7 @@
-import { removeRecords, createRecordRow, updateCartBadge, updateSessionCart } from "./utils.js";
+import { removeRecords, createRecordRow, updateCartBadge, updateSessionCart, toggleLoader, toggleLoadMoreBtn } from "./utils.js";
 
 function getCart() {
-    let loader = document.querySelector(".loader");
-    loader.style.display = "block"; // add loader
+    toggleLoader("show");
 
     let cartArr = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3"];
     let data = {};
@@ -19,7 +18,7 @@ function getCart() {
     })
     .done(function(records) {
        updateCart(records);
-       loader.style.display = "none";
+       toggleLoader("hide");
     })
     .fail(function(err) {
         console.log(err);
@@ -50,9 +49,7 @@ function updateTotal(records) {
 }
 
 function updateCart(records) {
-    let more = document.querySelector("#more");
-    more.style.display = "none";
-
+    toggleLoadMoreBtn("hide");
     removeRecords();
 
     let items = [];

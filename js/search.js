@@ -1,16 +1,15 @@
-import { removeRecords, updateCartBadge, removeCheckoutBtn, displayRecords, updateCategoryTitle } from "./utils.js";
+import { removeRecords, updateCartBadge, removeCheckoutBtn, displayRecords, updateCategoryTitle, toggleLoader, updateQuantity } from "./utils.js";
  
 $("#searchByJukebox").click(function() {
-    let loader = document.querySelector(".loader");
-    loader.style.display = "block"; // add loader
-    
+    toggleLoader("show");
+
     $.ajax({
         type: "GET",
         url: "php/searchDatabase.php?field=Title&term=jb" 
     })
     .done(function(records) {
         updateSearch(records);
-        loader.style.display = "none";
+        toggleLoader("hide");
     })
     .fail(function() {
         alert("Error: Unable to return database");
@@ -29,8 +28,7 @@ $("#search").on("input", function() {
     let searchTerm = document.getElementById("search");
     let searchBy = searchTerm.getAttribute("placeholder");
 
-    let loader = document.querySelector(".loader");
-    loader.style.display = "block"; // add loader
+    toggleLoader("show");
     
     $.ajax({
         type: "GET",
@@ -38,7 +36,7 @@ $("#search").on("input", function() {
     })
     .done(function(records) {
         updateSearch(records);
-        loader.style.display = "none";
+        toggleLoader("hide");
     })
     .fail(function() {
         alert("Error: Unable to return database");
@@ -51,6 +49,5 @@ function updateSearch(records) {
     updateCartBadge();
     updateCategoryTitle("Search");
     displayRecords(records, 0);
-    
-    document.querySelector("#quantity").innerText = `${records.length} records found`;
+    updateQuantity(records.length);
 }
