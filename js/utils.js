@@ -133,7 +133,15 @@ function toggleActionBtn() {
 }
 
 function updateSessionCart() {
-    let id = event.target.id.slice(2);
+    let id;
+    if (event.target.id.startsWith("gifts")) {
+        id = event.target.id.slice(5);
+    } else if (event.target.id.startsWith("accessories")) {
+        id = event.target.id.slice(11);
+    } else {
+        id = event.target.id.slice(2);
+    }
+
     let category = event.target.getAttribute("category");
     let cart = sessionStorage[category];
     if (cart) {
@@ -159,7 +167,7 @@ function updateSessionCart() {
 function updateCartBadge() {
     let cartBadge = document.getElementById("cartBadge");
 
-    let categories = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3"];
+    let categories = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3", "gifts", "accessories"];
     let length = 0;
     categories.forEach(category => {
         let cart = sessionStorage[category] ? sessionStorage[category].split(",") : [];

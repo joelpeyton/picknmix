@@ -3,7 +3,7 @@ import { removeRecords, createRecordRow, updateCartBadge, updateSessionCart, tog
 function getCart() {
     toggleLoader("show");
 
-    let cartArr = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3"];
+    let cartArr = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3", "gifts", "accessories"];
     let data = {};
     cartArr.forEach(cart => {
         if (sessionStorage[cart]) {
