@@ -40,6 +40,15 @@ h1 {
     clear: both;
 }
 
+h1 a {
+    color: black;
+}
+
+h1 a:hover {
+    text-decoration: none;
+    color: black;
+}
+
 hr {
     background-color: black;
 }
@@ -80,6 +89,11 @@ hr {
     margin-right: 5px;
 }
 
+.shopImage {
+    width: 100px;
+    height: 100px;
+}
+
 .actionBtn,
 .removeBtn {
     cursor: pointer; 
@@ -106,12 +120,22 @@ hr {
         font-size: 3rem !important;
     }
 
+    .shopImage {
+        width: 150px;
+        height: 150px;
+    }
+
 }
 
 @media screen and (min-width: 769px) {
 
     body, html, .btn {
         font-size: 1rem;
+    }
+
+    .shopImage {
+        width: 200px;
+        height: 200px;
     }
 
 }

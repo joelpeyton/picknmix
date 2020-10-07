@@ -39,13 +39,24 @@ function createRecordRow(record, isCart) {
 
     table.appendChild(rowA);
 
-    if (record["category"].startsWith("i") || record["category"] === "gifts") {
+    if (!record["category"].startsWith("f")) {
         let rowB = document.createElement("tr");
         rowB.className = "info"; 
         rowB.style.borderTop = "none";
-   
+
+        if (record["category"] === "gifts" || record["category"] === "accessories") {
+            let imgTD = document.createElement("td")
+
+            let img = document.createElement("img");
+            img.className = "shopImage";
+            img.src = "images/bg.png";  // NEED TO CHANGE TO DATABASE FIELD
+
+            imgTD.appendChild(img);
+            rowB.appendChild(imgTD);
+        }
+
         let info = document.createElement("td");
-        info.setAttribute("colspan", "4");
+        info.setAttribute("colspan", "3");
        
         let infoArr = ["label", "catalogueNumber", "format", "sleeveCondition", "info", "comments"];
 
