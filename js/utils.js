@@ -326,5 +326,5 @@ export {
     updateSessionCart, 
     updateCartBadge, 
     removeCheckoutBtn, 
-    updateCategoryTitle 
+    updateCategoryTitle
 };

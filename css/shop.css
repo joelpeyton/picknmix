@@ -103,10 +103,19 @@ hr {
     padding: .4em .4em;
 }
 
+.modal-footer {
+    justify-content: center;
+}
+
 #checkout,
 #loadMore {
     display: none;
-}  
+} 
+
+#overseas {
+    color: #dc3545;
+    display: none;
+}
 
 /* RWD */
 
