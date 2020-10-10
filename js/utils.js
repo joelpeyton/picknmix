@@ -310,6 +310,55 @@ function updateQuantity(length) {
     quantity.innerText = length == "1" ? `${length} record found` : `${length} records found`;
 }
 
+function getInfo(id) {
+    let info = document.getElementsByClassName("information");
+
+    for (let i = 0; i < info.length; i++) {
+        info[i].style.display = "none";
+    }
+
+    switch(id) {
+        case "f1":
+        case "f2":
+            sessionStorage.setItem("info", [0, 2, 4, 6, 7]);
+            break;
+        case "f3":
+            sessionStorage.setItem("info", [0, 3, 4, 6, 7]);
+            break;
+        case "f4":
+        case "f5":
+            sessionStorage.setItem("info", [0, 3, 5, 7]);
+            break;
+        case "i1":
+        case "i2":
+        case "i3":
+            sessionStorage.setItem("info", [0, 1, 2, 8]);
+            break;
+    }
+
+    sessionStorage.info.split(",").forEach(element => {
+        info[element].style.display = "block";
+    });
+
+    sessionStorage.setItem("showingInfo", true);
+}
+
+function toggleInfo() {
+    let info = document.getElementsByClassName("information");
+
+    if (sessionStorage.showingInfo === "true") {
+        sessionStorage.info.split(",").forEach(element => {
+            info[element].style.display = "none";
+        });
+        sessionStorage.setItem("showingInfo", false);
+    } else {
+        sessionStorage.info.split(",").forEach(element => {
+            info[element].style.display = "block";
+        });
+        sessionStorage.setItem("showingInfo", true);
+    }
+}
+
 export {
     updateQuantity,
     toggleFinalRow,
@@ -326,5 +375,7 @@ export {
     updateSessionCart, 
     updateCartBadge, 
     removeCheckoutBtn, 
-    updateCategoryTitle
+    updateCategoryTitle,
+    toggleInfo,
+    getInfo
 };

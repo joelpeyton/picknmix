@@ -107,7 +107,7 @@ function updateShipping() {
 }
 
 function toggleOverseas() {
-    let value = document.querySelector("input[name='inTheUK']:checked").value;
+    let value = document.querySelector("input[name='inTheUK']:checked").value || "none";
     let delivery = document.getElementById("deliveryOptionContainer");
     let overseas = document.getElementById("overseas");
     if (value === "yes") {

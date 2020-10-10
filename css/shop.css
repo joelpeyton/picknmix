@@ -112,6 +112,20 @@ hr {
     display: none;
 } 
 
+#informationBtn {
+    cursor: pointer;
+}
+
+td a {
+    text-decoration: underline;
+    color: white;
+}
+
+td a:hover {
+    text-decoration: none;
+    color: white;
+}
+
 #overseas {
     color: #dc3545;
     display: none;

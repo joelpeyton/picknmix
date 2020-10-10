@@ -1,10 +1,11 @@
-import { getRecords, toggleLoader, toggleSearchBar, landingPage, clearSearchInput } from "./utils.js";
+import { getRecords, toggleLoader, toggleSearchBar, landingPage, clearSearchInput, toggleInfo, getInfo } from "./utils.js";
 import { getCart } from "./cart.js";
 import { toggleOverseas, calculateShippingCost } from "./shipping.js";
 
 $(document).ready(function() {
     toggleLoader("hide");
     landingPage();
+    getInfo(sessionStorage.initialCategory);
     toggleOverseas();
 
     $("#menuLinks").click(function(event) {
@@ -20,6 +21,7 @@ $(document).ready(function() {
         else {
             getRecords(event.target.id);
             toggleSearchBar("show");
+            getInfo(event.target.id);
         }
 
         clearSearchInput();
@@ -45,5 +47,9 @@ $(document).ready(function() {
 
     $("#deliveryOption").change(function() {
         calculateShippingCost();
+    });
+
+    $("#informationBtn").click(function() {
+        toggleInfo();
     });
 });

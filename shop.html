@@ -78,6 +78,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" id="gifts">Gifts</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="about" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+                            <div class="dropdown-menu" aria-labelledby="about">
+                                <a class="dropdown-item" href="#" id="">About Pick 'n' mix</a>
+                                <a class="dropdown-item" href="#" id="">Record Grading</a>
+                                <a class="dropdown-item" href="#" id="">Delivery</a>
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" id="cart">Cart</a>
                         </li>
@@ -103,17 +111,61 @@
                 </div>
             </nav>
 
-            
-
             <!-- Records and Cart-->
             <div class="row">
                 <div class="col-sm-12">
                     <!-- Records -->
-                    <table id="recordsTable" class="table table-striped">
-                        <thead>
-                            <tr class="bg-secondary text-white">
-                                <th colspan="7"><span id="categoryTitle"></span><span id="quantity"></span></th>
+                    <table class="table">
+                        <thead class="bg-secondary text-white">
+                            <tr>
+                                <th colspan="7">
+                                    <i class="fas fa-info-circle" id="informationBtn"></i>
+                                    <span id="categoryTitle"><!-- Category Title --></span>
+                                    <span id="quantity"><!-- Number of records in category --></span>
+                                </th>
                             </tr>
+                            <tr>
+                                <td colspan="7" class="information">All records are carefully visually graded, please see our <a href="#">grading page</a> for further clarification of these grades:</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="information">Many records will have been play-tested but will otherwise have been carefully inspected visually. Each contains an accurate description of quality where sound quality where it will be mentioned if play-tested.</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="information">
+                                    <ul>
+                                        <li>M = Mint</li>
+                                        <li>NM = Near Mint</li>
+                                        <li>VG+ = Very Good Plus</li>
+                                        <li>VG = Very Good</li>
+                                        <li>G+ = Good Plus</li>
+                                        <li>Fair</li>
+                                        <li>Poor</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="information">All records are at least VG (Very Good) rating unless specifically stated, many VG+ (Very Good Plus) or even NM (Near Mint)</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="information">PS = Picture Sleeve (otherwise company sleeve or plain/generic sleeve)</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="information">Picture Sleeve unless stated (otherwise company sleeve or plain/generic sleeve)</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="information">JB = Jukebox (large centre hole, will play on any player with use of a <a href="#">45 adapter</a></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="information">Sleeves will be in reasonable to excellent condition unless noted. Sleeves and labels may have writing, stickers/residue, small surface tears and/or small seam splits but anything else of note will be mentioned.</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="information">A few releases (especially US, European) may be released with large hole (Jukebox ready). Where this is not as per the original format of released, it will be mentioned. Will play on any player with use of a <a href="#">45 adapter</a>, sleeves are individually graded.</td>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <table id="recordsTable" class="table table-striped">
+                        <thead>                            
                             <tr>
                                 <th>Artist</th>
                                 <th>Title</th>
@@ -212,8 +264,6 @@
             </div>
         </div>
 
-
-    
     <!-- Bootstrap JavaScript -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Bootstrap JS -->
