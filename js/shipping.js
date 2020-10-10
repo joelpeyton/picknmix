@@ -36,13 +36,11 @@ function calculateWeight() {
 
 function getShippingPriceArray() {
     let option = document.getElementById("deliveryOption").value;
-    if (parseFloat(sessionStorage.total) > 20.00) {
+    if (parseFloat(sessionStorage.total) >= 20.00) {
         option = "2";
-        document.getElementById("deliveryOptionContainer").style.display = "none";
     }
-    if (parseFloat(sessionStorage.total) > 50.00) {
+    if (parseFloat(sessionStorage.total) >= 50.00) {
         option = "3";
-        document.getElementById("deliveryOptionContainer").style.display = "none";
     }
     let prices = [];
     switch(option) {
@@ -63,12 +61,13 @@ function getShippingPriceArray() {
 function calculateShippingCost() {
     let weight = calculateWeight();
     let lps = numOfLps();
-    let inTheUK = document.querySelector("input[name='inTheUK']:checked").value; 
-    let shippingTotal = 0
+    let inTheUK = sessionStorage.inTheUK;
+    let total = parseFloat(sessionStorage.total);
+    let shippingTotal = 0;
     let parcels = 0;
     let prices = getShippingPriceArray();
 
-    if (inTheUK === "no") {
+    if (inTheUK === "no" || total >= 250.00) {
         shippingTotal = 0;
     }
 
@@ -94,7 +93,7 @@ function calculateShippingCost() {
     }
 
     sessionStorage.setItem("shipping", shippingTotal.toFixed(2));
-    let grandTotal = parseFloat(sessionStorage.total) + parseFloat(sessionStorage.shipping);
+    let grandTotal = total + parseFloat(sessionStorage.shipping);
     sessionStorage.grandTotal = grandTotal.toFixed(2);
 
     updateShipping();
@@ -107,17 +106,67 @@ function updateShipping() {
 }
 
 function toggleOverseas() {
-    let value = document.querySelector("input[name='inTheUK']:checked").value || "none";
-    let delivery = document.getElementById("deliveryOptionContainer");
-    let overseas = document.getElementById("overseas");
+    let value = document.querySelector("input[name='inTheUK']:checked").value;
+    let overseas = document.getElementById("shippingInfoOne");
+
     if (value === "yes") {
-        delivery.style.display = "block";
+        sessionStorage.setItem("inTheUK", "yes");
         overseas.style.display = "none";
+
     } else {
-        delivery.style.display = "none";
+        sessionStorage.setItem("inTheUK", "no");
         overseas.style.display = "block";
     }
-    calculateShippingCost();
 }
 
-export { calculateShippingCost, toggleOverseas }
+function displayPaypalModal() {
+    calculateShippingCost();
+
+    let selectDiv = document.getElementById("deliveryOptionDiv");
+    let select = document.getElementById("deliveryOption");
+    let two = document.getElementById("shippingInfoTwo");
+    let three = document.getElementById("shippingInfoThree");
+    let overseas = document.getElementById("shippingInfoFour");
+    let over250 = document.getElementById("shippingInfoFive");
+    let total = parseFloat(sessionStorage.total);
+
+    selectDiv.style.display = "none";
+    two.style.display = "none";
+    three.style.display = "none";
+    overseas.style.display = "none";
+    over250.style.display = "none";
+
+    if (sessionStorage.inTheUK === "no") {
+        two.style.display = "block";
+        overseas.style.display = "block";
+    }
+
+    else {
+        selectDiv.style.display = "block";
+
+        if (total < 20) {
+            select.disabled = false;
+            $("#deliveryOption").change(function() {
+                calculateShippingCost();
+            });
+        } 
+
+        else {
+            if (total >= 20.00) {
+                select.value = "2";
+                select.disabled = true;
+            }
+            if (total >= 50.00) {
+                select.value = "3";
+                select.disabled = true;
+            }
+            if (total >= 250.00) {
+                selectDiv.style.display = "none";
+                three.style.display = "block";
+                over250.style.display = "block";
+            }
+        }
+    }
+}
+
+export { toggleOverseas, displayPaypalModal, calculateShippingCost }

@@ -1,12 +1,11 @@
 import { getRecords, toggleLoader, toggleSearchBar, landingPage, clearSearchInput, toggleInfo, getInfo } from "./utils.js";
 import { getCart } from "./cart.js";
-import { toggleOverseas, calculateShippingCost } from "./shipping.js";
+import { toggleOverseas, displayPaypalModal, calculateShippingCost } from "./shipping.js";
 
 $(document).ready(function() {
     toggleLoader("hide");
     landingPage();
     getInfo(sessionStorage.initialCategory);
-    toggleOverseas();
 
     $("#menuLinks").click(function(event) {
         if (event.target.id === "fixed" || event.target.id === "individual") {
@@ -30,6 +29,7 @@ $(document).ready(function() {
     $("#cartTop").click(function() {
         getCart();
         toggleSearchBar("hide");
+        getInfo("cart");
     });
 
     $("#backToTop").click(function() {
@@ -37,19 +37,23 @@ $(document).ready(function() {
         document.documentElement.scrollTop = 0; 
     });
 
-    $("#checkoutBtn").click(function() {
-        calculateShippingCost();
-    });
-
-    $("#inTheUK").change(function() {
-        toggleOverseas();
-    });
-
-    $("#deliveryOption").change(function() {
-        calculateShippingCost();
-    });
-
     $("#informationBtn").click(function() {
         toggleInfo();
+    });
+
+    $("#destinationModal").on("show.bs.modal", function() {
+        toggleOverseas();
+
+        $("#inTheUK").change(function() {
+            toggleOverseas();
+        });
+    });
+
+    $("#paypalModal").on("show.bs.modal", function() {
+        displayPaypalModal();
+
+        $("#deliveryOption").change(function() {
+            calculateShippingCost();
+        });
     });
 });

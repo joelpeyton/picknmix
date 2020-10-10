@@ -126,9 +126,9 @@ td a:hover {
     color: white;
 }
 
-#overseas {
+#overseas,
+#over250 {
     color: #dc3545;
-    display: none;
 }
 
 /* RWD */
