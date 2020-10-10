@@ -21,9 +21,9 @@ $(document).ready(function() {
         else {
             getRecords(event.target.id);
             toggleSearchBar("show");
-            getInfo(event.target.id);
         }
 
+        getInfo(event.target.id);
         clearSearchInput();
     });
 

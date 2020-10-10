@@ -334,11 +334,15 @@ function getInfo(id) {
         case "i3":
             sessionStorage.setItem("info", [0, 1, 2, 8]);
             break;
+        default:
+            sessionStorage.setItem("info", []);
     }
 
-    sessionStorage.info.split(",").forEach(element => {
-        info[element].style.display = "block";
-    });
+    if (sessionStorage.info !== "") {
+        sessionStorage.info.split(",").forEach(element => {
+            info[element].style.display = "block";
+        });
+    }
 
     sessionStorage.setItem("showingInfo", true);
 }
