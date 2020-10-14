@@ -22,13 +22,7 @@ body, html {
 
 
 
-.navbar {
-    padding: .5rem 1rem .5rem .25rem;
-}
 
-.nav-link.active {
-    font-weight: bold;
-}
 
 .form-control {
     width: 75%;
@@ -68,10 +62,6 @@ body, html {
     cursor: pointer; 
 }
 
-.badge {
-    padding: .4em .4em;
-}
-
 .modal-footer {
     justify-content: center;
 }
@@ -107,7 +97,7 @@ td a:hover {
     body, html, .btn {
         font-size: 0.9rem;
     }
-    
+
     .shopImage {
         width: 150px;
         height: 150px;

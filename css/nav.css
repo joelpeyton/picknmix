@@ -1,0 +1,7 @@
+.navbar {
+    padding: .5rem 1rem .5rem .25rem;
+}
+
+.nav-link.active {
+    font-weight: bold;
+}
