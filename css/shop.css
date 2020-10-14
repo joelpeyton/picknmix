@@ -8,10 +8,6 @@ body, html {
     background-color: white;
 }
 
-#quantity {
-    float: right;
-}
-
 .btn {
     font-size: 8px;
 }

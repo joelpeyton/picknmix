@@ -19,6 +19,7 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/shop.css">
+        <link rel="stylesheet" href="css/about.css">
         <link rel="stylesheet" href="css/loader.css">
         
         <!-- Fav icons -->
@@ -57,11 +58,11 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="fixed" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fixed price</a>
                             <div class="dropdown-menu" aria-labelledby="fixed">
-                                <a class="dropdown-item" href="#" id="f1">50s & 60s singles (All £1.99)</a>
-                                <a class="dropdown-item" href="#" id="f2">70s 80s & 90s singles (All £1.99)</a>
+                                <a class="dropdown-item" href="#" id="f1">50s & 60s singles (All &pound;1.99)</a>
+                                <a class="dropdown-item" href="#" id="f2">70s 80s & 90s singles (All &pound;1.99)</a>
                                 <a class="dropdown-item" href="#" id="f3">60s – 90s Bargain singles (All 99p)</a>
-                                <a class="dropdown-item" href="#" id="f4">12” singles (All £2.49)</a>
-                                <a class="dropdown-item" href="#" id="f5">LPs (£4.99)</a>
+                                <a class="dropdown-item" href="#" id="f4">12” singles (All &pound;2.49)</a>
+                                <a class="dropdown-item" href="#" id="f5">LPs (&pound;4.99)</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -81,13 +82,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="about" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
                             <div class="dropdown-menu" aria-labelledby="about">
-                                <a class="dropdown-item" href="#" id="">About Pick 'n' mix</a>
-                                <a class="dropdown-item" href="#" id="">Record Grading</a>
-                                <a class="dropdown-item" href="#" id="">Delivery</a>
+                                <a class="dropdown-item disabled" href="#" id="picknmix">About Pick 'n' mix</a>
+                                <a class="dropdown-item" href="#" id="grading">Record Grading</a>
+                                <a class="dropdown-item" href="#" id="delivery">Delivery</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" id="cart">Cart</a>
                         </li>
                     </ul>
 
@@ -111,66 +109,47 @@
                 </div>
             </nav>
 
+            <!-- Info -->
+            <div class="row" id="infoContainer">
+                <div class="col-sm-12">
+                    <div class="bg-secondary text-white mb-3" style="padding: 1rem;">
+                        <h5>
+                            <span id="categoryTitle"><!-- Category Title --></span>
+                            <!--<span id="quantity">Number of records in category</span>-->
+                            <i class="fas fa-times-circle" id="informationBtn" style="float: right;"></i>
+                        </h5>
+                        <p class="information">All records are carefully visually graded, please see our <a href="#">grading page</a> for further clarification of these grades.</p>
+                        <p class="information">Many records will have been play-tested but will otherwise have been carefully inspected visually. Each contains an accurate description of quality where sound quality where it will be mentioned if play-tested.</p>
+                        <ul class="information"> 
+                            <li>M = Mint</li>
+                            <li>NM = Near Mint</li>
+                            <li>VG+ = Very Good Plus</li>
+                            <li>VG = Very Good</li>
+                            <li>G+ = Good Plus</li>
+                            <li>Fair</li>
+                            <li>Poor</li>
+                        </ul>
+                        <p class="information">All records are at least VG (Very Good) rating unless specifically stated, many VG+ (Very Good Plus) or even NM (Near Mint).</p>
+                        <p class="information">PS = Picture Sleeve (otherwise company sleeve or plain/generic sleeve).</p>
+                        <p class="information">Picture Sleeve unless stated (otherwise company sleeve or plain/generic sleeve).</p>
+                        <p class="information">JB = Jukebox (large centre hole, will play on any player with use of a <a href="#">45 adapter.</a></p>
+                        <p class="information">Sleeves will be in reasonable to excellent condition unless noted. Sleeves and labels may have writing, stickers/residue, small surface tears and/or small seam splits but anything else of note will be mentioned.</p>
+                        <p class="information">A few releases (especially US, European) may be released with large hole (Jukebox ready). Where this is not as per the original format of released, it will be mentioned. Will play on any player with use of a <a href="#">45 adapter</a>, sleeves are individually graded.</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Records and Cart-->
-            <div class="row">
+            <div class="row" id="recordsContainer">
                 <div class="col-sm-12">
                     <!-- Records -->
-                    <table class="table">
-                        <thead class="bg-secondary text-white">
-                            <tr>
-                                <th colspan="7">
-                                    <i class="fas fa-info-circle" id="informationBtn"></i>
-                                    <span id="categoryTitle"><!-- Category Title --></span>
-                                    <span id="quantity"><!-- Number of records in category --></span>
-                                </th>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="information">All records are carefully visually graded, please see our <a href="#">grading page</a> for further clarification of these grades:</td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="information">Many records will have been play-tested but will otherwise have been carefully inspected visually. Each contains an accurate description of quality where sound quality where it will be mentioned if play-tested.</td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="information">
-                                    <ul>
-                                        <li>M = Mint</li>
-                                        <li>NM = Near Mint</li>
-                                        <li>VG+ = Very Good Plus</li>
-                                        <li>VG = Very Good</li>
-                                        <li>G+ = Good Plus</li>
-                                        <li>Fair</li>
-                                        <li>Poor</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="information">All records are at least VG (Very Good) rating unless specifically stated, many VG+ (Very Good Plus) or even NM (Near Mint)</td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="information">PS = Picture Sleeve (otherwise company sleeve or plain/generic sleeve)</td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="information">Picture Sleeve unless stated (otherwise company sleeve or plain/generic sleeve)</td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="information">JB = Jukebox (large centre hole, will play on any player with use of a <a href="#">45 adapter</a></td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="information">Sleeves will be in reasonable to excellent condition unless noted. Sleeves and labels may have writing, stickers/residue, small surface tears and/or small seam splits but anything else of note will be mentioned.</td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="information">A few releases (especially US, European) may be released with large hole (Jukebox ready). Where this is not as per the original format of released, it will be mentioned. Will play on any player with use of a <a href="#">45 adapter</a>, sleeves are individually graded.</td>
-                            </tr>
-                        </thead>
-                    </table>
-
                     <table id="recordsTable" class="table table-striped">
                         <thead>                            
                             <tr>
                                 <th>Artist</th>
                                 <th>Title</th>
                                 <th>Condition</th>
-                                <th>Price<strong>&nbsp;(£)</strong></th>
+                                <th>Price<strong>&nbsp;(&pound;)</strong></th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -208,14 +187,14 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="modalTitle">Confirm UK delivery</h4>
+                            <h4 class="modal-title">Confirm UK delivery</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group" id="inTheUK">
-                                <label for="inTheUK">Are we delivering to the UK?</label>
+                                <p>Are we delivering to the UK?</p>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="inTheUK" id="inUK" value="yes" checked>
                                     <label class="form-check-label" for="inUK">
@@ -232,7 +211,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" id="checkoutBtn" data-dismiss="modal" data-toggle="modal" data-target="#paypalModal">Continue</button>
+                            <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#paypalModal">Continue</button>
                         </div>
                     </div>
                 </div>
@@ -243,7 +222,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="modalTitle">Confirm payment</h4>
+                            <h4 class="modal-title">Confirm payment</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -251,9 +230,9 @@
                         <div class="modal-body">
                             <div class="">
                                 <p id="shippingInfoTwo">Shipping overseas</p>
-                                <p id="shippingInfoThree">Shipping cost over £250</p>
+                                <p id="shippingInfoThree">Shipping cost over &pound;250</p>
                                 <p id="shippingInfoFour">Postage and packaging costs for overseas orders will be priced individually depending on country, weight and package size. These costs will be sent to you following your order.</p>
-                                <p id="shippingInfoFive">Postage and packaging costs for orders over £250 will be priced individually depending on weight and package size. These costs will be sent to you following your order.</p>
+                                <p id="shippingInfoFive">Postage and packaging costs for orders over &pound;250 will be priced individually depending on weight and package size. These costs will be sent to you following your order.</p>
                             </div>
                             <div class="form-group mb-5" id="deliveryOptionDiv">
                                 <label for="deliveryOption">Select delivery option</label>
@@ -268,15 +247,15 @@
                                 <table class="table">
                                     <tr>
                                         <td>Total</td>
-                                        <td>£ <span class="float-right" id="paypalTotal"></span></td>
+                                        <td>&pound; <span class="float-right" id="paypalTotal"></span></td>
                                     </tr>
                                     <tr>
                                         <td>Shipping</td>
-                                        <td>£ <span class="float-right" id="paypalShipping"></span></td>
+                                        <td>&pound; <span class="float-right" id="paypalShipping"></span></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Grand total</strong></td>
-                                        <td><strong>£ <span class="float-right" id="paypalGrand"></span></strong></td>
+                                        <td><strong>&pound; <span class="float-right" id="paypalGrand"></span></strong></td>
                                     </tr>
                                 </table>
                             </div>
@@ -287,7 +266,173 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Grading -->
+            <div class="row" id="gradingContainer">
+                <div class="col-sm-12">
+                    <p>At Pick ‘N’ Mix we are passionate about vinyl and want you to be happy with your purchase and receive them in the condition we would be happy to receive records into our own personal collections. All records are checked visually and will be well packaged.</p>
+                    <p>All vinyl is graded carefully conservatively so it's more likely you'll get a higher grade record than anything. Please note that unless otherwise stated in the description, records are visually graded.</p>
+                    <p>We grade based on the Goldmine Standard for grading records. This is the industry standard grading system which may need a little explaining as to how we use it and the terms used as they do not necessarily equate to what may be expected.</p>
+                    <p>Note that Fixed Price records are graded visually and if in doubt play tested in which case the guide below is the expectation of how the record looks and will likely play based on our experience. These records may need cleaning for best results. Sleeves for Fixed price records will be of a decent quality unless marked otherwise. Sleeves and labels may have writing, stickers/residue, small surface tears and/or small seam splits but anything else of note will be mentioned.</p>
+                    <p>Many individually priced records will have been play tested and if so, this will be stated in the description.</p>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>M</td>
+                                <td>Mint</td>
+                                <td>Only used if record is still sealed from new.</td>
+                            </tr>
+                            <tr>
+                                <td>NM</td>
+                                <td>Near Mint</td>
+                                <td>Looks like new, maybe a couple of very light surface scratches under bright light.</td>
+                            </tr>
+                            <tr>
+                                <td>VG+</td>
+                                <td>Very Good Plus</td>
+                                <td>Clean & glossy vinyl, a few light marks, nothing serious and no scratches that you could feel. May have a few very light, background crackles.</td>
+                            </tr>
+                            <tr>
+                                <td>VG</td>
+                                <td>Very Good</td>
+                                <td>Likely to have some marks, maybe one or two you could feel but will still play fine, but likely have surface noise that does not overpower the music.</td>
+                            </tr>
+                            <tr>
+                                <td>G/G+</td>
+                                <td>Good/Good Plus</td>
+                                <td>Will have many surface marks and/or scratches but will play without jumping - likely to have a fair amount of audible crackle throughout.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Fair</td>
+                                <td>May be fine overall but likely to have the odd skip. May have surface marks/scratches and play with audible crackle – see description.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Poor</td>
+                                <td>Will have more than one or two skips or sticks, may be cracked, warped or incomplete.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>If records that have been visually graded (fixed price records) look to be in good condition but still have some surface noise, they may just need a clean: use a lint free/micro-fibre cloth & some record cleaning fluid that is easily available online.</p>
+                    <p>These records are 30-65 years old so may need a clean for best results: they are sold on the understanding that the grading is visual, careful & conservative but not infallible. Professional <a href="">ULTRASONIC cleaning</a> is available: &pound;5 for up to 4 x 12”/LPs or  up to 6 x 7” singles.</p>
+                </div>
+            </div>
+
+            <!-- Delivery -->
+            <div class="row" id="deliveryContainer">
+                <div class="col-sm-12">
+                    <h5 class="mb-4">Shipping Costs</h5>
+                    <h6>Singles Only</h6>
+                    <table class="table mb-5">
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <th>Standard</th>
+                                <th>Signed For / &pound;20 - &pound;50</th>
+                                <th>Guaranteed Next Day / &pound;50 - &pound;250</th>
+                                <th>Over &pound;250</th>
+                            </tr>
+                            <tr>
+                                <td>100g</td>
+                                <td>&pound;2.20</td>
+                                <td>&pound;2.60</td>
+                                <td>&pound;7.95</td>
+                                <td>On request</td>
+                            </tr>
+                            <tr>
+                                <td>200g</td>
+                                <td>&pound;2.75</td>
+                                <td>&pound;3.10</td>
+                                <td>&pound;8.85</td>
+                                <td>On request</td>
+                            </tr>
+                            <tr>
+                                <td>500g</td>
+                                <td>&pound;3.20</td>
+                                <td>&pound;4.70</td>
+                                <td>&pound;8.85</td>
+                                <td>On request</td>
+                            </tr>
+                            <tr>
+                                <td>750g</td>
+                                <td>&pound;4.50</td>
+                                <td>&pound;5.70</td>
+                                <td>&pound;10.45</td>
+                                <td>On request</td>
+                            </tr>
+                            <tr>
+                                <td>upto 1750g</td>
+                                <td>&pound;4.50</td>
+                                <td>&pound;5.70</td>
+                                <td>&pound;13.00</td>
+                                <td>On request</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h6 class="mb-4">LPs / 12" or any combination</h6>
+                    <table class="table mb-5">
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <th>Standard</th>
+                                <th>Signed For / &pound;20 - &pound;50</th>
+                                <th>Guaranteed Next Day / &pound;50 - &pound;250</th>
+                                <th>Over &pound;250</th>
+                            </tr>
+                            <tr>
+                                <td>Upto 1750g</td>
+                                <td>&pound;4.50</td>
+                                <td>&pound;5.70</td>
+                                <td>&pound;13.00</td>
+                                <td>On request</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5>Shipping Time</h5>
+                    <p class="mb-5">I usually ship no later than the next working day, and can sometimes even ship same day,. where the order comes in early enough. However, we plan to get all order out within 2 working days of order/cleared payment unless I notify you specifically following on from an order. If you require specific delivery instructions (ie safe place, deliver to reception etc, please enter in the delivery notes section). Please <a href="">contact us</a> if you require a specific delivery time or have any questions about delivery.</p>
+                    
+                    <h5>Secure Packaging</h5>
+                    <p>All records are packaged in purpose made vinyl mailing boxes to ensure you receive them in the condition they leave us. Many sellers use thin cardboard envelopes which can bend easily and damage the sleeve/records. Our mailers may cost a few pence more, but they will properly protect your records!</p>
+                    <p class="mb-5">Additionally, LPs & 12” are most quantities of 7” single are bubble-wrapped to offer additional protection.</p>
+                    
+                    <h5>Postage Type</h5>
+                    <p class="mb-5">All orders are QR coded so can be traced by Royal Mail in case of a problem. Orders under &pound;20 are sent second class which generally takes 2-3 days. Orders between &pound;20 and &pound;50 will be sent Tracked & Signed For, over this amount will be Recorded/Guaranteed delivery.</p>
+                    
+                    <h5>Returns</h5>
+                    <p class="mb-5">Return costs are the responsibility of the Buyer (unless faulty) and all vinyl must be returned in the sleeves and the packaging they were delivered in (or similar quality) at time of purchase. All vinyl is graded carefully conservatively so it's more likely you'll get a higher grade record than anything. Please note that unless otherwise stated in the description, records are visually graded.</p>
+                    
+                    <h5>Overseas</h5>
+                    <p>Overseas order will be priced individually depending on country, weight and package size. Postage cost will be send following your order.</p>
+                    <p>Approximate costs are below:</p>
+                    <h6>Europe</h6>
+                    <ul>
+                        <li>1/2 LPs/12" = &pound;9.90 (2nd class) / &pound;14.85 (Recorded Delivery) (Up to 500g total weight including packaging).</li>
+                        <li>2/3 LPs/12" = &pound;11.30 (2nd class) / &pound;16.10 (Recorded Delivery) (Up to 750g total   weight including packaging).</li>
+                        <li>1 x 7" single = &pound;4.50 / &pound;5.99 depending on weight. (&pound;11/&pound;11.50 signed for) This usually works out at the cheaper rate unless thick sleeve/heavy vinyl.</li>
+                        <li>2-3 x 7" singles = &pound;5.99 subject to total weight below 250g (&pound;11.50 signed for).</li>
+                        <li>4-7 x 7" singles = &pound;6.80 subject to total weight below 500g (&pound;12 signed for).</li>
+                        <li>8+ 7" singles will be quoted on ordering, or ask in advance.</li>
+                    </ul>
+                    <h6>USA / Australia / New Zealand</h6>
+                    <ul>
+                        <li>From &pound;6.50 for 7" and &pound;14.90 for 12" - dependent on size & total weight.</li>
+                    </ul>
+                    <h6>Rest of the World</h6>
+                    <ul>
+                        <li>From &pound;5.50 for 7" and &pound;12.90 for 12" - dependent on size & total weight.</li>
+                    </ul>
+                    <p>Postage costs, particularly to USA are changing constantly but latest best prices will be used.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 mt-5 mb-5">
+                    <p>Copyright &copy; 2020 Pick 'n' mix records. Powered by <a href="https://www.joelpeyton.co.uk" target="_blank">Joel Peyton</a></p>
+                </div>
+            </div>
+        </div> <!-- End main container -->
 
     <!-- Bootstrap JavaScript -->
     <!-- Optional JavaScript -->

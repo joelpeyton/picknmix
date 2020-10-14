@@ -1,3 +1,13 @@
+function showContent() {
+    let content = document.getElementById("recordsContainer");
+    content.style.display = "block";
+}
+
+function hideContent() {
+    let content = document.getElementById("recordsContainer");
+    content.style.display = "none";
+}
+
 function createRecordRow(record, isCart) {
     let table = document.querySelector("#records");
     let rowA = document.createElement("tr");
@@ -289,6 +299,7 @@ function toggleSearchBar(toggle) {
 function landingPage() {
     let initialCategory = sessionStorage.initialCategory;
     initialCategory ? getRecords(initialCategory) : getRecords("f1");
+    showContent();
 }
 
 function clearSearchInput() {
@@ -364,6 +375,8 @@ function toggleInfo() {
 }
 
 export {
+    showContent,
+    hideContent,
     updateQuantity,
     toggleFinalRow,
     clearSearchInput,
