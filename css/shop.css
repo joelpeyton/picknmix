@@ -20,26 +20,7 @@ body, html {
     background-size: cover;
 }
 
-h1 {
-    text-align: center;
-    font-family: 'Playfair Display SC', serif;
-    font-size: 2rem !important;
-    padding-top: 10px !important;
-    clear: both;
-}
 
-h1 a {
-    color: black;
-}
-
-h1 a:hover {
-    text-decoration: none;
-    color: black;
-}
-
-hr {
-    background-color: black;
-}
 
 .navbar {
     padding: .5rem 1rem .5rem .25rem;
@@ -126,11 +107,7 @@ td a:hover {
     body, html, .btn {
         font-size: 0.9rem;
     }
-
-    h1 {
-        font-size: 3rem !important;
-    }
-
+    
     .shopImage {
         width: 150px;
         height: 150px;
