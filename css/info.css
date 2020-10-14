@@ -1,5 +1,10 @@
+#info {
+    padding: 1rem;
+}
+
 #infoBtn {
     cursor: pointer;
+    float: right;
 }
 
 .information a {
