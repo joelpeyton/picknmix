@@ -73,12 +73,11 @@ function updateCart(records) {
 
     sessionStorage.setItem("items", JSON.stringify(items));
     document.querySelector("#categoryTitle").innerText = "Cart";
-    document.querySelector("#quantity").innerText = "";
+    //document.querySelector("#quantity").innerText = "";
     document.getElementById("checkout").style.display = "table-footer-group";
     updateTotal(records);
     setTotal();
     removeRecordFromCart();     
 }
-
 
 export { getCart };

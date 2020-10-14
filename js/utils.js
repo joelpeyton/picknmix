@@ -8,6 +8,16 @@ function hideContent() {
     content.style.display = "none";
 }
 
+function hideInfoBtn() {
+    let button = document.getElementById("informationBtn");
+    button.style.display = "none";
+}
+
+function showInfoBtn() {
+    let button = document.getElementById("informationBtn");
+    button.style.display = "block";
+}
+
 function createRecordRow(record, isCart) {
     let table = document.querySelector("#records");
     let rowA = document.createElement("tr");
@@ -317,8 +327,8 @@ function toggleMoreBtn(toggle) {
 }
 
 function updateQuantity(length) {
-    let quantity = document.querySelector("#quantity");
-    quantity.innerText = length == "1" ? `${length} record found` : `${length} records found`;
+    //let quantity = document.querySelector("#quantity");
+    //quantity.innerText = length == "1" ? `${length} record found` : `${length} records found`;
 }
 
 function getInfo(id) {
@@ -377,6 +387,8 @@ function toggleInfo() {
 export {
     showContent,
     hideContent,
+    hideInfoBtn,
+    showInfoBtn,
     updateQuantity,
     toggleFinalRow,
     clearSearchInput,

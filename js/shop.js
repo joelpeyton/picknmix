@@ -1,4 +1,4 @@
-import { showContent, hideContent, getRecords, toggleLoader, toggleSearchBar, landingPage, clearSearchInput, toggleInfo, getInfo } from "./utils.js";
+import { showContent, hideContent, getRecords, toggleLoader, toggleSearchBar, landingPage, clearSearchInput, toggleInfo, getInfo, hideInfoBtn, showInfoBtn } from "./utils.js";
 import { getCart } from "./cart.js";
 import { toggleOverseas, displayPaypalModal, calculateShippingCost } from "./shipping.js";
 import { showDelivery, hideDelivery, showGrading, hideGrading } from "./about.js";
@@ -16,21 +16,15 @@ $(document).ready(function() {
             // do nothing
         } 
 
-        else if (event.target.id === "cart") {
-            showContent();
-            hideGrading();
-            hideDelivery();
-            getCart();
-            toggleSearchBar("hide");
-        }
-
         else if (event.target.id === "grading") {
+            hideInfoBtn();
             hideContent();
             hideDelivery();
             showGrading();
         }
 
         else if (event.target.id === "delivery") {
+            hideInfoBtn()
             hideContent();
             hideGrading();
             showDelivery();
@@ -38,6 +32,7 @@ $(document).ready(function() {
 
         else {
             showContent();
+            showInfoBtn();
             hideGrading();
             hideDelivery();
             getRecords(event.target.id);
@@ -48,9 +43,10 @@ $(document).ready(function() {
         clearSearchInput();
     });
 
-    $("#cartTop").click(function() {
+    $("#cartBtn").click(function() {
         getCart();
         toggleSearchBar("hide");
+        hideInfoBtn();
         getInfo("cart");
     });
 

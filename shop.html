@@ -19,6 +19,7 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/shop.css">
+        <link rel="stylesheet" href="css/cart.css">
         <link rel="stylesheet" href="css/about.css">
         <link rel="stylesheet" href="css/loader.css">
         
@@ -39,8 +40,11 @@
         
         <div class="container">
             <!--  Cart display -->
-            <div>
-                <div id="cartTop" class="shopCart btn btn-danger"><i class="fas fa-shopping-cart"></i>&nbsp;Cart (&nbsp;<span id="cartBadge">0</span>&nbsp;)</div>
+            <div id="cartBtn" class="btn btn-danger">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart (</span>
+                <span id="cartBadge">0</span>
+                <span>)</span>
             </div>
 
             <!-- Title -->
@@ -139,10 +143,9 @@
                 </div>
             </div>
 
-            <!-- Records and Cart-->
+            <!-- Records -->
             <div class="row" id="recordsContainer">
                 <div class="col-sm-12">
-                    <!-- Records -->
                     <table id="recordsTable" class="table table-striped">
                         <thead>                            
                             <tr>
