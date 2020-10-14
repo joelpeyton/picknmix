@@ -1,7 +1,8 @@
-import { showContent, hideContent, getRecords, toggleLoader, toggleSearchBar, landingPage, clearSearchInput, toggleInfo, getInfo, hideInfoBtn, showInfoBtn } from "./utils.js";
+import { showContent, hideContent, getRecords, toggleLoader, toggleSearchBar, landingPage, clearSearchInput } from "./utils.js";
 import { getCart } from "./cart.js";
 import { toggleOverseas, displayPaypalModal, calculateShippingCost } from "./shipping.js";
 import { showDelivery, hideDelivery, showGrading, hideGrading } from "./about.js";
+import { hideInfoBtn, showInfoBtn, toggleInfoBtn, getInfo, toggleInfo } from "./info.js";
 
 $(document).ready(function() {
     hideContent();
@@ -55,8 +56,9 @@ $(document).ready(function() {
         document.documentElement.scrollTop = 0; 
     });
 
-    $("#informationBtn").click(function() {
+    $("#infoBtn").click(function() {
         toggleInfo();
+        toggleInfoBtn();
     });
 
     $("#destinationModal").on("show.bs.modal", function() {

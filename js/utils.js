@@ -8,16 +8,6 @@ function hideContent() {
     content.style.display = "none";
 }
 
-function hideInfoBtn() {
-    let button = document.getElementById("informationBtn");
-    button.style.display = "none";
-}
-
-function showInfoBtn() {
-    let button = document.getElementById("informationBtn");
-    button.style.display = "block";
-}
-
 function createRecordRow(record, isCart) {
     let table = document.querySelector("#records");
     let rowA = document.createElement("tr");
@@ -331,64 +321,11 @@ function updateQuantity(length) {
     //quantity.innerText = length == "1" ? `${length} record found` : `${length} records found`;
 }
 
-function getInfo(id) {
-    let info = document.getElementsByClassName("information");
 
-    for (let i = 0; i < info.length; i++) {
-        info[i].style.display = "none";
-    }
-
-    switch(id) {
-        case "f1":
-        case "f2":
-            sessionStorage.setItem("info", [0, 2, 4, 6, 7]);
-            break;
-        case "f3":
-            sessionStorage.setItem("info", [0, 3, 4, 6, 7]);
-            break;
-        case "f4":
-        case "f5":
-            sessionStorage.setItem("info", [0, 3, 5, 7]);
-            break;
-        case "i1":
-        case "i2":
-        case "i3":
-            sessionStorage.setItem("info", [0, 1, 2, 8]);
-            break;
-        default:
-            sessionStorage.setItem("info", []);
-    }
-
-    if (sessionStorage.info !== "") {
-        sessionStorage.info.split(",").forEach(element => {
-            info[element].style.display = "block";
-        });
-    }
-
-    sessionStorage.setItem("showingInfo", true);
-}
-
-function toggleInfo() {
-    let info = document.getElementsByClassName("information");
-
-    if (sessionStorage.showingInfo === "true") {
-        sessionStorage.info.split(",").forEach(element => {
-            info[element].style.display = "none";
-        });
-        sessionStorage.setItem("showingInfo", false);
-    } else {
-        sessionStorage.info.split(",").forEach(element => {
-            info[element].style.display = "block";
-        });
-        sessionStorage.setItem("showingInfo", true);
-    }
-}
 
 export {
     showContent,
     hideContent,
-    hideInfoBtn,
-    showInfoBtn,
     updateQuantity,
     toggleFinalRow,
     clearSearchInput,
@@ -405,6 +342,4 @@ export {
     updateCartBadge, 
     removeCheckoutBtn, 
     updateCategoryTitle,
-    toggleInfo,
-    getInfo
 };

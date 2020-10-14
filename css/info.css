@@ -1,0 +1,13 @@
+#infoBtn {
+    cursor: pointer;
+}
+
+.information a {
+    text-decoration: underline;
+    color: white;
+}
+
+.information a:hover {
+    text-decoration: none;
+    color: white;
+}
