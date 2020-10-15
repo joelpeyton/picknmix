@@ -1,5 +1,5 @@
-let infoBtn = document.getElementById("infoBtn");
-let info = document.getElementsByClassName("information");
+let infoBtn = document.getElementById("gradingInfoBtn");
+let info = document.getElementsByClassName("gradingInfo");
 
 function hideInfoBtn() {
     infoBtn.style.display = "none";
@@ -50,6 +50,7 @@ function toggleInfo() {
             info[element].style.display = "none";
         });
         sessionStorage.setItem("showingInfo", false);
+        infoBtn.className = "fas fa-info-circle";
     } 
     
     else {
@@ -57,15 +58,6 @@ function toggleInfo() {
             info[element].style.display = "block";
         });
         sessionStorage.setItem("showingInfo", true);
-    }
-}
-
-function toggleInfoBtn() {
-    if (infoBtn.className === "fas fa-times-circle") {
-        infoBtn.className = "fas fa-info-circle";
-    } 
-    
-    else {
         infoBtn.className = "fas fa-times-circle";
     }
 }
@@ -73,7 +65,6 @@ function toggleInfoBtn() {
 export {
     hideInfoBtn,
     showInfoBtn,
-    toggleInfoBtn,
     getInfo,
     toggleInfo
 }

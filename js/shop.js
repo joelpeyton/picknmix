@@ -1,11 +1,12 @@
-import { showContent, hideContent, getRecords, toggleLoader, toggleSearchBar, landingPage, clearSearchInput } from "./utils.js";
+import { toggleLoader, toggleSearchBar, clearSearchInput } from "./utils.js";
+import { showRecords, hideRecords, getRecords, landingPage } from "./records.js";
 import { getCart } from "./cart.js";
 import { toggleOverseas, displayPaypalModal, calculateShippingCost } from "./shipping.js";
 import { showDelivery, hideDelivery, showGrading, hideGrading } from "./about.js";
-import { hideInfoBtn, showInfoBtn, toggleInfoBtn, getInfo, toggleInfo } from "./info.js";
+import { hideInfoBtn, showInfoBtn, getInfo, toggleInfo } from "./info.js";
 
 $(document).ready(function() {
-    hideContent();
+    hideRecords();
     hideGrading();
     hideDelivery();
     toggleLoader("hide");
@@ -19,20 +20,20 @@ $(document).ready(function() {
 
         else if (event.target.id === "grading") {
             hideInfoBtn();
-            hideContent();
+            hideRecords();
             hideDelivery();
             showGrading();
         }
 
         else if (event.target.id === "delivery") {
             hideInfoBtn()
-            hideContent();
+            hideRecords();
             hideGrading();
             showDelivery();
         }
 
         else {
-            showContent();
+            showRecords();
             showInfoBtn();
             hideGrading();
             hideDelivery();
@@ -56,9 +57,8 @@ $(document).ready(function() {
         document.documentElement.scrollTop = 0; 
     });
 
-    $("#infoBtn").click(function() {
+    $("#gradingInfoBtn").click(function() {
         toggleInfo();
-        toggleInfoBtn();
     });
 
     $("#destinationModal").on("show.bs.modal", function() {

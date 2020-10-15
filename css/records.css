@@ -1,0 +1,60 @@
+#recordsTable thead th,
+#recordsTable thead tr {
+    border: none;
+}
+
+#recordsTable td {
+    vertical-align: middle;
+    border: none;
+}
+
+#recordsTable tr {
+    border-top: 3px solid #dee2e6;
+}
+
+#recordsTable th:nth-child(n+3):nth-child(-n+5),
+#recordsTable td:nth-child(n+3):nth-child(-n+5) {
+    text-align: center;
+}
+
+#recordsTable i:first-child {
+    padding-right: 0.5rem;
+}
+
+.shopImage {
+    width: 100px;
+    height: 100px;
+}
+
+.actionBtn {
+    cursor: pointer;
+    color:  #28a745;
+}
+
+.infoBtn {
+    color: #f8f9fa;
+}
+
+.removeBtn {
+    cursor: pointer; 
+    color: #dc3545;
+}
+
+#checkout,
+#loadMore {
+    display: none;
+} 
+
+@media screen and (min-width: 601px) {
+    .shopImage {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .shopImage {
+        width: 200px;
+        height: 200px;
+    }
+}

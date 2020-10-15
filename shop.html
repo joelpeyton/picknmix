@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="css/nav.css">
         <link rel="stylesheet" href="css/search.css">
         <link rel="stylesheet" href="css/info.css">
+        <link rel="stylesheet" href="css/records.css">
         <link rel="stylesheet" href="css/about.css">
         <link rel="stylesheet" href="css/loader.css">
         
@@ -122,17 +123,16 @@
             </nav>
 
             <!-- Info -->
-            <div class="row" id="infoRow">
+            <div class="row" id="gradingInfoRow">
                 <div class="col-sm-12">
-                    <div class="bg-secondary text-white mb-3" id="info">
-                        <p>
-                            <span id="categoryTitle"><!-- Category Title --></span>
-                            <!--<span id="quantity">Number of records in category</span>-->
-                            <i class="fas fa-times-circle" id="infoBtn"></i>
-                        </p>
-                        <p class="information">All records are carefully visually graded, please see our <a href="#">grading page</a> for further clarification of these grades.</p>
-                        <p class="information">Many records will have been play-tested but will otherwise have been carefully inspected visually. Each contains an accurate description of quality where sound quality where it will be mentioned if play-tested.</p>
-                        <ul class="information"> 
+                    <div class="bg-secondary text-white mb-3" id="gradingInfo">
+                    
+                        <span id="categoryTitle"><!-- Category Title --></span>
+                        <i class="fas fa-times-circle" id="gradingInfoBtn"></i>
+                        
+                        <p class="gradingInfo mt-3">All records are carefully visually graded, please see our <a href="#">grading page</a> for further clarification of these grades.</p>
+                        <p class="gradingInfo">Many records will have been play-tested but will otherwise have been carefully inspected visually. Each contains an accurate description of quality where sound quality where it will be mentioned if play-tested.</p>
+                        <ul class="gradingInfo"> 
                             <li>M = Mint</li>
                             <li>NM = Near Mint</li>
                             <li>VG+ = Very Good Plus</li>
@@ -141,20 +141,20 @@
                             <li>Fair</li>
                             <li>Poor</li>
                         </ul>
-                        <p class="information">All records are at least VG (Very Good) rating unless specifically stated, many VG+ (Very Good Plus) or even NM (Near Mint).</p>
-                        <p class="information">PS = Picture Sleeve (otherwise company sleeve or plain/generic sleeve).</p>
-                        <p class="information">Picture Sleeve unless stated (otherwise company sleeve or plain/generic sleeve).</p>
-                        <p class="information">JB = Jukebox (large centre hole, will play on any player with use of a <a href="#">45 adapter.</a></p>
-                        <p class="information">Sleeves will be in reasonable to excellent condition unless noted. Sleeves and labels may have writing, stickers/residue, small surface tears and/or small seam splits but anything else of note will be mentioned.</p>
-                        <p class="information">A few releases (especially US, European) may be released with large hole (Jukebox ready). Where this is not as per the original format of released, it will be mentioned. Will play on any player with use of a <a href="#">45 adapter</a>, sleeves are individually graded.</p>
+                        <p class="gradingInfo">All records are at least VG (Very Good) rating unless specifically stated, many VG+ (Very Good Plus) or even NM (Near Mint).</p>
+                        <p class="gradingInfo">PS = Picture Sleeve (otherwise company sleeve or plain/generic sleeve).</p>
+                        <p class="gradingInfo">Picture Sleeve unless stated (otherwise company sleeve or plain/generic sleeve).</p>
+                        <p class="gradingInfo">JB = Jukebox (large centre hole, will play on any player with use of a <a href="#">45 adapter.</a></p>
+                        <p class="gradingInfo">Sleeves will be in reasonable to excellent condition unless noted. Sleeves and labels may have writing, stickers/residue, small surface tears and/or small seam splits but anything else of note will be mentioned.</p>
+                        <p class="gradingInfo">A few releases (especially US, European) may be released with large hole (Jukebox ready). Where this is not as per the original format of released, it will be mentioned. Will play on any player with use of a <a href="#">45 adapter</a>, sleeves are individually graded.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Records -->
-            <div class="row" id="recordsContainer">
+            <div class="row" id="recordsRow">
                 <div class="col-sm-12">
-                    <table id="recordsTable" class="table table-striped">
+                    <table id="recordsTable" class="table">
                         <thead>                            
                             <tr>
                                 <th>Artist</th>

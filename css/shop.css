@@ -20,56 +20,9 @@ body, html {
     background-size: cover;
 }
 
-
-
-
-
-
-
-.table thead th,
-.table thead tr {
-    border: none;
-}
-
-.table td {
-    vertical-align: middle;
-    border: none;
-}
-
-.table tr {
-    border-top: 3px solid #dee2e6;
-}
-
-.table th:nth-child(n+3):nth-child(-n+5),
-.table td:nth-child(n+3):nth-child(-n+5) {
-    text-align: center;
-}
-
-.table i {
-    display: inline;
-    margin-right: 5px;
-}
-
-.shopImage {
-    width: 100px;
-    height: 100px;
-}
-
-.actionBtn,
-.removeBtn {
-    cursor: pointer; 
-}
-
 .modal-footer {
     justify-content: center;
 }
-
-#checkout,
-#loadMore {
-    display: none;
-} 
-
-
 
 #overseas,
 #over250 {
@@ -79,28 +32,14 @@ body, html {
 /* RWD */
 
 @media screen and (min-width: 601px) {
-   
     body, html, .btn {
         font-size: 0.9rem;
     }
-
-    .shopImage {
-        width: 150px;
-        height: 150px;
-    }
-
 }
 
 @media screen and (min-width: 769px) {
-
     body, html, .btn {
         font-size: 1rem;
     }
-
-    .shopImage {
-        width: 200px;
-        height: 200px;
-    }
-
 }
 

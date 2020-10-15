@@ -1,4 +1,5 @@
-import { removeRecords, createRecordRow, updateCartBadge, updateSessionCart, toggleLoader, toggleFinalRow } from "./utils.js";
+import { updateCartBadge, updateSessionCart, toggleLoader, toggleFinalRow, infoBtns } from "./utils.js";
+import { removeRecords, createRecordRow } from "./records.js";
 
 function getCart() {
     toggleLoader("show");
@@ -30,7 +31,7 @@ function removeRecordFromCart() {
     $(".removeBtn").click(function() {
         updateSessionCart();
         updateCartBadge();
-        document.getElementById("cart").click();
+        document.getElementById("cartBtn").click();
     });
 }
 
@@ -73,11 +74,11 @@ function updateCart(records) {
 
     sessionStorage.setItem("items", JSON.stringify(items));
     document.querySelector("#categoryTitle").innerText = "Cart";
-    //document.querySelector("#quantity").innerText = "";
     document.getElementById("checkout").style.display = "table-footer-group";
     updateTotal(records);
     setTotal();
-    removeRecordFromCart();     
+    removeRecordFromCart();    
+    infoBtns();
 }
 
 export { getCart };

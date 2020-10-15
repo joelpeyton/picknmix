@@ -1,18 +1,18 @@
-#info {
+#gradingInfo {
     padding: 1rem;
 }
 
-#infoBtn {
+#gradingInfoBtn {
     cursor: pointer;
     float: right;
 }
 
-.information a {
+.gradingInfo a {
     text-decoration: underline;
     color: white;
 }
 
-.information a:hover {
+.gradingInfo a:hover {
     text-decoration: none;
     color: white;
 }

@@ -1,5 +1,14 @@
-import { removeRecords, updateCartBadge, removeCheckoutBtn, displayRecords, updateCategoryTitle, toggleLoader, updateQuantity } from "./utils.js";
- 
+import { updateCartBadge, removeCheckoutBtn, updateCategoryTitle, toggleLoader } from "./utils.js";
+import { removeRecords, displayRecords } from "./records.js";
+
+function updateSearch(records) {
+    removeRecords();
+    removeCheckoutBtn();
+    updateCartBadge();
+    updateCategoryTitle("Search");
+    displayRecords(records, 0);
+}
+
 $("#searchByJukebox").click(function() {
     toggleLoader("show");
 
@@ -43,11 +52,3 @@ $("#search").on("input", function() {
     });    
 });
 
-function updateSearch(records) {
-    removeRecords();
-    removeCheckoutBtn();
-    updateCartBadge();
-    updateCategoryTitle("Search");
-    displayRecords(records, 0);
-    updateQuantity(records.length);
-}
