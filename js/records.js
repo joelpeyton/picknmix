@@ -107,12 +107,13 @@ function removeRecords() {
 }
 
 function displayRecords(records, start) {
+    removeRecords();
     toggleMoreBtn("show");
     toggleFinalRow("show");
 
     const LIMIT = 100;
     let end = start + LIMIT;
-    for (let i = start; i < end; i++) {
+    for (let i = 0; i < end; i++) {
         if (i < records.length) {
             createRecordRow(records[i], false);
         }

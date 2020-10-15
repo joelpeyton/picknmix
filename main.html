@@ -88,7 +88,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="javascript:void(0)" id="accessories">Accessories</a>
+                            <a class="nav-link" href="javascript:void(0)" id="accessories">Accessories</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" id="gifts">Gifts</a>
@@ -96,7 +96,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="about" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
                             <div class="dropdown-menu" aria-labelledby="about">
-                                <a class="dropdown-item disabled" href="#" id="picknmix">About Pick 'n' mix</a>
+                                <a class="dropdown-item" href="#" id="picknmix">About Pick 'n' mix</a>
                                 <a class="dropdown-item" href="#" id="grading">Record Grading</a>
                                 <a class="dropdown-item" href="#" id="delivery">Delivery</a>
                             </div>
@@ -131,7 +131,7 @@
                         <span id="categoryTitle"><!-- Category Title --></span>
                         <i class="fas fa-times-circle" id="gradingInfoBtn"></i>
                         
-                        <p class="gradingInfo mt-3">All records are carefully visually graded, please see our <a href="#">grading page</a> for further clarification of these grades.</p>
+                        <p class="gradingInfo mt-3">All records are carefully visually graded, please see our <a id="gradingLink" href="#">grading page</a> for further clarification of these grades.</p>
                         <p class="gradingInfo">Many records will have been play-tested but will otherwise have been carefully inspected visually. Each contains an accurate description of quality where sound quality where it will be mentioned if play-tested.</p>
                         <ul class="gradingInfo"> 
                             <li>M = Mint</li>
@@ -279,9 +279,16 @@
                 </div>
             </div>
 
-            <!-- Grading -->
-            <div class="row" id="gradingContainer">
+            <!-- About -->
+            <div class="row" id="aboutRow">
                 <div class="col-sm-12">
+
+                </div>
+            </div>
+
+            <!-- Grading -->
+            <div class="row" id="gradingRow">
+                <div class="col-sm-12" style="padding: 2rem;">
                     <p>At Pick ‘N’ Mix we are passionate about vinyl and want you to be happy with your purchase and receive them in the condition we would be happy to receive records into our own personal collections. All records are checked visually and will be well packaged.</p>
                     <p>All vinyl is graded carefully conservatively so it's more likely you'll get a higher grade record than anything. Please note that unless otherwise stated in the description, records are visually graded.</p>
                     <p>We grade based on the Goldmine Standard for grading records. This is the industry standard grading system which may need a little explaining as to how we use it and the terms used as they do not necessarily equate to what may be expected.</p>
@@ -332,8 +339,8 @@
             </div>
 
             <!-- Delivery -->
-            <div class="row" id="deliveryContainer">
-                <div class="col-sm-12">
+            <div class="row" id="deliveryRow">
+                <div class="col-sm-12" style="padding: 2rem;">
                     <h5 class="mb-4">Shipping Costs</h5>
                     <h6>Singles Only</h6>
                     <table class="table mb-5">
@@ -440,7 +447,8 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-12 mt-5 mb-5">
+                <div class="col-sm-12 mt-5 mb-5 text-center">
+                    <hr>
                     <p>Copyright &copy; 2020 Pick 'n' mix records. Powered by <a href="https://www.joelpeyton.co.uk" target="_blank">Joel Peyton</a></p>
                 </div>
             </div>

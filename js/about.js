@@ -1,6 +1,7 @@
-let grading = document.getElementById("gradingContainer");
+let grading = document.getElementById("gradingRow");
+let delivery = document.getElementById("deliveryRow");
+let about = document.getElementById("aboutRow");
 let category = document.getElementById("categoryTitle");
-let delivery = document.getElementById("deliveryContainer");
 
 function showGrading() {
     grading.style.display = "block";
@@ -20,4 +21,14 @@ function hideDelivery() {
     delivery.style.display = "none";
 }
 
-export { showGrading, hideGrading, showDelivery, hideDelivery }
+function showAbout() {
+    about.style.display = "block";
+    category.innerText = "About Us";
+}
+
+function hideAbout() {
+    about.style.display = "none";
+}
+
+
+export { showGrading, hideGrading, showDelivery, hideDelivery, showAbout, hideAbout }

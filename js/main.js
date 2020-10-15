@@ -2,7 +2,7 @@ import { toggleLoader, toggleSearchBar, clearSearchInput } from "./utils.js";
 import { showRecords, hideRecords, getRecords, landingPage } from "./records.js";
 import { getCart } from "./cart.js";
 import { toggleOverseas, displayPaypalModal, calculateShippingCost } from "./shipping.js";
-import { showDelivery, hideDelivery, showGrading, hideGrading } from "./about.js";
+import { showDelivery, hideDelivery, showGrading, hideGrading, showAbout, hideAbout } from "./about.js";
 import { hideInfoBtn, showInfoBtn, getInfo, toggleInfo } from "./info.js";
 
 $(document).ready(function() {
@@ -18,23 +18,44 @@ $(document).ready(function() {
             // do nothing
         } 
 
+        else if (event.target.id === "picknmix") {
+            hideInfoBtn();
+            hideRecords();
+            hideDelivery();
+            hideGrading();
+            showAbout();
+            toggleSearchBar("hide");
+        }
+
         else if (event.target.id === "grading") {
             hideInfoBtn();
             hideRecords();
             hideDelivery();
+            hideAbout();
             showGrading();
+            toggleSearchBar("hide");
         }
 
         else if (event.target.id === "delivery") {
             hideInfoBtn()
             hideRecords();
             hideGrading();
+            hideAbout();
             showDelivery();
+            toggleSearchBar("hide");
         }
 
         else {
+            
+            if (event.target.id === "gifts" || event.target.id === "accessories" ) {
+                hideInfoBtn();
+            } 
+
+            else {
+                showInfoBtn();
+            }
+
             showRecords();
-            showInfoBtn();
             hideGrading();
             hideDelivery();
             getRecords(event.target.id);
@@ -49,6 +70,10 @@ $(document).ready(function() {
         getCart();
         toggleSearchBar("hide");
         hideInfoBtn();
+        hideDelivery();
+        hideAbout();
+        hideGrading();
+        showRecords();
         getInfo("cart");
     });
 
@@ -59,6 +84,10 @@ $(document).ready(function() {
 
     $("#gradingInfoBtn").click(function() {
         toggleInfo();
+    });
+
+    $("#gradingLink").click(function() {
+        document.getElementById("grading").click();
     });
 
     $("#destinationModal").on("show.bs.modal", function() {
