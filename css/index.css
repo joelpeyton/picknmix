@@ -21,34 +21,8 @@ body, html {
     min-height: 400px;
 }
 
-.navBar {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.mobileLink {
-    text-decoration: none;
-    color: #555555;
-    margin-bottom: 50px;
-}
-
-.navList {
-    display: none; 
-    list-style: none;
-    padding-left: 0px;
-}
-
-.navItem {
-    padding: .5rem .5rem;
-}
-
-.navLink {
-    text-decoration: none !important;
-    color: #555555;
-}
-
-.navLink:hover {
-    color: black;
+.navbar {
+    display: block ruby;
 }
 
 .title {
@@ -170,7 +144,7 @@ body, html {
 
 
 /* Turn off parallax scrolling for tablets and phones */
-@media only screen and (max-device-width: 1024px) {
+@media only screen and (max-width: 1024px) {
     .bgimg-1, .bgimg-2{
         background-attachment: scroll;
     }

@@ -44,6 +44,12 @@ function getInfo(id) {
     sessionStorage.setItem("showingInfo", true);
 }
 
+function hideInfo() {
+    for (let i = 0; i < info.length; i++) {
+        info[i].style.display = "none";
+    }
+}
+
 function toggleInfo() {
     if (sessionStorage.showingInfo === "true") {
         sessionStorage.info.split(",").forEach(element => {
@@ -66,5 +72,6 @@ export {
     hideInfoBtn,
     showInfoBtn,
     getInfo,
-    toggleInfo
+    toggleInfo,
+    hideInfo
 }

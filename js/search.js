@@ -1,7 +1,10 @@
 import { updateCartBadge, removeCheckoutBtn, updateCategoryTitle, toggleLoader } from "./utils.js";
 import { removeRecords, displayRecords } from "./records.js";
+import { hideInfoBtn, hideInfo } from "./info.js";
 
 function updateSearch(records) {
+    hideInfoBtn();
+    hideInfo();
     removeRecords();
     removeCheckoutBtn();
     updateCartBadge();
