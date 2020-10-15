@@ -20,6 +20,10 @@ body, html {
     background-size: cover;
 }
 
+i {
+    font-size: 1.2rem;
+}
+
 /* RWD */
 
 @media screen and (min-width: 601px) {
