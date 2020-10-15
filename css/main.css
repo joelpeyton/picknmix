@@ -20,15 +20,6 @@ body, html {
     background-size: cover;
 }
 
-.modal-footer {
-    justify-content: center;
-}
-
-#overseas,
-#over250 {
-    color: #dc3545;
-}
-
 /* RWD */
 
 @media screen and (min-width: 601px) {
