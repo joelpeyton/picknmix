@@ -1,7 +1,7 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-size: 8px;
+    font-size: 10px;
 }
 
 .container {
@@ -9,7 +9,7 @@ body, html {
 }
 
 .btn {
-    font-size: 8px;
+    font-size: 10px;
 }
 
 .bg {
@@ -20,10 +20,6 @@ body, html {
     background-size: cover;
 }
 
-i {
-    font-size: 1.2rem;
-}
-
 /* RWD */
 
 @media screen and (min-width: 601px) {
@@ -32,7 +28,7 @@ i {
     }
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) {
     body, html, .btn {
         font-size: 1rem;
     }

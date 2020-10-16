@@ -57,11 +57,12 @@ function updateCart(records) {
  
     for (let index in records) {
         let record = records[index];
+        record.number = record.number ? record.number : "";
         createRecordRow(record, true);
         let item = {
             name: `${record.artist}`,
             description: `${record.title}`,
-            sku: `${record.number}`,
+            sku: ` ${record.number}`,
             unit_amount: {
                 currency_code: "GBP",
                 value: `${record.price}`
