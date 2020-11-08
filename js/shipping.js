@@ -100,9 +100,15 @@ function calculateShippingCost() {
 }
 
 function updateShipping() {
+    let overseas = sessionStorage.inTheUK === "yes" ? "No" : "Yes";
     document.getElementById("paypalTotal").innerText = sessionStorage.total;
-    document.getElementById("paypalShipping").innerText = sessionStorage.shipping;
-    document.getElementById("paypalGrand").innerText = sessionStorage.grandTotal;
+    if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
+        document.getElementById("paypalShipping").innerText = "To be confiremd";
+        document.getElementById("paypalGrand").innerText = `${sessionStorage.grandTotal} + P&P`;
+    } else {
+        document.getElementById("paypalShipping").innerText = sessionStorage.shipping;
+        document.getElementById("paypalGrand").innerText = sessionStorage.grandTotal;
+    }
 }
 
 function toggleOverseas() {
@@ -119,7 +125,7 @@ function toggleOverseas() {
     }
 }
 
-function displayPaypalModal() {
+function displayShippingModal() {
     calculateShippingCost();
 
     let selectDiv = document.getElementById("deliveryOptionDiv");
@@ -169,4 +175,46 @@ function displayPaypalModal() {
     }
 }
 
-export { toggleOverseas, displayPaypalModal, calculateShippingCost }
+function displayPaypalModal() {
+    let overseas = sessionStorage.inTheUK === "yes" ? "No" : "Yes";
+    let pp1 = document.getElementById("pp1");
+    let pp2 = document.getElementById("pp2");
+    let pp3 = document.getElementById("pp3");
+    let pp4 = document.getElementById("pp4");
+    let pp5 = document.getElementById("pp5");
+    let pp6 = document.getElementById("pp6");
+    let value = document.getElementById("deliveryOption").value;
+    let optionText;
+    let instructions = document.getElementById("deliveryInstructions");
+    sessionStorage.setItem("Notes", instructions.value);
+
+    pp1.innerText = overseas;
+    pp2.innerText = `£ ${sessionStorage.total}`;
+    
+    if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
+        pp3.innerText = "To be confirmed";
+        pp4.innerText = "To be confirmed";
+        pp5.innerText = `£ ${sessionStorage.grandTotal} + P&P`;
+    } else {
+        if (value === "1") {
+            optionText = "Standard Delivery"; 
+        } else  if (value === "2") {
+            optionText = "Signed For";
+        } else {
+            optionText = "Guaranteed Next Day";
+        }
+        pp3.innerText = optionText;
+        pp4.innerText = `£ ${sessionStorage.shipping}`;
+        pp5.innerText = `£ ${sessionStorage.grandTotal}`;
+    } 
+
+    pp6.innerHTML = `<p>${instructions.value}</p>`
+    
+    if (sessionStorage.inTheUK === "no") {
+        pp6.innerHTML += "<p>Postage and packaging costs for overseas orders will be priced individually depending on country, weight and package size. These costs will be sent to you following your order.</p>";
+    } else if (parseFloat(sessionStorage.total) >= 250.00) {
+        pp6.innerHTML += "<p>Postage and packaging costs for orders over &pound;250 will be priced individually depending on weight and package size. These costs will be sent to you following your order.</p>";
+    }
+}
+
+export { toggleOverseas, displayShippingModal, displayPaypalModal, calculateShippingCost }

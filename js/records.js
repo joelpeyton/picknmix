@@ -56,12 +56,14 @@ function createRecordRow(record, isCart) {
 
     if (!record["category"].startsWith("f")) {
         infoBtn.style.color = "#007bff";
+        infoBtn.style.opacity = "1";
         infoBtn.style.cursor = "pointer";
 
         let rowB = document.createElement("tr");
         rowB.className = "info";
         rowB.setAttribute("id", "info" + record["id"]); 
         rowB.style.display = "none";
+        
         rowB.style.borderTop = "none";
 
         if (record["category"] === "gifts" || record["category"] === "accessories") {
@@ -111,7 +113,7 @@ function displayRecords(records, start) {
     toggleMoreBtn("show");
     toggleFinalRow("show");
 
-    const LIMIT = 100;
+    const LIMIT = 1000;
     let end = start + LIMIT;
     for (let i = 0; i < end; i++) {
         if (i < records.length) {

@@ -53,19 +53,21 @@
             </div>
 
             <!-- Title -->
-            <div>
+            <div id="title">
                 <h1>
                     <a href="index.html">PICK 'N' MIX RECORDS</a>
                 </h1>
                 <hr>
             </div>
+        
+            <!-- Nav -->
 
             <!-- Nav bar -->
-            <nav class="navbar navbar-expand-md navbar-light bg-transparent" style="margin:24px 0;">
+            <nav class="navbar navbar-expand-md navbar-light bg-transparent" id="navigation">
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
                 <span class="navbar-toggler-icon"></span>
                 </button>
-
+           
                 <div class="collapse navbar-collapse" id="navb">
                     <ul class="navbar-nav mr-auto" id="menuLinks">
                         <li class="nav-item dropdown">
@@ -102,7 +104,7 @@
                         </li>
                     </ul>
 
-                    <!-- Search -->
+                    <!-- Search --> 
                     <div id="searchDiv" class="form-inline">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -121,15 +123,18 @@
                     </div>
                 </div>
             </nav>
-
+   
             <!-- Info -->
             <div class="row" id="gradingInfoRow">
                 <div class="col-sm-12">
                     <div class="bg-secondary text-white mb-3" id="gradingInfo">
                     
                         <span id="categoryTitle"><!-- Category Title --></span>
-                        <i class="fas fa-times-circle" id="gradingInfoBtn"></i>
-                        
+                        <i class="fas fa-info-circle" id="gradingInfoBtn" data-toggle="modal" data-target="#staticBackdrop"></i>
+                    </div>
+                </div>
+            </div> 
+                        <!--
                         <p class="gradingInfo mt-3">All records are carefully visually graded, please see our <a id="gradingLink" href="#">grading page</a> for further clarification of these grades.</p>
                         <p class="gradingInfo">Many records will have been play-tested but will otherwise have been carefully inspected visually. Each contains an accurate description of quality where sound quality where it will be mentioned if play-tested.</p>
                         <ul class="gradingInfo"> 
@@ -149,10 +154,44 @@
                         <p class="gradingInfo">A few releases (especially US, European) may be released with large hole (Jukebox ready). Where this is not as per the original format of released, it will be mentioned. Will play on any player with use of a <a href="#">45 adapter</a>, sleeves are individually graded.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+            <!-- Info Modal -->
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" style="max-width: 70vw">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Grading Information</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>All records are carefully visually graded, please see our <a id="gradingLink" href="#">grading page</a> for further clarification of these grades.</p>
+                        <p>Many records will have been play-tested but will otherwise have been carefully inspected visually. Each contains an accurate description of quality where sound quality where it will be mentioned if play-tested.</p>
+                        <ul> 
+                            <li>M = Mint</li>
+                            <li>NM = Near Mint</li>
+                            <li>VG+ = Very Good Plus</li>
+                            <li>VG = Very Good</li>
+                            <li>G+ = Good Plus</li>
+                            <li>F = Fair</li>
+                            <li>P = Poor</li>
+                        </ul>
+                        <p>PS = Picture Sleeve, otherwise company sleeve or plain / generic sleeve.</p>
+                        <p>JB = Jukebox. Large centre hole, will play on any player with use of a <a href="#">45 adapter.</a></p>
+                        <p>Sleeves will be in reasonable to excellent condition unless noted. Sleeves and labels may have writing, stickers / residue, small surface tears and / or small seam splits but anything else of note will be mentioned.</p>
+                        <p>A few releases (especially US, European) may be released with large hole (Jukebox ready). Where this is not as per the original format of released, it will be mentioned. Will play on any player with use of a <a href="#">45 adapter</a>, sleeves are individually graded.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
             <!-- Records -->
-            <div class="row" id="recordsRow">
+            <div class="row scrollArea" id="recordsRow">
                 <div class="col-sm-12">
                     <table id="recordsTable" class="table">
                         <thead>                            
@@ -222,18 +261,19 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#paypalModal">Continue</button>
+                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal">Back</button>
+                            <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#shippingModal">Continue</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Paypal Modal -->
-            <div class="modal fade" id="paypalModal" tabindex="-1" aria-labelledby="paypalModal" aria-hidden="true">
+            <!-- Delivery Modal -->
+            <div class="modal fade" id="shippingModal" tabindex="-1" aria-labelledby="shippingModal" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Confirm payment</h4>
+                            <h4 class="modal-title">Shipping Options</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -272,6 +312,80 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#destinationModal">Back</button>
+                            <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#deliveryModal">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Modal -->
+            <div class="modal fade" id="deliveryModal" tabindex="-1" aria-labelledby="deliveryModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Delivery Instructions</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="">
+                                <textarea id="deliveryInstructions"style="width: 100%;" rows="10" placeholder="Enter any additional delivery instructions ...."></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#shippingModal">Back</button>
+                            <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#paypalModal">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paypal Modal -->
+            <div class="modal fade" id="paypalModal" tabindex="-1" aria-labelledby="paypalModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirm details</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="">
+                                <table class="table">
+                                    <tr>
+                                        <th>Shipping Overseas</th>
+                                        <td id="pp1"><!-- Yes or No--></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <td id="pp2"><!-- Cost of records--></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Shipping Type</th>
+                                        <td id="pp3"><!-- Type of shipping --></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Shipping Costs</th>
+                                        <td id="pp4"><!-- Cost of shipping --></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Grand Total</th>
+                                        <td id="pp5"><!-- Total cost --></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Additional Info</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" id="pp6"><!-- delivery Instructions --></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#deliveryModal">Back</button><br>
                             <div id="paypal-button-container"></div>
                         </div>
                     </div>
@@ -279,7 +393,7 @@
             </div>
 
             <!-- About -->
-            <div class="row" id="aboutRow">
+            <div class="row scrollArea" id="aboutRow">
                 <div class="col-sm-12">
                     <p>At Pick N Mix Records, our goal is to offer music fans an easy and simple way to 
                     re-discover the music you grew up with and re-build, or start a collection to enjoy 
@@ -299,8 +413,8 @@
             </div>
 
             <!-- Grading -->
-            <div class="row" id="gradingRow">
-                <div class="col-sm-12" style="padding: 2rem;">
+            <div class="row scrollArea" id="gradingRow">
+                <div class="col-sm-12">
                     <p>At Pick ‘N’ Mix we are passionate about vinyl and want you to be happy with your purchase and receive them in the condition we would be happy to receive records into our own personal collections. All records are checked visually and will be well packaged.</p>
                     <p>All vinyl is graded carefully conservatively so it's more likely you'll get a higher grade record than anything. Please note that unless otherwise stated in the description, records are visually graded.</p>
                     <p>We grade based on the Goldmine Standard for grading records. This is the industry standard grading system which may need a little explaining as to how we use it and the terms used as they do not necessarily equate to what may be expected.</p>
@@ -351,8 +465,8 @@
             </div>
 
             <!-- Delivery -->
-            <div class="row" id="deliveryRow">
-                <div class="col-sm-12" style="padding: 2rem;">
+            <div class="row scrollArea" id="deliveryRow">
+                <div class="col-sm-12">
                     <h5 class="mb-4">Shipping Costs</h5>
                     <h6>Singles Only</h6>
                     <table class="table mb-5">
@@ -458,8 +572,8 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-12 mt-5 mb-5 text-center">
+            <div class="row" id="footer">
+                <div class="col-sm-12 text-center"> 
                     <hr>
                     <p>Copyright &copy; 2020 Pick 'n' mix records. Powered by <a href="https://www.joelpeyton.co.uk" target="_blank">Joel Peyton</a></p>
                 </div>

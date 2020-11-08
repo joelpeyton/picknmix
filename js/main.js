@@ -1,7 +1,7 @@
 import { toggleLoader, toggleSearchBar, clearSearchInput } from "./utils.js";
 import { showRecords, hideRecords, getRecords, landingPage } from "./records.js";
 import { getCart } from "./cart.js";
-import { toggleOverseas, displayPaypalModal, calculateShippingCost } from "./shipping.js";
+import { toggleOverseas, displayShippingModal, calculateShippingCost, displayPaypalModal } from "./shipping.js";
 import { showDelivery, hideDelivery, showGrading, hideGrading, showAbout, hideAbout } from "./about.js";
 import { hideInfoBtn, showInfoBtn, getInfo, toggleInfo } from "./info.js";
 
@@ -9,9 +9,25 @@ $(document).ready(function() {
     hideRecords();
     hideGrading();
     hideDelivery();
+    hideAbout();
     toggleLoader("hide");
     landingPage();
-    getInfo(sessionStorage.initialCategory);
+    //getInfo(sessionStorage.initialCategory);
+    //document.getElementById("gradingInfoBtn").click();
+
+    let a = document.getElementById("title").clientHeight;
+    let b = document.getElementById("navigation").clientHeight;
+    let c = document.getElementById("gradingInfoRow").clientHeight;
+    let d = document.getElementById("footer").clientHeight;
+    let e = document.getElementById("cartBtn").clientHeight;
+
+    let f = a + b + c + d + e + 38;
+
+    let g = document.body.clientHeight;
+
+    document.getElementById("recordsRow").style.height = `${g - f}px`;
+    document.getElementById("gradingRow").style.height = `${g - f}px`;
+    document.getElementById("deliveryRow").style.height = `${g - f}px`; 
 
     $("#menuLinks").click(function(event) {
         if (event.target.id === "fixed" || event.target.id === "individual" || event.target.id === "about") {
@@ -78,8 +94,7 @@ $(document).ready(function() {
     });
 
     $("#backToTop").click(function() {
-        document.body.scrollTop = 0; 
-        document.documentElement.scrollTop = 0; 
+        document.getElementById("recordsTable").scrollIntoView();
     });
 
     $("#gradingInfoBtn").click(function() {
@@ -98,11 +113,19 @@ $(document).ready(function() {
         });
     });
 
-    $("#paypalModal").on("show.bs.modal", function() {
-        displayPaypalModal();
+    $("#shippingModal").on("show.bs.modal", function() {
+        displayShippingModal();
 
         $("#deliveryOption").change(function() {
             calculateShippingCost();
         });
+    });
+
+    $("#deliveryModal").on("show.bs.modal", function() {
+        document.getElementById("deliveryInstructions").value = "";
+    });
+
+    $("#paypalModal").on("show.bs.modal", function() {
+        displayPaypalModal();
     });
 });

@@ -4,6 +4,10 @@ body, html {
     font-size: 10px;
 }
 
+nav {
+    margin:24px 0;
+}
+
 .container {
     background-color: white;
 }
@@ -18,6 +22,21 @@ body, html {
     background-attachment: fixed; 
     background-repeat: no-repeat; 
     background-size: cover;
+}
+
+.scrollArea { 
+    position: relative; 
+    overflow: auto; 
+    display: block;
+    overflow-x: hidden;
+}
+
+#paypal-button-container {
+    height: 40px;
+}
+
+#footer {
+    padding-bottom: 30px;
 }
 
 /* RWD */
