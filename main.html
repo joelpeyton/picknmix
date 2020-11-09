@@ -59,8 +59,6 @@
                 </h1>
                 <hr>
             </div>
-        
-            <!-- Nav -->
 
             <!-- Nav bar -->
             <nav class="navbar navbar-expand-md navbar-light bg-transparent" id="navigation">
@@ -130,7 +128,7 @@
                     <div class="bg-secondary text-white mb-3" id="gradingInfo">
                     
                         <span id="categoryTitle"><!-- Category Title --></span>
-                        <i class="fas fa-info-circle" id="gradingInfoBtn" data-toggle="modal" data-target="#staticBackdrop"></i>
+                        <i class="fas fa-info-circle" id="gradingInfoBtn" data-toggle="modal" data-target="#informationModal"></i>
                     </div>
                 </div>
             </div> 
@@ -157,11 +155,11 @@
             </div> -->
 
             <!-- Info Modal -->
-            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="informationModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="informationModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" style="max-width: 70vw">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel">Grading Information</h5>
+                      <h5 class="modal-title" id="informationModalLabel">Grading Information</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -188,7 +186,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
 
             <!-- Records -->
             <div class="row scrollArea" id="recordsRow">
@@ -196,11 +194,11 @@
                     <table id="recordsTable" class="table">
                         <thead>                            
                             <tr>
-                                <th>Artist</th>
-                                <th>Title</th>
-                                <th>Condition</th>
-                                <th>Price<strong>&nbsp;(&pound;)</strong></th>
-                                <th>Action</th>
+                                <th style="width: 35%;">Artist</th>
+                                <th style="width: 35%;">Title</th>
+                                <th style="width: 10%;">Condition</th>
+                                <th style="width: 10%;">Price<strong>&nbsp;(&pound;)</strong></th>
+                                <th style="width: 10%;">Action</th>
                             </tr>
                         </thead>
                         
@@ -268,7 +266,7 @@
                 </div>
             </div>
 
-            <!-- Delivery Modal -->
+            <!-- Shipping Modal -->
             <div class="modal fade" id="shippingModal" tabindex="-1" aria-labelledby="shippingModal" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -385,8 +383,9 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#deliveryModal">Back</button><br>
-                            <div id="paypal-button-container"></div>
+                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#deliveryModal">Back</button>
+                            <button id="confirmBtn" class="btn btn-secondary" type="button">Confirm</button><br>
+                            <!--<div id="paypal-button-container"></div>-->
                         </div>
                     </div>
                 </div>
@@ -572,6 +571,7 @@
                 </div>
             </div>
 
+            <!-- Footer -->
             <div class="row" id="footer">
                 <div class="col-sm-12 text-center"> 
                     <hr>
@@ -589,6 +589,7 @@
     <script src="js/main.js" type="module"></script>
     <script src="js/search.js" type="module"></script>
 
+    <!--
     <script src="https://www.paypal.com/sdk/js?client-id=Ac811W6pLuye-D16yHXSVxFeCT6nOW3Q9ls4ei6AnVm4BLCDiQQ4runX_iMyc8c60lLvYacmaSumv32V&currency=GBP" data-sdk-integration-source="button-factory"></script>
     <script>
         paypal.Buttons({
@@ -626,11 +627,69 @@
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                    sessionStorage.setItem("name", `${details.payer.name.given_name} ${details.payer.name.surname}`);
+                    sessionStorage.status = details.status;
+                    $("#paypalModal").modal("hide");
+                    $("#confirmationModal").modal("show");
+                    let records = document.getElementById("recordsRow");
+                    records.style.display = "none";
+                    let cartBadge = document.getElementById("cartBadge");
+                    cartBadge.innerText = "0";
+                    let status = document.getElementById("confirmationModalLabel");
+                    let payerName = document.getElementById("payerName");
+                    let extra = document.getElementById("detailsExtra");
+                    extra.style.display = "none";
+                    let success = document.getElementById("detailsSuccess");
+                    let error = document.getElementById("detailsError");
+
+                    status.innerText = sessionStorage.status;
+
+                    if (sessionStorage.status === "COMPLETED") {  
+                        error.style.display = "none";
+                        payerName.innerText = sessionStorage.name; 
+                        let overseas = sessionStorage.inTheUK === "yes" ? "No" : "Yes";;
+                        if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
+                            extra.style.display = "block";
+                        }
+                    }
+
+                    else {
+                        success.style.display = "none";
+                    }
+                    sessionStorage.clear();
                 });
             }
         }).render('#paypal-button-container');
-    </script>
+    </script>-->
     
+    <!-- Confirmation Modal-->
+    <div class="modal fade" id="confirmationModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="confirmationModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="confirmationModalLabel"><!-- status --></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div id="detailsSuccess">
+                    <p id="payerName"><!-- Name --></p>
+                    <p>Thank you for you order.</p>
+                    <p id="detailsExtra">We will email you shortly with details about additional shipping costs.</p>
+                </div>
+                <div id="detailsError">
+                    <p>Opps!! There was an error in you transaction.</p>
+                    <p>Please get into touch by email so we can rectify the problem</p>
+                    <p>picknmixrecordsuk@gmail.com</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.assign('main.html')">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
     </body>
 </html>

@@ -128,4 +128,49 @@ $(document).ready(function() {
     $("#paypalModal").on("show.bs.modal", function() {
         displayPaypalModal();
     });
+
+    $("#confirmBtn").click(function() {
+        //simulatePaypalBtn();
+
+        let cartArr = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3", "gifts", "accessories"];
+        let data = {};
+        cartArr.forEach(tableName => {
+            if (sessionStorage[tableName]) {
+                data[tableName] = sessionStorage[tableName].split(",");
+            }
+        })
+
+        data["given_name"] = "Billy";
+        data["surname"] = "Bragg";
+        data["email"] = "soldarecord@gmail.com";
+        data["total"] = sessionStorage.total;
+        data["shipping"] = sessionStorage.shipping;
+        data["grand_total"] = sessionStorage.grandTotal;
+        data["items"] = sessionStorage.items;
+        data["notes"] = sessionStorage.notes;
+
+        $.ajax({
+            type: "GET",
+            url: "php/checkout.php?",
+            data: data
+        })
+        .done(function() {
+            // DO SOMETHING
+            console.log("Done");
+            sessionStorage.clear();
+        })
+        .fail(function(err) {
+            console.log(err);
+            alert("Error: Unable to return database");
+        });    
+    });
 });
+
+function simulatePaypalBtn() {
+    $("#paypalModal").modal("hide");
+    $("#confirmationModal").modal("show");
+    let records = document.getElementById("recordsRow");
+    records.style.display = "none";
+    let cartBadge = document.getElementById("cartBadge");
+    cartBadge.innerText = "0";
+}

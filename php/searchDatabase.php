@@ -24,6 +24,12 @@
             array_push($return, $row);
         };
     }
+
+    usort($return, function($a, $b) {
+        if ($a["artist"] == $b["artist"]) return 0;
+        return (($a["artist"] < $b["artist"]) ? -1 : 1);
+    });
+
     
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode($return, JSON_UNESCAPED_UNICODE);

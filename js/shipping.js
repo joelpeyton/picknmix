@@ -103,7 +103,7 @@ function updateShipping() {
     let overseas = sessionStorage.inTheUK === "yes" ? "No" : "Yes";
     document.getElementById("paypalTotal").innerText = sessionStorage.total;
     if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
-        document.getElementById("paypalShipping").innerText = "To be confiremd";
+        document.getElementById("paypalShipping").innerText = "To be confirmed";
         document.getElementById("paypalGrand").innerText = `${sessionStorage.grandTotal} + P&P`;
     } else {
         document.getElementById("paypalShipping").innerText = sessionStorage.shipping;
@@ -186,7 +186,7 @@ function displayPaypalModal() {
     let value = document.getElementById("deliveryOption").value;
     let optionText;
     let instructions = document.getElementById("deliveryInstructions");
-    sessionStorage.setItem("Notes", instructions.value);
+    sessionStorage.setItem("notes", instructions.value);
 
     pp1.innerText = overseas;
     pp2.innerText = `£ ${sessionStorage.total}`;

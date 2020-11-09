@@ -70,5 +70,14 @@ class Record {
 
         return $stmt;
     }
+
+    function changeToSold($tableName, $id) {
+        $query = "UPDATE " . $tableName . " SET sold = 1 WHERE id = " .$id;
+
+        $stmt = $this->con->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
 ?>
