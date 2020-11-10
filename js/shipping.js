@@ -1,3 +1,5 @@
+"use strict";
+
 function numOfSingles() {
     let numOfSingles = 0;
     let singles = ["f1", "f2", "f3", "i1", "i2"];

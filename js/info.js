@@ -1,3 +1,5 @@
+"use strict";
+
 let infoBtn = document.getElementById("gradingInfoBtn");
 let info = document.getElementsByClassName("gradingInfo");
 

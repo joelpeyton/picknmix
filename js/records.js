@@ -1,3 +1,5 @@
+"use strict";
+
 import { toggleMoreBtn, toggleFinalRow, updateActionBtns, actionBtns, infoBtns, toggleLoader, removeCheckoutBtn, updateCartBadge, updateCategoryTitle } from "./utils.js";
 
 function showRecords() {

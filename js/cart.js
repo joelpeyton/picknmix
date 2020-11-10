@@ -1,3 +1,5 @@
+"use strict";
+
 import { updateCartBadge, updateSessionCart, toggleLoader, toggleFinalRow, infoBtns } from "./utils.js";
 import { removeRecords, createRecordRow } from "./records.js";
 

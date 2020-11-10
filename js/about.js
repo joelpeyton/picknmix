@@ -1,3 +1,5 @@
+"use strict";
+
 let grading = document.getElementById("gradingRow");
 let delivery = document.getElementById("deliveryRow");
 let about = document.getElementById("aboutRow");

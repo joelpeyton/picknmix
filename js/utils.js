@@ -1,3 +1,5 @@
+"use strict";
+
 function toggleActionBtn(event) {
     let btn = document.getElementById(event.target.id);
     if (btn.classList.contains("fa-minus-square")) {

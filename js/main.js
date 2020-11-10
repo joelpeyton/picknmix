@@ -1,3 +1,5 @@
+"use strict";
+
 import { toggleLoader, toggleSearchBar, clearSearchInput } from "./utils.js";
 import { showRecords, hideRecords, getRecords, landingPage } from "./records.js";
 import { getCart } from "./cart.js";
@@ -13,7 +15,7 @@ $(document).ready(function() {
     toggleLoader("hide");
     landingPage();
     //getInfo(sessionStorage.initialCategory);
-    //document.getElementById("gradingInfoBtn").click();
+    document.getElementById("gradingInfoBtn").click();
 
     let a = document.getElementById("title").clientHeight;
     let b = document.getElementById("navigation").clientHeight;
