@@ -91,10 +91,10 @@ function infoBtns() {
 function updateActionBtns(records) {
     for (let index in records) {
         let record = records[index];
-        let category = record["category"]; 
+        let category = record.category; 
         let cart = sessionStorage[category] ? sessionStorage[category].split(",") : [];
-        if (cart.includes(record["id"])) {
-            let id = record["category"] + record["id"];
+        if (cart.includes(record.id)) {
+            let id = record.category + record.id;
             let btn = document.getElementById(id);
             if (btn) {
                 btn.classList.remove("fa-plus-square");

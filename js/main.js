@@ -53,7 +53,7 @@ $(document).ready(function() {
         }
 
         else if (event.target.id === "delivery") {
-            hideInfoBtn()
+            hideInfoBtn();
             hideRecords();
             hideGrading();
             hideAbout();
@@ -136,14 +136,18 @@ $(document).ready(function() {
         showConfirmationModal();
         emailTransaction();
     });
+    
+    $("#confirmationModal").hide(function() {
+        sessionStorage.clear();
+    });
 });
 
 function addCustomer() {
     let data = {};
-    data["given_name"] = sessionStorage.givenName;
-    data["surname"] = sessionStorage.surname;
-    data["email"] = sessionStorage.email;
-    data["payer_id"] = sessionStorage.payerId;
+    data.given_name = sessionStorage.givenName;
+    data.surname = sessionStorage.surname;
+    data.email = sessionStorage.email;
+    data.payer_id = sessionStorage.payerId;
 
     $.ajax({
         type: "GET",
@@ -161,11 +165,11 @@ function addCustomer() {
 
 function addTransaction() {
     let data = {};
-    data["email"] = sessionStorage.email;
-    data["transaction_id"] = sessionStorage.transactionId;
-    data["total"] = sessionStorage.total;
-    data["shipping"] = sessionStorage.shipping;
-    data["grand_total"] = sessionStorage.grandTotal;
+    data.email = sessionStorage.email;
+    data.transaction_id = sessionStorage.transactionId;
+    data.total = sessionStorage.total;
+    data.shipping = sessionStorage.shipping;
+    data.grand_total = sessionStorage.grandTotal;
 
 
     $.ajax({
@@ -186,11 +190,11 @@ function addTransaction() {
 function updateSold() {
     let cartArr = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3", "gifts", "accessories"];
     let data = {};
-    data["records"] = {};
-    data["transaction_id"] = sessionStorage.transactionId;
+    data.records = {};
+    data.transaction_id = sessionStorage.transactionId;
     cartArr.forEach(tableName => {
         if (sessionStorage[tableName]) {
-            data["records"][tableName] = sessionStorage[tableName].split(",");
+            data.records[tableName] = sessionStorage[tableName].split(",");
         }
     });
 
@@ -210,14 +214,15 @@ function updateSold() {
 
 function emailTransaction() {
     let data = {};
-    data["given_name"] = sessionStorage.givenName;
-    data["surname"] = sessionStorage.surname;
-    data["email"] = sessionStorage.email;
-    data["transaction_id"] = sessionStorage.transactionId;
-    data["total"] = sessionStorage.total;
-    data["shipping"] = parseFloat(sessionStorage.shipping) == 0 ? "To be confirmed" : sessionStorage.shipping;
-    data["grand_total"] = sessionStorage.grandTotal;
-    data["notes"] = sessionStorage.notes ? sessionStorage.notes : "None";
+    data.given_name = sessionStorage.givenName;
+    data.surname = sessionStorage.surname;
+    data.email = sessionStorage.email;
+    data.transaction_id = sessionStorage.transactionId;
+    data.total = sessionStorage.total;
+    data.shipping = parseFloat(sessionStorage.shipping) === 0 ? "To be confirmed" : sessionStorage.shipping;
+    data.grand_total = sessionStorage.grandTotal;
+    data.notes = sessionStorage.notes ? sessionStorage.notes : "None";
+    data.cart = sessionStorage.cart;
 
     $.ajax({
         type: "GET",
@@ -252,7 +257,7 @@ function showConfirmationModal() {
     if (sessionStorage.status === "COMPLETED") {  
         error.style.display = "none";
         payerName.innerText = `${sessionStorage.givenName} ${sessionStorage.surname}`; 
-        let overseas = sessionStorage.inTheUK === "yes" ? "No" : "Yes";;
+        let overseas = sessionStorage.inTheUK === "yes" ? "No" : "Yes";
         if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
             extra.style.display = "block";
         }
@@ -262,5 +267,5 @@ function showConfirmationModal() {
         success.style.display = "none";
     }
     
-    sessionStorage.clear();
+    //sessionStorage.clear();
 }

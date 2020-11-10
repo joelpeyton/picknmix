@@ -208,7 +208,7 @@ function displayPaypalModal() {
         pp5.innerText = `£ ${sessionStorage.grandTotal}`;
     } 
 
-    pp6.innerHTML = `<p>${instructions.value}</p>`
+    pp6.innerHTML = `<p>${instructions.value}</p>`;
     
     if (sessionStorage.inTheUK === "no") {
         pp6.innerHTML += "<p>Postage and packaging costs for overseas orders will be priced individually depending on country, weight and package size. These costs will be sent to you following your order.</p>";
@@ -217,4 +217,4 @@ function displayPaypalModal() {
     }
 }
 
-export { toggleOverseas, displayShippingModal, displayPaypalModal, calculateShippingCost }
+export { toggleOverseas, displayShippingModal, displayPaypalModal, calculateShippingCost };

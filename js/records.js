@@ -16,24 +16,24 @@ function createRecordRow(record, isCart) {
     rowA.className = "record";
 
     let artist = document.createElement("td");
-    artist.innerHTML = record["artist"];
+    artist.innerHTML = record.artist;
     rowA.appendChild(artist);
 
     let title = document.createElement("td");
-    title.innerHTML = record["title"];
+    title.innerHTML = record.title;
     rowA.appendChild(title);
 
     let condition = document.createElement("td");
-    condition.innerHTML = record["vinylCondition"];
+    condition.innerHTML = record.vinylCondition;
     rowA.appendChild(condition);
 
     let price = document.createElement("td");
-    price.innerHTML = record["price"];
+    price.innerHTML = record.price;
     rowA.appendChild(price);
 
     let actionBtn = document.createElement("i");
-    actionBtn.setAttribute("id", record["category"] + record["id"]);
-    actionBtn.setAttribute("category", record["category"]);
+    actionBtn.setAttribute("id", record.category + record.id);
+    actionBtn.setAttribute("category", record.category);
 
     if (isCart) {
         actionBtn.className = "removeBtn fas fa-minus-square";
@@ -45,7 +45,7 @@ function createRecordRow(record, isCart) {
 
     let infoBtn = document.createElement("i");
     infoBtn.className = "infoBtn fas fa-info-circle";
-    infoBtn.setAttribute("id", "infoBtn" + record["id"]);
+    infoBtn.setAttribute("id", "infoBtn" + record.id);
 
     let action = document.createElement("td");
     action.appendChild(actionBtn);
@@ -54,20 +54,20 @@ function createRecordRow(record, isCart) {
 
     table.appendChild(rowA);
 
-    if (!record["category"].startsWith("f")) {
+    if (!record.category.startsWith("f")) {
         infoBtn.style.color = "#007bff";
         infoBtn.style.opacity = "1";
         infoBtn.style.cursor = "pointer";
 
         let rowB = document.createElement("tr");
         rowB.className = "info";
-        rowB.setAttribute("id", "info" + record["id"]); 
+        rowB.setAttribute("id", "info" + record.id); 
         rowB.style.display = "none";
         
         rowB.style.borderTop = "none";
 
-        if (record["category"] === "gifts" || record["category"] === "accessories") {
-            let imgTD = document.createElement("td")
+        if (record.category === "gifts" || record.category === "accessories") {
+            let imgTD = document.createElement("td");
 
             let img = document.createElement("img");
             img.className = "shopImage";
@@ -132,7 +132,7 @@ function displayRecords(records, start) {
     let more = document.querySelector("#more");
     more.onclick = function() {
         displayRecords(records, end);
-    }
+    };
 
     toggleLoader("hide");
 }
@@ -171,4 +171,4 @@ export {
     createRecordRow,
     removeRecords,
     landingPage
-}
+};

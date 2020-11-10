@@ -10,7 +10,7 @@ function getCart() {
         if (sessionStorage[cart]) {
             data[cart] = sessionStorage[cart].split(",");
         }
-    })
+    });
 
     $.ajax({
         type: "GET",
@@ -44,7 +44,7 @@ function setTotal() {
 function updateTotal(records) {
     let total = 0;
     for (let index in records) {
-        total += parseFloat(records[index]["price"]);
+        total += parseFloat(records[index].price);
     }
 
     document.getElementById("total").innerHTML = `<strong>${total.toFixed(2)}</strong>`;
@@ -69,7 +69,7 @@ function updateCart(records) {
                 value: `${record.price}`
             },
             quantity: "1"
-        }
+        };
         
         items.push(item);
     }

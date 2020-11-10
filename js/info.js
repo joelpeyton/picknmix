@@ -74,4 +74,4 @@ export {
     getInfo,
     toggleInfo,
     hideInfo
-}
+};

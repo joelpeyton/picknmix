@@ -30,5 +30,4 @@ function hideAbout() {
     about.style.display = "none";
 }
 
-
-export { showGrading, hideGrading, showDelivery, hideDelivery, showAbout, hideAbout }
+export { showGrading, hideGrading, showDelivery, hideDelivery, showAbout, hideAbout };
