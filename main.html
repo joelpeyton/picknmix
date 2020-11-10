@@ -384,8 +384,8 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#deliveryModal">Back</button>
-                            <button id="confirmBtn" class="btn btn-secondary" type="button">Confirm</button><br>
-                            <!--<div id="paypal-button-container"></div>-->
+                            <button id="confirmBtn" class="btn btn-secondary" type="button" style="display: block;">Confirm</button>
+                            <div id="paypal-button-container"></div>
                         </div>
                     </div>
                 </div>
@@ -589,7 +589,6 @@
     <script src="js/main.js" type="module"></script>
     <script src="js/search.js" type="module"></script>
 
-    <!--
     <script src="https://www.paypal.com/sdk/js?client-id=Ac811W6pLuye-D16yHXSVxFeCT6nOW3Q9ls4ei6AnVm4BLCDiQQ4runX_iMyc8c60lLvYacmaSumv32V&currency=GBP" data-sdk-integration-source="button-factory"></script>
     <script>
         paypal.Buttons({
@@ -627,40 +626,17 @@
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    sessionStorage.setItem("name", `${details.payer.name.given_name} ${details.payer.name.surname}`);
-                    sessionStorage.status = details.status;
-                    $("#paypalModal").modal("hide");
-                    $("#confirmationModal").modal("show");
-                    let records = document.getElementById("recordsRow");
-                    records.style.display = "none";
-                    let cartBadge = document.getElementById("cartBadge");
-                    cartBadge.innerText = "0";
-                    let status = document.getElementById("confirmationModalLabel");
-                    let payerName = document.getElementById("payerName");
-                    let extra = document.getElementById("detailsExtra");
-                    extra.style.display = "none";
-                    let success = document.getElementById("detailsSuccess");
-                    let error = document.getElementById("detailsError");
-
-                    status.innerText = sessionStorage.status;
-
-                    if (sessionStorage.status === "COMPLETED") {  
-                        error.style.display = "none";
-                        payerName.innerText = sessionStorage.name; 
-                        let overseas = sessionStorage.inTheUK === "yes" ? "No" : "Yes";;
-                        if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
-                            extra.style.display = "block";
-                        }
-                    }
-
-                    else {
-                        success.style.display = "none";
-                    }
-                    sessionStorage.clear();
+                    sessionStorage.setItem("givenName", details.payer.name.given_name);
+                    sessionStorage.setItem("surname", details.payer.name.surname);
+                    sessionStorage.setItem("email", details.payer.email_address);
+                    sessionStorage.setItem("payerId", details.payer.payer_id);
+                    sessionStorage.setItem("transactionId", details.id);
+                    sessionStorage.setItem("status", details.status);    
+                    $("#confirmBtn").click();    
                 });
             }
         }).render('#paypal-button-container');
-    </script>-->
+    </script>
     
     <!-- Confirmation Modal-->
     <div class="modal fade" id="confirmationModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="confirmationModal" aria-hidden="true">
@@ -683,6 +659,8 @@
                     <p>Please get into touch by email so we can rectify the problem</p>
                     <p>picknmixrecordsuk@gmail.com</p>
                 </div>
+
+                <div id="emailText"></div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.assign('main.html')">Close</button>

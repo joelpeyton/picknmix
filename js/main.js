@@ -130,47 +130,137 @@ $(document).ready(function() {
     });
 
     $("#confirmBtn").click(function() {
-        //simulatePaypalBtn();
-
-        let cartArr = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3", "gifts", "accessories"];
-        let data = {};
-        cartArr.forEach(tableName => {
-            if (sessionStorage[tableName]) {
-                data[tableName] = sessionStorage[tableName].split(",");
-            }
-        })
-
-        data["given_name"] = "Billy";
-        data["surname"] = "Bragg";
-        data["email"] = "soldarecord@gmail.com";
-        data["total"] = sessionStorage.total;
-        data["shipping"] = sessionStorage.shipping;
-        data["grand_total"] = sessionStorage.grandTotal;
-        data["items"] = sessionStorage.items;
-        data["notes"] = sessionStorage.notes;
-
-        $.ajax({
-            type: "GET",
-            url: "php/checkout.php?",
-            data: data
-        })
-        .done(function() {
-            // DO SOMETHING
-            console.log("Done");
-            sessionStorage.clear();
-        })
-        .fail(function(err) {
-            console.log(err);
-            alert("Error: Unable to return database");
-        });    
+        addCustomer();
+        addTransaction();
+        updateSold();
+        showConfirmationModal();
+        emailTransaction();
     });
 });
 
-function simulatePaypalBtn() {
+function addCustomer() {
+    let data = {};
+    data["given_name"] = sessionStorage.givenName;
+    data["surname"] = sessionStorage.surname;
+    data["email"] = sessionStorage.email;
+    data["payer_id"] = sessionStorage.payerId;
+
+    $.ajax({
+        type: "GET",
+        url: "php/addCustomer.php?",
+        data: data
+    })
+    .done(function() {
+        // DO SOMETHING;
+    })
+    .fail(function(err) {
+        console.log(err);
+        alert("Error: Unable to return database");
+    });  
+}
+
+function addTransaction() {
+    let data = {};
+    data["email"] = sessionStorage.email;
+    data["transaction_id"] = sessionStorage.transactionId;
+    data["total"] = sessionStorage.total;
+    data["shipping"] = sessionStorage.shipping;
+    data["grand_total"] = sessionStorage.grandTotal;
+
+
+    $.ajax({
+        type: "GET",
+        url: "php/addTransaction.php?",
+        data: data
+    })
+    .done(function() {
+        // DO SOMETHING
+    })
+    .fail(function(err) {
+        console.log(err);
+        alert("Error: Unable to return database");
+    });  
+}
+
+
+function updateSold() {
+    let cartArr = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3", "gifts", "accessories"];
+    let data = {};
+    data["records"] = {};
+    data["transaction_id"] = sessionStorage.transactionId;
+    cartArr.forEach(tableName => {
+        if (sessionStorage[tableName]) {
+            data["records"][tableName] = sessionStorage[tableName].split(",");
+        }
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "php/updateSold.php?",
+        data: data
+    })
+    .done(function() {
+        // DO SOMETHING
+    })
+    .fail(function(err) {
+        console.log(err);
+        alert("Error: Unable to return database");
+    });    
+}
+
+function emailTransaction() {
+    let data = {};
+    data["given_name"] = sessionStorage.givenName;
+    data["surname"] = sessionStorage.surname;
+    data["email"] = sessionStorage.email;
+    data["transaction_id"] = sessionStorage.transactionId;
+    data["total"] = sessionStorage.total;
+    data["shipping"] = parseFloat(sessionStorage.shipping) == 0 ? "To be confirmed" : sessionStorage.shipping;
+    data["grand_total"] = sessionStorage.grandTotal;
+    data["notes"] = sessionStorage.notes ? sessionStorage.notes : "None";
+
+    $.ajax({
+        type: "GET",
+        url: "php/email.php?",
+        data: data
+    })
+    .done(function() {
+        // DO SOMETHING
+    })
+    .fail(function(err) {
+        console.log(err);
+        alert("Error: Unable to return database");
+    });   
+}
+
+function showConfirmationModal() {
     $("#paypalModal").modal("hide");
     $("#confirmationModal").modal("show");
     let records = document.getElementById("recordsRow");
     records.style.display = "none";
     let cartBadge = document.getElementById("cartBadge");
     cartBadge.innerText = "0";
+    let status = document.getElementById("confirmationModalLabel");
+    let payerName = document.getElementById("payerName");
+    let extra = document.getElementById("detailsExtra");
+    extra.style.display = "none";
+    let success = document.getElementById("detailsSuccess");
+    let error = document.getElementById("detailsError");
+
+    status.innerText = sessionStorage.status;
+
+    if (sessionStorage.status === "COMPLETED") {  
+        error.style.display = "none";
+        payerName.innerText = `${sessionStorage.givenName} ${sessionStorage.surname}`; 
+        let overseas = sessionStorage.inTheUK === "yes" ? "No" : "Yes";;
+        if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
+            extra.style.display = "block";
+        }
+    }
+
+    else {
+        success.style.display = "none";
+    }
+    
+    sessionStorage.clear();
 }

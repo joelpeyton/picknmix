@@ -19,6 +19,7 @@ function getCart() {
     })
     .done(function(records) {
        updateCart(records);
+       sessionStorage.setItem("cart", JSON.stringify(records));
        toggleLoader("hide");
     })
     .fail(function(err) {
