@@ -101,9 +101,50 @@ function calculateShippingCost() {
     updateShipping();
 }
 
+function numOfFixedSingles() {
+    let numOfSingles = 0;
+    let singles = ["f1", "f2", "f3", "f4", "f5", "f8"];
+    
+    singles.forEach(element => {
+        if (sessionStorage[element]) {
+            numOfSingles += sessionStorage[element].split(",").length;
+        }
+    });
+
+    return numOfSingles;
+}
+
+function calculateDiscount() {
+    let n = numOfFixedSingles();
+    let displayNumOfSingles = document.getElementById("displayNumOfSingles");
+    displayNumOfSingles.innerText = n;
+    let discountPercentage = 0;
+    if (n >= 25) {
+        discountPercentage = 20;
+    } else if (n >= 12) {
+        discountPercentage = 17;
+    } else if (n >= 7) {
+        discountPercentage = 14;
+    }
+
+    let discount = 0;
+
+    if (discountPercentage !== 0) {
+        discount = parseFloat(sessionStorage.total) * (discountPercentage / 100);
+    }
+    
+    sessionStorage.setItem("discount", discount.toFixed(2));
+    sessionStorage.grandTotal = (sessionStorage.grandTotal - sessionStorage.discount).toFixed(2);
+}
+
 function updateShipping() {
+    calculateDiscount();
+
     let overseas = sessionStorage.inTheUK === "yes" ? "No" : "Yes";
     document.getElementById("paypalTotal").innerText = sessionStorage.total;
+
+    document.getElementById("paypalDiscount").innerText = sessionStorage.discount;
+    
     if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
         document.getElementById("paypalShipping").innerText = "To be confirmed";
         document.getElementById("paypalGrand").innerText = `${sessionStorage.grandTotal} + P&P`;
@@ -185,18 +226,20 @@ function displayPaypalModal() {
     let pp4 = document.getElementById("pp4");
     let pp5 = document.getElementById("pp5");
     let pp6 = document.getElementById("pp6");
+    let pp7 = document.getElementById("pp7");
     let value = document.getElementById("deliveryOption").value;
     let optionText;
     let instructions = document.getElementById("deliveryInstructions");
     sessionStorage.setItem("notes", instructions.value);
 
     pp1.innerText = overseas;
-    pp2.innerText = `£ ${sessionStorage.total}`;
+    pp2.innerText = `${sessionStorage.total}`;
+    pp7.innerText = `${sessionStorage.discount}`;
     
     if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
         pp3.innerText = "To be confirmed";
         pp4.innerText = "To be confirmed";
-        pp5.innerText = `£ ${sessionStorage.grandTotal} + P&P`;
+        pp5.innerText = `${sessionStorage.grandTotal} + P&P`;
     } else {
         if (value === "1") {
             optionText = "Standard Delivery"; 
@@ -206,8 +249,8 @@ function displayPaypalModal() {
             optionText = "Guaranteed Next Day";
         }
         pp3.innerText = optionText;
-        pp4.innerText = `£ ${sessionStorage.shipping}`;
-        pp5.innerText = `£ ${sessionStorage.grandTotal}`;
+        pp4.innerText = `${sessionStorage.shipping}`;
+        pp5.innerText = `${sessionStorage.grandTotal}`;
     } 
 
     pp6.innerHTML = `<p>${instructions.value}</p>`;

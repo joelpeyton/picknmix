@@ -278,6 +278,10 @@
                                         <td>&pound; <span class="float-right" id="paypalTotal"></span></td>
                                     </tr>
                                     <tr>
+                                        <td>Singles discount ( <span id="displayNumOfSingles"><!-- Number of singles --></span> )</td>
+                                        <td>&pound; <span class="float-right" id="paypalDiscount"></span></td>
+                                    </tr>
+                                    <tr>
                                         <td>Shipping</td>
                                         <td>&pound; <span class="float-right" id="paypalShipping"></span></td>
                                     </tr>
@@ -337,20 +341,24 @@
                                         <td id="pp1"><!-- Yes or No--></td>
                                     </tr>
                                     <tr>
-                                        <th>Total</th>
-                                        <td id="pp2"><!-- Cost of records--></td>
-                                    </tr>
-                                    <tr>
                                         <th>Shipping Type</th>
                                         <td id="pp3"><!-- Type of shipping --></td>
                                     </tr>
                                     <tr>
+                                        <th>Total</th>
+                                        <td>&pound; <span id="pp2" class="float-right"></span><!-- Cost of record --></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Singles discount</th>
+                                        <td>&pound; <span id="pp7" class="float-right"></span><!-- Discount --></td>
+                                    </tr>
+                                    <tr>
                                         <th>Shipping Costs</th>
-                                        <td id="pp4"><!-- Cost of shipping --></td>
+                                        <td>&pound; <span id="pp4" class="float-right"></span><!-- Cost of shipping --></td>
                                     </tr>
                                     <tr>
                                         <th>Grand Total</th>
-                                        <td id="pp5"><!-- Total cost --></td>
+                                        <td>&pound; <span id="pp5" class="float-right"></span><!-- Total cost --></td>
                                     </tr>
                                     <tr>
                                         <th colspan="2">Additional Info</th>
@@ -600,7 +608,12 @@
                                     shipping: {
                                         currency_code: "GBP",
                                         value: sessionStorage.shipping
+                                    },
+                                    discount: {
+                                        currency_code: "GBP",
+                                        value: sessionStorage.discount
                                     }
+
                                 }
                             },
                             items: JSON.parse(sessionStorage.items)
