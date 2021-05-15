@@ -82,7 +82,7 @@ function createRecordRow(record, isCart) {
         let info = document.createElement("td");
         info.setAttribute("colspan", "3");
        
-        let infoArr = ["label", "catalogueNumber", "format", "sleeveCondition", "info", "comments"];
+        let infoArr = ["label", "catalogueNumber", "format", "sleeveCondition", "comments"];
 
         infoArr.forEach(field => {
             let descriptor = field;
@@ -155,7 +155,7 @@ function getRecords(table) {
     })
     .fail(function(err) {
         console.log(err);
-        alert("Error: Unable to return database");
+        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
     });    
 }
 

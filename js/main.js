@@ -161,7 +161,7 @@ function addCustomer() {
     })
     .fail(function(err) {
         console.log(err);
-        alert("Error: Unable to return database");
+        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
     });  
 }
 
@@ -184,7 +184,7 @@ function addTransaction() {
     })
     .fail(function(err) {
         console.log(err);
-        alert("Error: Unable to return database");
+        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
     });  
 }
 
@@ -210,7 +210,7 @@ function updateSold() {
     })
     .fail(function(err) {
         console.log(err);
-        alert("Error: Unable to return database");
+        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
     });    
 }
 
@@ -236,7 +236,7 @@ function emailTransaction() {
     })
     .fail(function(err) {
         console.log(err);
-        alert("Error: Unable to return database");
+        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
     });   
 }
 

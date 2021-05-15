@@ -26,7 +26,7 @@ $("#searchByJukebox").click(function() {
         toggleLoader("hide");
     })
     .fail(function() {
-        alert("Error: Unable to return database");
+        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
     });    
 });
 
@@ -53,7 +53,7 @@ $("#search").on("input", function() {
         toggleLoader("hide");
     })
     .fail(function() {
-        alert("Error: Unable to return database");
+        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
     });    
 });
 

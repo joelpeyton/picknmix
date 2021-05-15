@@ -122,13 +122,13 @@ function updateCategoryTitle(table) {
             text = "70s 80s & 90s singles (All £1.99)";
             break;
         case "f3":
-            text = "60s – 90s Bargain singles (All 99p)";
+            text = "60s – 90s Bargain singles (All 99p), all VG or better";
             break;
         case "f4":
-            text = "60s – 90s Sale singles (All 50p)";
+            text = "60s – 90s Sale singles (All 50p), all VG or better";
             break;    
         case "f5":
-            text = "12” singles (All £2.49)";
+            text = "12” singles (All £2.49), all VG or better";
             break;
         case "f6":
             text = "Pop & Rock LPs (from £2.49)";
