@@ -22,10 +22,13 @@ function getInfo(id) {
             sessionStorage.setItem("info", [0, 2, 4, 6, 7]);
             break;
         case "f3":
-            sessionStorage.setItem("info", [0, 3, 4, 6, 7]);
-            break;
         case "f4":
         case "f5":
+        case "f8":
+            sessionStorage.setItem("info", [0, 3, 4, 6, 7]);
+            break;
+        case "f6":
+        case "f7":
             sessionStorage.setItem("info", [0, 3, 5, 7]);
             break;
         case "i1":

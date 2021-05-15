@@ -2,7 +2,7 @@
 
 function numOfSingles() {
     let numOfSingles = 0;
-    let singles = ["f1", "f2", "f3", "i1", "i2"];
+    let singles = ["f1", "f2", "f3", "f4", "f5", "f8", "i1", "i2"];
     
     singles.forEach(element => {
         if (sessionStorage[element]) {
@@ -15,7 +15,7 @@ function numOfSingles() {
 
 function numOfLps() {
     let numOfLps = 0;
-    let lps = ["f4", "f5", "i3"];
+    let lps = ["f6", "f7", "i3"];
 
     lps.forEach(element => {
         if (sessionStorage[element]) {

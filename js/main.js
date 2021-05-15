@@ -190,7 +190,7 @@ function addTransaction() {
 
 
 function updateSold() {
-    let cartArr = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3", "gifts", "accessories"];
+    let cartArr = ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "i1", "i2", "i3", "gifts", "accessories"];
     let data = {};
     data.records = {};
     data.transaction_id = sessionStorage.transactionId;

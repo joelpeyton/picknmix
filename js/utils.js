@@ -50,7 +50,7 @@ function updateSessionCart() {
 function updateCartBadge() {
     let cartBadge = document.getElementById("cartBadge");
 
-    let categories = ["f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3", "gifts", "accessories"];
+    let categories = ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "i1", "i2", "i3", "gifts", "accessories"];
     let length = 0;
     categories.forEach(category => {
         let cart = sessionStorage[category] ? sessionStorage[category].split(",") : [];
@@ -125,10 +125,19 @@ function updateCategoryTitle(table) {
             text = "60s – 90s Bargain singles (All 99p)";
             break;
         case "f4":
+            text = "60s – 90s Sale singles (All 50p)";
+            break;    
+        case "f5":
             text = "12” singles (All £2.49)";
             break;
-        case "f5":
-            text = "LPs (£4.99)";
+        case "f6":
+            text = "Pop & Rock LPs (from £2.49)";
+            break;
+        case "f7":
+            text = "Classical LPs (from £2.49)";
+            break;
+        case "f8":
+            text = "Christmas singles (All £2.99)";
             break;
         case "i1":
             text = "7\" singles";

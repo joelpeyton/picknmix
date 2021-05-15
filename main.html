@@ -35,7 +35,7 @@
         
         <link rel="manifest" href="site.webmanifest">
 
-        <title>Pick and mix records</title>
+        <title>Pick 'n' mix records</title>
     </head>
     <body class="bg">
         <!-- Loader -->
@@ -74,8 +74,11 @@
                                 <a class="dropdown-item" href="#" id="f1">50s & 60s singles (All &pound;1.99)</a>
                                 <a class="dropdown-item" href="#" id="f2">70s 80s & 90s singles (All &pound;1.99)</a>
                                 <a class="dropdown-item" href="#" id="f3">60s – 90s Bargain singles (All 99p)</a>
-                                <a class="dropdown-item" href="#" id="f4">12” singles (All &pound;2.49)</a>
-                                <a class="dropdown-item" href="#" id="f5">LPs (&pound;4.99)</a>
+                                <a class="dropdown-item" href="#" id="f4">60s – 90s Sale singles (All 50p)</a>
+                                <a class="dropdown-item" href="#" id="f8">Christmas singles (All &pound;2.99 )</a>
+                                <a class="dropdown-item" href="#" id="f5">12” singles (All &pound;2.49)</a>
+                                <a class="dropdown-item" href="#" id="f6">Pop & Rock LPs (from &pound;2.49)</a>
+                                <a class="dropdown-item" href="#" id="f7">Classical LPs (from &pound;2.49)</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -88,9 +91,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" id="accessories">Accessories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" id="gifts">Gifts</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="about" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
@@ -132,28 +132,7 @@
                     </div>
                 </div>
             </div> 
-                        <!--
-                        <p class="gradingInfo mt-3">All records are carefully visually graded, please see our <a id="gradingLink" href="#">grading page</a> for further clarification of these grades.</p>
-                        <p class="gradingInfo">Many records will have been play-tested but will otherwise have been carefully inspected visually. Each contains an accurate description of quality where sound quality where it will be mentioned if play-tested.</p>
-                        <ul class="gradingInfo"> 
-                            <li>M = Mint</li>
-                            <li>NM = Near Mint</li>
-                            <li>VG+ = Very Good Plus</li>
-                            <li>VG = Very Good</li>
-                            <li>G+ = Good Plus</li>
-                            <li>F = Fair</li>
-                            <li>P = Poor</li>
-                        </ul>
-                        <p class="gradingInfo">All records are at least VG (Very Good) rating unless specifically stated, many VG+ (Very Good Plus) or even NM (Near Mint).</p>
-                        <p class="gradingInfo">PS = Picture Sleeve, otherwise company sleeve or plain / generic sleeve.</p>
-                        <p class="gradingInfo">Picture Sleeve unless stated (otherwise company sleeve or plain / generic sleeve).</p>
-                        <p class="gradingInfo">JB = Jukebox. Large centre hole, will play on any player with use of a <a href="#">45 adapter.</a></p>
-                        <p class="gradingInfo">Sleeves will be in reasonable to excellent condition unless noted. Sleeves and labels may have writing, stickers / residue, small surface tears and / or small seam splits but anything else of note will be mentioned.</p>
-                        <p class="gradingInfo">A few releases (especially US, European) may be released with large hole (Jukebox ready). Where this is not as per the original format of released, it will be mentioned. Will play on any player with use of a <a href="#">45 adapter</a>, sleeves are individually graded.</p>
-                    </div>
-                </div>
-            </div> -->
-
+    
             <!-- Info Modal -->
             <div class="modal fade" id="informationModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="informationModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" style="max-width: 70vw">
@@ -384,7 +363,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#deliveryModal">Back</button>
-                            <button id="confirmBtn" class="btn btn-secondary" type="button" style="display: block;">Confirm</button>
+                            <!--<button id="confirmBtn" class="btn btn-secondary" type="button" style="display: block;">Confirm</button>-->
                             <div id="paypal-button-container"></div>
                         </div>
                     </div>
@@ -394,7 +373,7 @@
             <!-- About -->
             <div class="row scrollArea" id="aboutRow">
                 <div class="col-sm-12">
-                    <p>At Pick N Mix Records, our goal is to offer music fans an easy and simple way to 
+                    <p>At Pick 'n' mix Records, our goal is to offer music fans an easy and simple way to 
                     re-discover the music you grew up with and re-build, or start a collection to enjoy 
                     for years to come.</p>
                     
@@ -414,7 +393,7 @@
             <!-- Grading -->
             <div class="row scrollArea" id="gradingRow">
                 <div class="col-sm-12">
-                    <p>At Pick ‘N’ Mix we are passionate about vinyl and want you to be happy with your purchase and receive them in the condition we would be happy to receive records into our own personal collections. All records are checked visually and will be well packaged.</p>
+                    <p>At Pick 'n' mix we are passionate about vinyl and want you to be happy with your purchase and receive them in the condition we would be happy to receive records into our own personal collections. All records are checked visually and will be well packaged.</p>
                     <p>All vinyl is graded carefully conservatively so it's more likely you'll get a higher grade record than anything. Please note that unless otherwise stated in the description, records are visually graded.</p>
                     <p>We grade based on the Goldmine Standard for grading records. This is the industry standard grading system which may need a little explaining as to how we use it and the terms used as they do not necessarily equate to what may be expected.</p>
                     <p>Note that Fixed Price records are graded visually and if in doubt play tested in which case the guide below is the expectation of how the record looks and will likely play based on our experience. These records may need cleaning for best results. Sleeves for Fixed price records will be of a decent quality unless marked otherwise. Sleeves and labels may have writing, stickers / residue, small surface tears and / or small seam splits but anything else of note will be mentioned.</p>
@@ -575,7 +554,7 @@
             <div class="row" id="footer">
                 <div class="col-sm-12 text-center"> 
                     <hr>
-                    <p>Copyright &copy; 2020 Pick 'n' mix records. Powered by <a href="https://www.joelpeyton.co.uk" target="_blank">Joel Peyton</a></p>
+                    <p>Copyright &copy; <span id="year"><!-- Year --></span> Pick 'n' mix records. Powered by <a href="https://www.joelpeyton.co.uk" target="_blank">Joel Peyton</a></p>
                 </div>
             </div>
         </div> <!-- End main container -->
@@ -588,6 +567,11 @@
     
     <script src="js/main.js" type="module"></script>
     <script src="js/search.js" type="module"></script>
+
+    <script>
+        let year = document.getElementById("year");
+        year.textContent = new Date().getFullYear();
+    </script>
 
     <script src="https://www.paypal.com/sdk/js?client-id=Ac811W6pLuye-D16yHXSVxFeCT6nOW3Q9ls4ei6AnVm4BLCDiQQ4runX_iMyc8c60lLvYacmaSumv32V&currency=GBP" data-sdk-integration-source="button-factory"></script>
     <script>
@@ -657,7 +641,7 @@
                 <div id="detailsError">
                     <p>Opps!! There was an error in you transaction.</p>
                     <p>Please get into touch by email so we can rectify the problem</p>
-                    <p>picknmixrecordsuk@gmail.com</p>
+                    <p>ian@picknmixrecords.com</p>
                 </div>
 
                 <div id="emailText"></div>

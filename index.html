@@ -25,7 +25,7 @@
         
         <link rel="manifest" href="site.webmanifest">
 
-        <title>Pick and mix records</title>
+        <title>Pick 'n' mix records</title>
     </head> 
 
     <body>    
@@ -43,8 +43,11 @@
                                     <a class="dropdown-item" href="main.html" id="f1">50s & 60s singles (All &pound;1.99)</a>
                                     <a class="dropdown-item" href="main.html" id="f2">70s 80s & 90s singles (All &pound;1.99)</a>
                                     <a class="dropdown-item" href="main.html" id="f3">60s – 90s Bargain singles (All 99p)</a>
-                                    <a class="dropdown-item" href="main.html" id="f4">12” singles (All &pound;2.49)</a>
-                                    <a class="dropdown-item" href="main.html" id="f5">LPs (&pound;4.99)</a>
+                                    <a class="dropdown-item" href="main.html" id="f4">60s – 90s Sale singles (All 50p)</a>
+                                    <a class="dropdown-item" href="main.html" id="f8">Christmas singles (All &pound;2.99 )</a>
+                                    <a class="dropdown-item" href="main.html" id="f5">12” singles (All &pound;2.49)</a>
+                                    <a class="dropdown-item" href="main.html" id="f6">Pop & Rock LPs (from &pound;2.49)</a>
+                                    <a class="dropdown-item" href="main.html" id="f7">Classical LPs (from &pound;2.49)</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -58,9 +61,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="main.html" id="accessories">Accessories</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="main.html" id="gifts">Gifts</a>
-                            </li>
                         </ul>
                     </nav>          
                 </div>
@@ -68,7 +68,7 @@
 
             <div class="row">
                 <div class="col-sm-12 fixed-bottom text-center bottom ">
-                    <p>Copyright &copy; 2020 Pick 'n' mix records. Powered by <a href="https://www.joelpeyton.co.uk" target="_blank">Joel Peyton</a></p>
+                    <p>Copyright &copy; <span id="year"><!-- Year --></span> Pick 'n' mix records. Powered by <a href="https://www.joelpeyton.co.uk" target="_blank">Joel Peyton</a></p>
                 </div>
             </div>
         </div>
@@ -80,6 +80,10 @@
     <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script src="js/index.js"></script>
+    <script>
+        let year = document.getElementById("year");
+        year.textContent = new Date().getFullYear();
+    </script>
         
     </body>
 </html>
