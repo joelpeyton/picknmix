@@ -14,7 +14,7 @@
 
     $return = array();
 
-    $tableArray = array("f1", "f2", "f3", "f4", "f5", "i1", "i2", "i3");
+    $tableArray = array("f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "i1", "i2", "i3");
 
     for ($i = 0; $i < count($tableArray); $i++) {
         $stmt = $record->search($tableArray[$i], $field, $term);

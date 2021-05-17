@@ -15,7 +15,13 @@ class Record {
                   UNION ALL
                   SELECT * FROM f4
                   UNION ALL
-                  SELECT * FROM f5";
+                  SELECT * FROM f5
+                  UNION ALL
+                  SELECT * FROM f6
+                  UNION ALL
+                  SELECT * FROM f7
+                  UNION ALL
+                  SELECT * FROM f8";
 
         $stmt = $this->con->prepare($query);
         $stmt->execute();
