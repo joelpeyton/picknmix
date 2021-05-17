@@ -15,7 +15,7 @@ $(document).ready(function() {
     toggleLoader("hide");
     landingPage();
     //getInfo(sessionStorage.initialCategory);
-    document.getElementById("gradingInfoBtn").click();
+    //document.getElementById("gradingInfoBtn").click();
 
     let a = document.getElementById("title").clientHeight;
     let b = document.getElementById("navigation").clientHeight;
