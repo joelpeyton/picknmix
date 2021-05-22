@@ -1,7 +1,7 @@
 "use strict";
 
 import { toggleMoreBtn, toggleFinalRow, updateActionBtns, actionBtns, infoBtns, toggleLoader, toggleSearchBar, removeCheckoutBtn, updateCartBadge, updateCategoryTitle } from "./utils.js";
-import { showDelivery, showGrading, showAbout } from "./about.js";
+import { showDelivery, showGrading, showAbout, showSelling } from "./about.js";
 
 function showRecords() {
     let content = document.getElementById("recordsRow");
@@ -162,7 +162,8 @@ function getRecords(table) {
 
 function landingPage() {
     let initialCategory = sessionStorage.initialCategory;
-
+    toggleSearchBar("hide");
+    
     if (initialCategory === "picknmix") {        
         showAbout();
     }
@@ -173,6 +174,10 @@ function landingPage() {
 
     else if (initialCategory === "delivery") {
         showDelivery();
+    }
+
+    else if (initialCategory === "selling") {
+        showSelling();
     }
 
     else {

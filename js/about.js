@@ -3,6 +3,7 @@
 let grading = document.getElementById("gradingRow");
 let delivery = document.getElementById("deliveryRow");
 let about = document.getElementById("aboutRow");
+let selling = document.getElementById("sellingRow");
 let category = document.getElementById("categoryTitle");
 
 function showGrading() {
@@ -32,4 +33,13 @@ function hideAbout() {
     about.style.display = "none";
 }
 
-export { showGrading, hideGrading, showDelivery, hideDelivery, showAbout, hideAbout };
+function showSelling() {
+    selling.style.display = "block";
+    category.innerText = "Selling your collection?";
+}
+
+function hideSelling() {
+    selling.style.display = "none";
+}
+
+export { showGrading, hideGrading, showDelivery, hideDelivery, showAbout, hideAbout, showSelling, hideSelling };

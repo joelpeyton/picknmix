@@ -4,7 +4,7 @@ import { toggleLoader, toggleSearchBar, clearSearchInput } from "./utils.js";
 import { showRecords, hideRecords, getRecords, landingPage } from "./records.js";
 import { getCart } from "./cart.js";
 import { toggleOverseas, displayShippingModal, calculateShippingCost, displayPaypalModal } from "./shipping.js";
-import { showDelivery, hideDelivery, showGrading, hideGrading, showAbout, hideAbout } from "./about.js";
+import { showDelivery, hideDelivery, showGrading, hideGrading, showAbout, hideAbout, showSelling, hideSelling } from "./about.js";
 import { hideInfoBtn, showInfoBtn, getInfo, toggleInfo } from "./info.js";
 import { clearCode, showAlert, showSuccess, hideAlert, hideSuccess, updatePercentage } from "./promo.js";
 
@@ -13,6 +13,7 @@ $(document).ready(function() {
     hideGrading();
     hideDelivery();
     hideAbout();
+    hideSelling();
     toggleLoader("hide");
     landingPage();
     //getInfo(sessionStorage.initialCategory);
@@ -42,6 +43,7 @@ $(document).ready(function() {
             hideRecords();
             hideDelivery();
             hideGrading();
+            hideSelling();
             showAbout();
             toggleSearchBar("hide");
         }
@@ -51,6 +53,7 @@ $(document).ready(function() {
             hideRecords();
             hideDelivery();
             hideAbout();
+            hideSelling();
             showGrading();
             toggleSearchBar("hide");
         }
@@ -60,7 +63,18 @@ $(document).ready(function() {
             hideRecords();
             hideGrading();
             hideAbout();
+            hideSelling();
             showDelivery();
+            toggleSearchBar("hide");
+        }
+
+        else if (event.target.id === "selling") {
+            hideInfoBtn();
+            hideRecords();
+            hideGrading();
+            hideAbout();
+            hideDelivery();
+            showSelling();
             toggleSearchBar("hide");
         }
 
@@ -78,6 +92,7 @@ $(document).ready(function() {
             hideGrading();
             hideDelivery();
             hideAbout();
+            hideSelling();
             getRecords(event.target.id);
             toggleSearchBar("show");
         }
@@ -93,6 +108,7 @@ $(document).ready(function() {
         hideDelivery();
         hideAbout();
         hideGrading();
+        hideSelling();
         showRecords();
         getInfo("cart");
     });
