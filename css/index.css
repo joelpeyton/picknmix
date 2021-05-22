@@ -34,7 +34,7 @@ hr {
 
 .top, .bottom {
     padding: 2rem;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .discount {
@@ -66,5 +66,6 @@ hr {
 @media screen and (min-width: 768px) {
     body, html {
         font-size: 1rem;
+        background-image: url("../images/recordPlayer.jpg");
     }
 }
