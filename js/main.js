@@ -4,7 +4,7 @@ import { toggleLoader, toggleSearchBar, clearSearchInput } from "./utils.js";
 import { showRecords, hideRecords, getRecords, landingPage } from "./records.js";
 import { getCart } from "./cart.js";
 import { toggleOverseas, displayShippingModal, calculateShippingCost, displayPaypalModal } from "./shipping.js";
-import { showDelivery, hideDelivery, showGrading, hideGrading, showAbout, hideAbout, showSelling, hideSelling } from "./about.js";
+import { showDelivery, hideDelivery, showGrading, hideGrading, showAbout, hideAbout, showSelling, hideSelling, hideJoel, showJoel } from "./about.js";
 import { hideInfoBtn, showInfoBtn, getInfo, toggleInfo } from "./info.js";
 import { clearCode, showAlert, showSuccess, hideAlert, hideSuccess, updatePercentage } from "./promo.js";
 
@@ -44,6 +44,7 @@ $(document).ready(function() {
             hideDelivery();
             hideGrading();
             hideSelling();
+            hideJoel();
             showAbout();
             toggleSearchBar("hide");
         }
@@ -54,6 +55,7 @@ $(document).ready(function() {
             hideDelivery();
             hideAbout();
             hideSelling();
+            hideJoel();
             showGrading();
             toggleSearchBar("hide");
         }
@@ -64,6 +66,7 @@ $(document).ready(function() {
             hideGrading();
             hideAbout();
             hideSelling();
+            hideJoel();
             showDelivery();
             toggleSearchBar("hide");
         }
@@ -74,6 +77,7 @@ $(document).ready(function() {
             hideGrading();
             hideAbout();
             hideDelivery();
+            hideJoel();
             showSelling();
             toggleSearchBar("hide");
         }
@@ -100,6 +104,18 @@ $(document).ready(function() {
         getInfo(event.target.id);
         clearSearchInput();
     });
+
+    $("#joel").click(function() {
+        console.log("clicked");
+        hideInfoBtn();
+        hideRecords();
+        hideGrading();
+        hideAbout();
+        hideDelivery();
+        hideSelling();
+        showJoel();
+        toggleSearchBar("hide");
+    }) 
 
     $("#cartBtn").click(function() {
         getCart();

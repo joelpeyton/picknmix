@@ -4,6 +4,7 @@ let grading = document.getElementById("gradingRow");
 let delivery = document.getElementById("deliveryRow");
 let about = document.getElementById("aboutRow");
 let selling = document.getElementById("sellingRow");
+let joel = document.getElementById("joelRow");
 let category = document.getElementById("categoryTitle");
 
 function showGrading() {
@@ -42,4 +43,13 @@ function hideSelling() {
     selling.style.display = "none";
 }
 
-export { showGrading, hideGrading, showDelivery, hideDelivery, showAbout, hideAbout, showSelling, hideSelling };
+function showJoel() {
+    joel.style.display = "block";
+    category.innerText = "Need a website?";
+}
+
+function hideJoel() {
+    joel.style.display = "none";
+}
+
+export { showGrading, hideGrading, showDelivery, hideDelivery, showAbout, hideAbout, showSelling, hideSelling, showJoel, hideJoel };
