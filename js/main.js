@@ -76,6 +76,7 @@ $(document).ready(function() {
             showRecords();
             hideGrading();
             hideDelivery();
+            hideAbout();
             getRecords(event.target.id);
             toggleSearchBar("show");
         }
