@@ -14,6 +14,7 @@ $(document).ready(function() {
     hideDelivery();
     hideAbout();
     hideSelling();
+    hideJoel();
     toggleLoader("hide");
     landingPage();
     //getInfo(sessionStorage.initialCategory);
