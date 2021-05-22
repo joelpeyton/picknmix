@@ -162,26 +162,30 @@ function getRecords(table) {
 
 function landingPage() {
     let initialCategory = sessionStorage.initialCategory;
-    toggleSearchBar("hide");
 
     if (initialCategory === "picknmix") {        
         showAbout();
+        toggleSearchBar("hide");
     }
 
     else if (initialCategory === "grading") {
         showGrading();
+        toggleSearchBar("hide");
     }
 
     else if (initialCategory === "delivery") {
         showDelivery();
+        toggleSearchBar("hide");
     }
 
     else if (initialCategory === "selling") {
         showSelling();
+        toggleSearchBar("hide");
     }
 
     else if (initialCategory === "joel") {
         showJoel();
+        toggleSearchBar("hide");
     }
 
     else {
