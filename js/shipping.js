@@ -137,13 +137,32 @@ function calculateDiscount() {
     sessionStorage.grandTotal = (sessionStorage.grandTotal - sessionStorage.discount).toFixed(2);
 }
 
+function calculatePromoDiscount() {
+    let percentage;
+    sessionStorage.promoPercentage ? percentage = sessionStorage.promoPercentage : percentage = 0;
+    
+    let discount = 0;
+
+    if (percentage !== 0) {
+        discount = parseFloat(sessionStorage.total) * (percentage / 100);
+    }
+
+    sessionStorage.setItem("promoDiscount", discount.toFixed(2));
+    sessionStorage.grandTotal = (sessionStorage.grandTotal - sessionStorage.promoDiscount).toFixed(2);
+}
+
 function updateShipping() {
     calculateDiscount();
+    calculatePromoDiscount();
+    let totalDiscount = parseFloat(sessionStorage.discount) + parseFloat(sessionStorage.promoDiscount);
+    sessionStorage.setItem("totalDiscount", totalDiscount.toFixed(2));
 
     let overseas = sessionStorage.inTheUK === "yes" ? "No" : "Yes";
     document.getElementById("paypalTotal").innerText = sessionStorage.total;
 
     document.getElementById("paypalDiscount").innerText = sessionStorage.discount;
+
+    document.getElementById("paypalPromo").innerText = sessionStorage.promoDiscount;
     
     if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
         document.getElementById("paypalShipping").innerText = "To be confirmed";
@@ -227,6 +246,7 @@ function displayPaypalModal() {
     let pp5 = document.getElementById("pp5");
     let pp6 = document.getElementById("pp6");
     let pp7 = document.getElementById("pp7");
+    let pp8 = document.getElementById("pp8");
     let value = document.getElementById("deliveryOption").value;
     let optionText;
     let instructions = document.getElementById("deliveryInstructions");
@@ -235,6 +255,7 @@ function displayPaypalModal() {
     pp1.innerText = overseas;
     pp2.innerText = `${sessionStorage.total}`;
     pp7.innerText = `${sessionStorage.discount}`;
+    pp8.innerText = `${sessionStorage.promoDiscount}`;
     
     if (parseFloat(sessionStorage.total) >= 250.00 || overseas === "Yes") {
         pp3.innerText = "To be confirmed";

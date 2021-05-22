@@ -238,7 +238,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal">Back</button>
+                            <!-- <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal">Back</button>-->
                             <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#promoModal">Continue</button>
                         </div>
                     </div>
@@ -259,13 +259,15 @@
                             <div class="form-group" id="promoDiscount">
                                 <p>Enter your discount code</p>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Discount code" aria-label="Discount code" aria-describedby="promoBtn">
+                                    <input type="text" class="form-control" id="promoCode" placeholder="Discount code" aria-label="Discount code" aria-describedby="promoBtn">
                                     <button class="btn btn-outline-secondary" type="button" id="promoBtn">Add discount</button>
                                 </div>
+                                <p id="promoAlert">Sorry that isn't a valid dicosunt code</p>
+                                <p id="promoSuccess">Your discount has been added</p>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#destinationModal">Back</button>
+                            <!--<button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#destinationModal">Back</button>-->
                             <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#shippingModal">Continue</button>
                         </div>
                     </div>
@@ -310,7 +312,7 @@
                                     </tr>
                                     <tr>
                                         <td>Promo discount ( <span id="promoPercentage"><!-- Promo percentage --></span>&percnt; )</td>
-                                        <td>&pound; <span class="float-right" id="paypalDiscount"></span></td>
+                                        <td>&pound; <span class="float-right" id="paypalPromo"></span></td>
                                     </tr>
                                     <tr>
                                         <td>Shipping</td>
@@ -324,7 +326,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#promoModal">Back</button>
+                            <!--<button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#promoModal">Back</button>-->
                             <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#deliveryModal">Continue</button>
                         </div>
                     </div>
@@ -347,7 +349,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#shippingModal">Back</button>
+                            <!--<button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#shippingModal">Back</button>-->
                             <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#paypalModal">Continue</button>
                         </div>
                     </div>
@@ -405,7 +407,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#deliveryModal">Back</button>
+                            <!--<button class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#deliveryModal">Back</button>-->
                             <!--<button id="confirmBtn" class="btn btn-secondary" type="button" style="display: block;">Confirm</button>-->
                             <div id="paypal-button-container"></div>
                         </div>
@@ -646,7 +648,7 @@
                                     },
                                     discount: {
                                         currency_code: "GBP",
-                                        value: sessionStorage.discount
+                                        value: sessionStorage.totalDiscount
                                     }
 
                                 }

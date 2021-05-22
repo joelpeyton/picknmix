@@ -6,6 +6,7 @@ import { getCart } from "./cart.js";
 import { toggleOverseas, displayShippingModal, calculateShippingCost, displayPaypalModal } from "./shipping.js";
 import { showDelivery, hideDelivery, showGrading, hideGrading, showAbout, hideAbout } from "./about.js";
 import { hideInfoBtn, showInfoBtn, getInfo, toggleInfo } from "./info.js";
+import { clearCode, showAlert, showSuccess, hideAlert, hideSuccess, updatePercentage } from "./promo.js";
 
 $(document).ready(function() {
     hideRecords();
@@ -114,6 +115,45 @@ $(document).ready(function() {
         $("#inTheUK").change(function() {
             toggleOverseas();
         });
+    });
+
+    $("#promoModal").on("show.bs.modal", function() {
+        sessionStorage.setItem("promoPercentage", 0);
+        clearCode();
+        hideAlert();
+        hideSuccess();
+        updatePercentage();
+    });
+
+    $("#promoBtn").click(function() {
+        let code = document.getElementById("promoCode").value;
+        
+        if (!code.startsWith("Picknmix")) {
+            showAlert();
+            hideSuccess();
+            updatePercentage();
+        }
+        else {
+            showSuccess();
+            hideAlert();
+
+            if (code.endsWith("5E")) {
+                sessionStorage.setItem("promoPercentage", 5);
+                updatePercentage();
+            } 
+            else if (code.endsWith("10J")) {
+                sessionStorage.setItem("promoPercentage", 10);
+                updatePercentage();
+            }
+            else if (code.endsWith("15O")) {
+                sessionStorage.setItem("promoPercentage", 15);
+                updatePercentage();
+            } 
+            else {
+                hideSuccess();
+                showAlert();
+            }
+        }
     });
 
     $("#shippingModal").on("show.bs.modal", function() {
