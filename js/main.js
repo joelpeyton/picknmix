@@ -98,6 +98,7 @@ $(document).ready(function() {
             hideDelivery();
             hideAbout();
             hideSelling();
+            hideJoel();
             getRecords(event.target.id);
             toggleSearchBar("show");
         }
@@ -126,6 +127,7 @@ $(document).ready(function() {
         hideAbout();
         hideGrading();
         hideSelling();
+        hideJoel();
         showRecords();
         getInfo("cart");
     });
@@ -342,6 +344,4 @@ function showConfirmationModal() {
     else {
         success.style.display = "none";
     }
-    
-    //sessionStorage.clear();
 }
