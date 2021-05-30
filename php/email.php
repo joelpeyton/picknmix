@@ -9,6 +9,8 @@
     $given_name = htmlspecialchars(strip_tags($_GET["given_name"]));
     $surname = htmlspecialchars(strip_tags($_GET["surname"]));
     $total = htmlspecialchars(strip_tags($_GET["total"]));
+    $discount = htmlspecialchars(strip_tags($_GET["discount"]));
+    $promo_discount = htmlspecialchars(strip_tags($_GET["promo_discount"]));
     $shipping = htmlspecialchars(strip_tags($_GET["shipping"]));
     $grand_total = htmlspecialchars(strip_tags($_GET["grand_total"]));
     $notes = htmlspecialchars(strip_tags($_GET["notes"]));
@@ -39,6 +41,8 @@
     $message .= 'Surname: ' . $surname . '<br>';
     $message .= 'Email: ' . $email . '<br>';
     $message .= 'Total: ' . $total . '<br>';
+    $message .= 'Fixed price single discount: ' . $discount . '<br>';
+    $message .= 'Promo discount: ' . $promo_discount . '<br>';
     $message .= 'Shipping: ' . $shipping . '<br>';
     $message .= 'Grand Total: ' . $grand_total . '<br>';
     $message .= 'Notes: ' . $notes . '<br>';
@@ -47,13 +51,13 @@
     $message .= '<p>' . $text . '</p>';
     $message .= '</body></html>';
     
-    $receiver = "picknmixrecordsuk@gmail.com";
+    //$receiver = "picknmixrecordsuk@gmail.com";
 
     $headers  = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
     $headers .= "From: {$sender} <{$sender_email}>" . "\r\n";
 
-    mail($receiver, $subject, $message, $headers);
+    //mail($receiver, $subject, $message, $headers);
     
     $receiver = "joelpeyton@hotmail.co.uk";
     mail($receiver, $subject, $message, $headers);

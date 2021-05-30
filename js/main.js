@@ -246,9 +246,10 @@ function addTransaction() {
     data.email = sessionStorage.email;
     data.transaction_id = sessionStorage.transactionId;
     data.total = sessionStorage.total;
+    data.discount = sessionStorage.discount;
+    data.promo_discount = sessionStorage.promoDiscount;
     data.shipping = sessionStorage.shipping;
     data.grand_total = sessionStorage.grandTotal;
-
 
     $.ajax({
         type: "GET",
@@ -297,6 +298,8 @@ function emailTransaction() {
     data.email = sessionStorage.email;
     data.transaction_id = sessionStorage.transactionId;
     data.total = sessionStorage.total;
+    data.discount = sessionStorage.discount;
+    data.promo_discount = sessionStorage.promoDiscount;
     data.shipping = parseFloat(sessionStorage.shipping) === 0 ? "To be confirmed" : sessionStorage.shipping;
     data.grand_total = sessionStorage.grandTotal;
     data.notes = sessionStorage.notes ? sessionStorage.notes : "None";
