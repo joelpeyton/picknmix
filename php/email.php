@@ -50,15 +50,11 @@
     $message .= '<h3>Records</h3>';
     $message .= '<p>' . $text . '</p>';
     $message .= '</body></html>';
-    
-    //$receiver = "picknmixrecordsuk@gmail.com";
 
     $headers  = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
     $headers .= "From: {$sender} <{$sender_email}>" . "\r\n";
-
-    //mail($receiver, $subject, $message, $headers);
     
-    $receiver = "joelpeyton@hotmail.co.uk";
+    $receiver = "ian@picknmixrecords.com";
     mail($receiver, $subject, $message, $headers);
 ?>
