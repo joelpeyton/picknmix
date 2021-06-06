@@ -4,6 +4,7 @@ let grading = document.getElementById("gradingRow");
 let delivery = document.getElementById("deliveryRow");
 let about = document.getElementById("aboutRow");
 let selling = document.getElementById("sellingRow");
+let contact = document.getElementById("contactRow");
 let joel = document.getElementById("joelRow");
 let category = document.getElementById("categoryTitle");
 
@@ -43,6 +44,15 @@ function hideSelling() {
     selling.style.display = "none";
 }
 
+function showContact() {
+    contact.style.display = "block";
+    category.innerText = "Contact Us";
+}
+
+function hideContact() {
+    contact.style.display = "none";
+}
+
 function showJoel() {
     joel.style.display = "block";
     category.innerText = "Need a website?";
@@ -52,4 +62,4 @@ function hideJoel() {
     joel.style.display = "none";
 }
 
-export { showGrading, hideGrading, showDelivery, hideDelivery, showAbout, hideAbout, showSelling, hideSelling, showJoel, hideJoel };
+export { showGrading, hideGrading, showDelivery, hideDelivery, showAbout, hideAbout, showSelling, hideSelling, showContact, hideContact, showJoel, hideJoel };

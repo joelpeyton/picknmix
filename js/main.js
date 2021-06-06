@@ -4,7 +4,7 @@ import { toggleLoader, toggleSearchBar, clearSearchInput } from "./utils.js";
 import { showRecords, hideRecords, getRecords, landingPage } from "./records.js";
 import { getCart } from "./cart.js";
 import { toggleOverseas, displayShippingModal, calculateShippingCost, displayPaypalModal } from "./shipping.js";
-import { showDelivery, hideDelivery, showGrading, hideGrading, showAbout, hideAbout, showSelling, hideSelling, hideJoel, showJoel } from "./about.js";
+import { showDelivery, hideDelivery, showGrading, hideGrading, showAbout, hideAbout, showSelling, hideSelling, showContact, hideContact, hideJoel, showJoel } from "./about.js";
 import { hideInfoBtn, showInfoBtn, getInfo, toggleInfo } from "./info.js";
 import { clearCode, showAlert, showSuccess, hideAlert, hideSuccess, updatePercentage } from "./promo.js";
 
@@ -14,6 +14,7 @@ $(document).ready(function() {
     hideDelivery();
     hideAbout();
     hideSelling();
+    hideContact();
     hideJoel();
     toggleLoader("hide");
     landingPage();
@@ -45,6 +46,7 @@ $(document).ready(function() {
             hideDelivery();
             hideGrading();
             hideSelling();
+            hideContact();
             hideJoel();
             showAbout();
             toggleSearchBar("hide");
@@ -56,6 +58,7 @@ $(document).ready(function() {
             hideDelivery();
             hideAbout();
             hideSelling();
+            hideContact();
             hideJoel();
             showGrading();
             toggleSearchBar("hide");
@@ -67,6 +70,7 @@ $(document).ready(function() {
             hideGrading();
             hideAbout();
             hideSelling();
+            hideContact();
             hideJoel();
             showDelivery();
             toggleSearchBar("hide");
@@ -78,8 +82,21 @@ $(document).ready(function() {
             hideGrading();
             hideAbout();
             hideDelivery();
+            hideContact();
             hideJoel();
             showSelling();
+            toggleSearchBar("hide");
+        }
+
+        else if (event.target.id === "contact") {
+            hideInfoBtn();
+            hideRecords();
+            hideGrading();
+            hideAbout();
+            hideDelivery();
+            hideJoel();
+            hideSelling();
+            showContact();
             toggleSearchBar("hide");
         }
 
@@ -98,6 +115,7 @@ $(document).ready(function() {
             hideDelivery();
             hideAbout();
             hideSelling();
+            hideContact();
             hideJoel();
             getRecords(event.target.id);
             toggleSearchBar("show");
@@ -108,13 +126,13 @@ $(document).ready(function() {
     });
 
     $("#joel").click(function() {
-        console.log("clicked");
         hideInfoBtn();
         hideRecords();
         hideGrading();
         hideAbout();
         hideDelivery();
         hideSelling();
+        hideContact();
         showJoel();
         toggleSearchBar("hide");
     }) 
@@ -127,6 +145,7 @@ $(document).ready(function() {
         hideAbout();
         hideGrading();
         hideSelling();
+        hideContact();
         hideJoel();
         showRecords();
         getInfo("cart");
