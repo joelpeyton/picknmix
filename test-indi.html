@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="Joel Peyton">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+        
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="../../fontawesome/css/all.css">
+
+        <!-- Google Fonts-->
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap" rel="stylesheet">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/cart.css">
+        <link rel="stylesheet" href="css/title.css">
+        <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/records.css">
+        <link rel="stylesheet" href="css/loader.css">
+        
+        <!-- Fav icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        
+        <link rel="manifest" href="site.webmanifest">
+
+        <title>Pick 'n' mix records</title>
+    </head>
+    <body class="bg">
+        <!-- Loader -->
+        <div class="loader">
+            <span id="loader"><i class="fas fa-compact-disc"></i></span>
+        </div>
+        
+        <div class="container">
+            <!-- Title -->
+            <div id="title">
+                <h1>
+                    TESTING DATABASE UPLOAD
+                </h1>
+                <hr>
+            </div>
+   
+            <!-- Info -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="text-center mb-5">
+                        <span id="uploadSuccess"><!-- Success message --></span>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- Records -->
+            <div class="row scrollArea" id="recordsRow">
+                <div class="col-sm-12">
+                    <table id="recordsTable" class="table">
+                        <thead>                            
+                            <tr>
+                                <th style="width: 35%;">Artist</th>
+                                <th style="width: 35%;">Title</th>
+                                <th style="width: 10%;">Condition</th>
+                                <th style="width: 10%;">Price<strong>&nbsp;(&pound;)</strong></th>
+                                <th style="width: 10%;">Action</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="records">
+                            <!-- display records here-->
+                        </tbody>
+
+                        <!-- Load more -->
+                        <tbody>
+                            <tr id="finalRow">
+                                <td colspan="5" style="text-align: center">
+                                    <button class="btn btn-primary" id="more">Load more</button>
+                                    <button class="btn btn-primary" id="backToTop">Back to top</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="row" id="footer">
+                <div class="col-sm-12 text-center"> 
+                    <hr>
+                    <p>Copyright &copy; <span id="year"><!-- Year --></span> Pick 'n' mix records.</p>
+                </div>
+            </div>
+        </div> <!-- End main container -->
+
+    <!-- Bootstrap JavaScript -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Bootstrap JS -->
+    <script src="../../jQuery/jquery-3.5.1.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="js/test-indi.js" type="module"></script>
+    <script src="js/search.js" type="module"></script>
+
+    </body>
+</html>
