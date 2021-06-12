@@ -60,6 +60,58 @@ class Record {
         return $stmt;
     }
 
+    function readOne($tableName, $id) {
+        $query = "SELECT * FROM " . $tableName . " WHERE id = " . $id;
+
+        $stmt = $this->con->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    function addIndivid($tableName, $number, $artist, $title, $vinylCondition, $label, $catalogueNumber, $format, $sleeveCondition, $comments, $price) {
+        $query = "INSERT INTO " . $tableName . " (number, artist, title, vinylCondition, label, catalogueNumber, format, sleeveCondition, comments, price)";
+        $query .= "VALUES (:number, :artist, :title, :vinylCondition, :label, :catalogueNumber, :format, :sleeveCondition, :comments, :price)";
+        
+        $stmt = $this->con->prepare($query);
+
+        $stmt->bindParam(":number", $number);
+        $stmt->bindParam(":artist", $artist);
+        $stmt->bindParam(":title", $title);
+        $stmt->bindParam(":vinylCondition", $vinylCondition);
+        $stmt->bindParam(":label", $label);
+        $stmt->bindParam(":catalogueNumber", $catalogueNumber);
+        $stmt->bindParam(":format", $format);
+        $stmt->bindParam(":sleeveCondition", $sleeveCondition);
+        $stmt->bindParam(":comments", $comments);
+        $stmt->bindParam(":price", $price);
+    
+        $stmt->execute();
+    }
+
+    function addFixed($tableName, $number, $artist, $title, $vinylCondition) {
+        $query = "INSERT INTO " . $tableName . " (number, artist, title, vinylCondition)";
+        $query .= "VALUES (:number, :artist, :title, :vinylCondition)";
+        
+        $stmt = $this->con->prepare($query);
+
+        $stmt->bindParam(":number", $number);
+        $stmt->bindParam(":artist", $artist);
+        $stmt->bindParam(":title", $title);
+        $stmt->bindParam(":vinylCondition", $vinylCondition);
+    
+        $stmt->execute();
+    }
+
+    function delete($tableName, $id) {
+        $query = "DELETE FROM " . $tableName . " WHERE id = " . $id;
+
+        $stmt = $this->con->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
     function search($tableName, $field, $term) {
         $term = strtolower($term);
         $query = "SELECT * FROM " . $tableName . " WHERE LOWER(" . $field . ") LIKE '%" . $term . "%' AND sold = 0 ORDER BY Artist"; 
