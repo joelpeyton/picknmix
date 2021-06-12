@@ -18,8 +18,6 @@ $(document).ready(function() {
     hideJoel();
     toggleLoader("hide");
     landingPage();
-    //getInfo(sessionStorage.initialCategory);
-    //document.getElementById("gradingInfoBtn").click();
 
     let a = document.getElementById("title").clientHeight;
     let b = document.getElementById("navigation").clientHeight;

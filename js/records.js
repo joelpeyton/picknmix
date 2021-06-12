@@ -69,7 +69,7 @@ function createRecordRow(record, isCart) {
         
         rowB.style.borderTop = "none";
 
-        if (record.category === "gifts" || record.category === "accessories") {
+        /*if (record.category === "gifts" || record.category === "accessories") {
             let imgTD = document.createElement("td");
 
             let img = document.createElement("img");
@@ -78,7 +78,7 @@ function createRecordRow(record, isCart) {
 
             imgTD.appendChild(img);
             rowB.appendChild(imgTD);
-        }
+        }*/
 
         let info = document.createElement("td");
         info.setAttribute("colspan", "3");
@@ -160,23 +160,6 @@ function getRecords(table) {
     });    
 }
 
-function getTestRecords(table) {
-    toggleLoader("show");
-
-    $.ajax({
-        type: "GET",
-        url: "php/getTable.php?table=" + table
-    })
-    .done(function(records) {
-        displayRecords(records, 0);
-        document.getElementById("uploadSuccess").innerText = `Successfully uploaded ${records.length} records to the test database.`;
-    })
-    .fail(function(err) {
-        console.log(err);
-        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
-    });    
-}
-
 function landingPage() {
     let initialCategory = sessionStorage.initialCategory;
 
@@ -223,6 +206,5 @@ export {
     getRecords,
     createRecordRow,
     removeRecords,
-    landingPage,
-    getTestRecords
+    landingPage
 };
