@@ -55,6 +55,6 @@
     $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
     $headers .= "From: {$sender} <{$sender_email}>" . "\r\n";
     
-    $receiver = "ian@picknmixrecords.com";
+    $receiver = "picknmixrecordsuk@gmail.com";
     mail($receiver, $subject, $message, $headers);
 ?>

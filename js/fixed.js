@@ -5,7 +5,7 @@ import { showRecords, getTestRecords } from "./records.js";
 
 $(document).ready(function() {
     toggleLoader("hide");
-    getTestRecords("test_indi");
+    getTestRecords("fixed");
     showRecords();
 });
 
