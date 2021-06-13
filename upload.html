@@ -38,44 +38,45 @@
             <!-- Title -->
             <div id="title">
                 <h1>
-                    CHECK UPLOADED RECORDS
+                    <a href="index.html">PICK 'N' MIX RECORDS</a>
                 </h1>
                 <hr>
             </div>
-   
-            <!-- Info -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="text-center mb-5">
-                        <span id="uploadSuccess"><!-- Success message --></span>
-                    </div>
-                </div>
-            </div> 
 
-            <!-- Records -->
             <div class="row">
                 <div class="col-sm-12">
                     <form>
                         <div class="form-group row">
                             <label for="from" class="col-sm-6 col-form-label">Which database did you upload the CSV file to?</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="from">
+                                <select class="form-control" id="from">
+                                    <option>fixed</option>
+                                    <option>individual</option>
+                                </select>
                             </div>
                         </div>
-
-                        <p id="fromError" style="color: red;"></p>
                         
                         <div class="form-group row">
                             <label for="to" class="col-sm-6 col-form-label">Which database do you want the records to be added to?</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="to">
+                                <select class="form-control" id="to">
+                                    <option value="f1">50s & 60s singles</option>
+                                    <option value="f2">70s 80s & 90s singles</option>
+                                    <option value="f3">60s – 90s Bargain singles</option>
+                                    <option value="f4">60s – 90s Sale singles</option>
+                                    <option value="f8">Christmas singles</option>
+                                    <option value="f5">12” singles</option>
+                                    <option value="f6">Pop & Rock LPs</option>
+                                    <option value="f7">Classical LPs</option>
+                                    <option value="i1">7” singles</option>
+                                    <option value="i2">12” singles</option>
+                                    <option value="i3">LPs & CDs</option>
+                                </select>
                             </div>
                         </div>
 
-                        <p id="toError" style="color: red;"></p>
-                        
                         <div class="form-group row">
-                            <div class="col-sm-10 text-center">
+                            <div class="col-sm-12 text-center">
                                 <button type="button" class="btn btn-primary" id="check">Submit</button>
                             </div>
                         </div>
