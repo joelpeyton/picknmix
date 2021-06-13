@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
     getTestimonials();
+    setUp("testing");
 
     $("a").click(function(event) {
         sessionStorage.setItem("initialCategory", event.target.id);
@@ -31,5 +32,18 @@ function getTestimonials() {
         console.log(err);
         alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
     });    
+}
+
+function setUp(toggle) {
+    if (toggle == "live") {
+        document.getElementsByTagName("nav")[0].style.display = "block";
+        document.getElementById("info").style.display = "none";
+    }
+
+    else {
+        document.getElementsByTagName("nav")[0].style.display = "none";
+        document.getElementById("info").style.display = "block";
+        document.getElementById("info").innerText = "COMING SOON";
+    }
 }
 
