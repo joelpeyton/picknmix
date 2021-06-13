@@ -43,7 +43,7 @@ function setUp(toggle) {
     else {
         document.getElementsByTagName("nav")[0].style.display = "none";
         document.getElementById("info").style.display = "block";
-        document.getElementById("info").innerText = "COMING SOON";
+        document.getElementById("info").innerText = "We're just adding more records - please come back later";
     }
 }
 
