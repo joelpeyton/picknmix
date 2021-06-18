@@ -103,6 +103,21 @@ class Record {
         $stmt->execute();
     }
 
+    function addFixedSix($tableName, $number, $artist, $title, $vinylCondition, $price) {
+        $query = "INSERT INTO " . $tableName . " (number, artist, title, vinylCondition, price)";
+        $query .= "VALUES (:number, :artist, :title, :vinylCondition, :price)";
+        
+        $stmt = $this->con->prepare($query);
+
+        $stmt->bindParam(":number", $number);
+        $stmt->bindParam(":artist", $artist);
+        $stmt->bindParam(":title", $title);
+        $stmt->bindParam(":vinylCondition", $vinylCondition);
+        $stmt->bindParam(":price", $price);
+
+        $stmt->execute();
+    }
+
     function delete($tableName, $id) {
         $query = "DELETE FROM " . $tableName . " WHERE id = " . $id;
 

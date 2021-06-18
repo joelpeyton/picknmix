@@ -34,7 +34,12 @@
     else {
         for ($i = 0; $i < count($return); $i++) {
             if (json_encode($return[$i], JSON_UNESCAPED_UNICODE)) {
-                $stmt = $record->addFixed($to, $return[$i]['number'], $return[$i]['artist'], $return[$i]['title'], $return[$i]['vinylCondition']);
+                if ($to == 'f6') {
+                    $stmt = $record->addFixedSix($to, $return[$i]['number'], $return[$i]['artist'], $return[$i]['title'], $return[$i]['vinylCondition'], $return[$i]['price']);
+                } else {
+                    $stmt = $record->addFixed($to, $return[$i]['number'], $return[$i]['artist'], $return[$i]['title'], $return[$i]['vinylCondition']);
+                }
+                
                 $stmt = $record->delete($table, $return[$i]['id']);
                 $count++;
             }
