@@ -19,19 +19,38 @@ function createRecordRow(record, isCart) {
     rowA.className = "record";
 
     let artist = document.createElement("td");
-    artist.innerHTML = record.artist;
+    artist.innerText = record.artist;
     rowA.appendChild(artist);
 
     let title = document.createElement("td");
-    title.innerHTML = record.title;
+    title.innerText = record.title;
     rowA.appendChild(title);
 
+    let format = document.createElement("td");
+    if (record.category.startsWith("i")) {
+        format.innerText = record.format
+    } 
+    
+    else if (record.category.endsWith("5")) {
+        format.innerText = '12"';
+    }
+
+    else if (record.category.endsWith("6") || record.category.endsWith("7")) {
+        format.innerText = 'LP';
+    }
+
+    else {
+        format.innerText = '7"';
+    }
+    
+    rowA.appendChild(format);
+
     let condition = document.createElement("td");
-    condition.innerHTML = record.vinylCondition;
+    condition.innerText = record.vinylCondition;
     rowA.appendChild(condition);
 
     let price = document.createElement("td");
-    price.innerHTML = record.price;
+    price.innerText = record.price;
     rowA.appendChild(price);
 
     let actionBtn = document.createElement("i");
@@ -46,21 +65,20 @@ function createRecordRow(record, isCart) {
         actionBtn.className = "actionBtn fas fa-plus-square";
     }
 
-    let infoBtn = document.createElement("i");
-    infoBtn.className = "infoBtn fas fa-info-circle";
-    infoBtn.setAttribute("id", "infoBtn" + record.id);
-
     let action = document.createElement("td");
     action.appendChild(actionBtn);
-    action.appendChild(infoBtn);
-    rowA.appendChild(action);
 
+    if (record.category.startsWith("i")) {
+        let infoBtn = document.createElement("i");
+        infoBtn.className = "infoBtn fas fa-info-circle";
+        infoBtn.setAttribute("id", "infoBtn" + record.id);
+        action.appendChild(infoBtn);
+    }
+    
+    rowA.appendChild(action);
     table.appendChild(rowA);
 
-    if (!record.category.startsWith("f")) {
-        infoBtn.style.color = "#007bff";
-        infoBtn.style.opacity = "1";
-        infoBtn.style.cursor = "pointer";
+    if (record.category.startsWith("i")) {
 
         let rowB = document.createElement("tr");
         rowB.className = "info";
@@ -69,21 +87,10 @@ function createRecordRow(record, isCart) {
         
         rowB.style.borderTop = "none";
 
-        /*if (record.category === "gifts" || record.category === "accessories") {
-            let imgTD = document.createElement("td");
-
-            let img = document.createElement("img");
-            img.className = "shopImage";
-            img.src = "images/bg.png";  // NEED TO CHANGE TO DATABASE FIELD
-
-            imgTD.appendChild(img);
-            rowB.appendChild(imgTD);
-        }*/
-
         let info = document.createElement("td");
         info.setAttribute("colspan", "3");
        
-        let infoArr = ["label", "catalogueNumber", "format", "sleeveCondition", "comments"];
+        let infoArr = ["label", "catalogueNumber", "sleeveCondition", "comments"];
 
         infoArr.forEach(field => {
             let descriptor = field;

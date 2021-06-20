@@ -11,8 +11,8 @@
     border-top: 3px solid #dee2e6;
 }
 
-#recordsTable th:nth-child(n+3):nth-child(-n+5),
-#recordsTable td:nth-child(n+3):nth-child(-n+5) {
+#recordsTable th:nth-child(n+3):nth-child(-n+6),
+#recordsTable td:nth-child(n+3):nth-child(-n+6) {
     text-align: center;
 }
 
@@ -31,7 +31,8 @@
 }
 
 .infoBtn {
-    opacity: 0.25;
+    color: #007bff;
+    cursor: pointer;
 }
 
 .removeBtn {

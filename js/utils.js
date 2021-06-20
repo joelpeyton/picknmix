@@ -15,16 +15,8 @@ function toggleActionBtn(event) {
     }
 }
 
-function updateSessionCart() {
-    let id;
-    if (event.target.id.startsWith("gifts")) {
-        id = event.target.id.slice(5);
-    } else if (event.target.id.startsWith("accessories")) {
-        id = event.target.id.slice(11);
-    } else {
-        id = event.target.id.slice(2);
-    }
-
+function updateSessionCart(event) {
+    let id = event.target.id.slice(2);
     let category = event.target.getAttribute("category");
     let cart = sessionStorage[category];
     if (cart) {
@@ -50,7 +42,7 @@ function updateSessionCart() {
 function updateCartBadge() {
     let cartBadge = document.getElementById("cartBadge");
 
-    let categories = ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "i1", "i2", "i3", "gifts", "accessories"];
+    let categories = ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "i1", "i2", "i3"];
     let length = 0;
     categories.forEach(category => {
         let cart = sessionStorage[category] ? sessionStorage[category].split(",") : [];
@@ -147,13 +139,7 @@ function updateCategoryTitle(table) {
             break;
         case "i3":
             text = "LPs & CDs";
-            break;            
-        case "accessories":
-            text = "Accessories";
-            break;   
-        case "gifts":
-            text = "Gifts";
-            break;     
+            break;                 
         default:
             let searchTerm = document.getElementById("search").getAttribute("placeholder");
             text = `Search by ${searchTerm}`;
