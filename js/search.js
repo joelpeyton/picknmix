@@ -25,9 +25,10 @@ $("#searchByJukebox").click(function() {
         updateSearch(records);
         toggleLoader("hide");
     })
-    .fail(function() {
-        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
-    });    
+    .fail(function(xhr) {
+        sessionStorage.setItem("status", xhr.status + ' : ' + xhr.statusText);
+        window.location = "status.html";
+    });      
 });
 
 $("#searchBy").click(function(event) {
@@ -52,8 +53,9 @@ $("#search").on("input", function() {
         updateSearch(records);
         toggleLoader("hide");
     })
-    .fail(function() {
-        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
-    });    
+    .fail(function(xhr) {
+        sessionStorage.setItem("status", xhr.status + ' : ' + xhr.statusText);
+        window.location = "status.html";
+    });  
 });
 

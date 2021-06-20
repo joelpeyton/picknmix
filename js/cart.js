@@ -24,10 +24,10 @@ function getCart() {
        sessionStorage.setItem("cart", JSON.stringify(records));
        toggleLoader("hide");
     })
-    .fail(function(err) {
-        console.log(err);
-        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
-    });    
+    .fail(function(xhr) {
+        sessionStorage.setItem("status", xhr.status + ' : ' + xhr.statusText);
+        window.location = "status.html";
+    });     
 }
 
 function removeRecordFromCart() {

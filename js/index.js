@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
     getTestimonials();
-    setUp("testing");
+    setUp("live");
 
     $("a").click(function(event) {
         sessionStorage.setItem("initialCategory", event.target.id);
@@ -28,9 +28,9 @@ function getTestimonials() {
             n++;
         });
     })
-    .fail(function(err) {
-        console.log(err);
-        alert("Oops!! Looks like somethings gone wrong, please try again or contact ian@picknmixrecords.com if the problem persists.");
+    .fail(function(xhr) {
+        sessionStorage.setItem("status", xhr.status + ' : ' + xhr.statusText);
+        window.location = "status.html";
     });    
 }
 
