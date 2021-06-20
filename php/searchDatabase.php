@@ -30,6 +30,10 @@
         return (($a["artist"] < $b["artist"]) ? -1 : 1);
     });
 
+    usort($return, function($a, $b) {
+        if ($a["title"] == $b["title"]) return 0;
+        return (($a["title"] < $b["title"]) ? -1 : 1);
+    });
     
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode($return, JSON_UNESCAPED_UNICODE);
