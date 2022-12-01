@@ -1,6 +1,6 @@
 # Pick 'n' mix records
 
-E-commerce site built from scratch
+E-commerce site built from scratch, commissioned by Pick n mix records based in Godalming & Bridport
 
 ## Preview
 
