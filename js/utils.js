@@ -62,7 +62,7 @@ function updateCartBadge() {
 function actionBtns() {
     $(".actionBtn").click(function(event) {
         toggleActionBtn(event);
-        updateSessionCart();
+        updateSessionCart(event);
         updateCartBadge();
     });
 }
